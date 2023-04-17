@@ -11,9 +11,9 @@ import Swal from 'sweetalert2';
 export class SignupComponent implements OnInit {
   public user = {
     email: '',
-    firstName: '',
-    lastName: '',
-    phone: '',
+    nombre: '',
+    apellido: '',
+    telefono: '',
     username: '',
     password: ''
   }

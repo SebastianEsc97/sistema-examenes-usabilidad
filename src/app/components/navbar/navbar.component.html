@@ -5,7 +5,22 @@
     </a>
     <span>Examenes</span>
     <span class="example-spacer"></span>
-    <a [routerLink]="'/login'" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon button with heart icon">
+    <a
+    *ngIf="!loginService.isLoggedIn()" 
+    [routerLink]="'/login'" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon button with heart icon">
         Iniciar Sesión
     </a>
+    <a 
+    *ngIf="loginService.isLoggedIn()" 
+    (click) = "logout()"
+    style="margin-right: 40px;"
+    mat-icon-button class="example-icon favorite-icon" aria-label="Example icon button with heart icon">
+        Cerrar Sesión
+    </a>
+    <button
+    *ngIf="loginService.isLoggedIn()"
+    mat-button
+    style="margin-right: 10px;"
+    class="example-icon favorite-icon" aria-label="Example icon-button with heart icon"
+    {{ login.getUser().username }}></button>
 </mat-toolbar>
