@@ -1,3 +1,43 @@
+.space1{
+    margin-top: 5%;
+}
+
+.space2{
+    margin-top: 10%;
+}
+
+.space3{
+    margin-top: 10%;
+}
+
 .full-width{
     width: 100%;
+}
+
+.cardlog{
+    margin-top: 15%;
+    width: 100%;
+    background: linear-gradient(#FFFFFF, #D9D9D9);
+    border-radius: 40px;
+    border-color: black !important;
+    height: 100%;
+}
+
+.inputlog{
+    padding-left: 10%;
+    width: 90%;
+    text-align: center;
+    border-color: black !important;
+}
+
+
+.Inits{
+    font-family: 'Source Serif Pro', serif;
+    background: linear-gradient(#653463, #331A31);
+    font-size: larger;
+}
+
+.titlelog {
+    font-family: 'EB Garamond', serif;
+    font-size: xx-large;
 }
