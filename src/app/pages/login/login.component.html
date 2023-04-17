@@ -5,20 +5,25 @@
                 <div class="container text-center">
                     <img src="" alt="">
                 </div>
-                <h1 class="text-center">Iniciar Sesión</h1>
-                <form (ngSubmit)="formSubmit()">
-                    <mat-form-field class="full-width" appearance="outline">
-                        <mat-label>Usuario</mat-label>
-                        <input [(ngModel)]="loginData.username" name="username" required matInput placeholder="Digite su nombre de usuario">
-                    </mat-form-field>
-                    <mat-form-field class="full-width" appearance="outline">
-                        <mat-label>Contraseña</mat-label>
-                        <input [(ngModel)]="loginData.password" name="password" required matInput placeholder="Digite su contraseña">
-                    </mat-form-field>
-                    <div class="container text-center">
-                        <button mat-raised-button color="primary">Iniciar Sesión</button>
-                    </div>
-                </form>
+                <mat-card class="cardlog">
+                    <h1 class="text-center space1 titlelog">Iniciar Sesión</h1>
+                    <form (ngSubmit)="formSubmit()">
+                        <mat-form-field class="inputlog space2" appearance="outline">
+                            <mat-label>Usuario</mat-label>
+                            <input [(ngModel)]="loginData.username" name="username" type="text" required matInput
+                                placeholder="Digite su nombre de usuario">
+                        </mat-form-field>
+                        <mat-form-field class="inputlog space1" appearance="outline">
+                            <mat-label>Contraseña</mat-label>
+                            <input [(ngModel)]="loginData.password" name="password" type="password" required matInput
+                                placeholder="Digite su contraseña">
+                        </mat-form-field>
+                        <div class="container text-center">
+                            <button class="Inits space3" mat-raised-button mat-stroked-button
+                                target="_blank" color="primary">Entrar</button>
+                        </div>
+                    </form>
+                </mat-card>
             </div>
         </div>
     </div>

@@ -21,6 +21,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { AuthInterceptorProviders } from './services/auth.interceptor';
 import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
 import { ExpertoDashboardComponent } from './pages/experto/experto-dashboard/experto-dashboard.component';
+import { GenerarEncuestaComponent } from './generar-encuesta/generar-encuesta.component';
+import { GestionarPerfilComponent } from './gestionar-perfil/gestionar-perfil.component';
+import { GestionarPrincipiosComponent } from './gestionar-principios/gestionar-principios.component';
+import { CrearPrincipioComponent } from './crear-principio/crear-principio.component';
+import { GestionarUsuariosComponent } from './gestionar-usuarios/gestionar-usuarios.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +34,12 @@ import { ExpertoDashboardComponent } from './pages/experto/experto-dashboard/exp
     LoginComponent,
     HomeComponent,
     DashboardComponent,
-    ExpertoDashboardComponent
+    ExpertoDashboardComponent,
+    GenerarEncuestaComponent,
+    GestionarPerfilComponent,
+    GestionarPrincipiosComponent,
+    CrearPrincipioComponent,
+    GestionarUsuariosComponent
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,19 @@
 .example-spacer{
     flex: 0.92 1 auto;
 }
+
+.buttonnav1{
+    width: 10%;
+    font-family: 'Source Serif Pro', serif;
+    font-size: x-large;
+}
+
+.buttonnav2{
+    width: 17%;
+    font-family: 'Source Serif Pro', serif;
+    font-size: x-large;
+}
+
+.icon1{
+    max-width: 100%;
+}
