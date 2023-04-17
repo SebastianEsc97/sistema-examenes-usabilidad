@@ -7,6 +7,8 @@ import { DashboardComponent } from './pages/admin/dashboard/dashboard.component'
 import { ExpertoDashboardComponent } from './pages/experto/experto-dashboard/experto-dashboard.component';
 import { ExpertoGuard } from './services/experto.guard';
 import { AdminGuard } from './services/admin.guard';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
 
 const routes: Routes = [
   {
@@ -27,14 +29,23 @@ const routes: Routes = [
   {
     path: 'admin-dash',
     component: DashboardComponent,
-    pathMatch: 'full',
-    canActivate:[AdminGuard]
+    canActivate: [AdminGuard],
+    children: [
+      {
+        path: 'profile',
+        component: ProfileComponent
+      },
+      {
+        path: '',
+        component: WelcomeComponent
+      }
+    ]
   },
   {
     path: 'expert-dash',
     component: ExpertoDashboardComponent,
     pathMatch: 'full',
-    canActivate:[ExpertoGuard]
+    canActivate: [ExpertoGuard]
   },
 ];
 

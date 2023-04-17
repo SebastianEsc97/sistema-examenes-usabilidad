@@ -21,6 +21,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { AuthInterceptorProviders } from './services/auth.interceptor';
 import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
 import { ExpertoDashboardComponent } from './pages/experto/experto-dashboard/experto-dashboard.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { MatListModule } from '@angular/material/list';
+import { SidebarComponent } from './pages/admin/sidebar/sidebar.component';
+import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +33,10 @@ import { ExpertoDashboardComponent } from './pages/experto/experto-dashboard/exp
     LoginComponent,
     HomeComponent,
     DashboardComponent,
-    ExpertoDashboardComponent
+    ExpertoDashboardComponent,
+    ProfileComponent,
+    SidebarComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +50,8 @@ import { ExpertoDashboardComponent } from './pages/experto/experto-dashboard/exp
     MatSnackBarModule,
     MatCardModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    MatListModule
   ],
   providers: [AuthInterceptorProviders],
   bootstrap: [AppComponent]
