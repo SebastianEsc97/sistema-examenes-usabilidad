@@ -9,6 +9,8 @@ import { ExpertoGuard } from './services/experto.guard';
 import { AdminGuard } from './services/admin.guard';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
+import { ViewPrincipiosComponent } from './pages/admin/view-principios/view-principios.component';
+import { AddPrincipiosComponent } from './pages/admin/add-principios/add-principios.component';
 
 const routes: Routes = [
   {
@@ -38,7 +40,15 @@ const routes: Routes = [
       {
         path: '',
         component: WelcomeComponent
-      }
+      },
+      {
+        path: 'principios',
+        component: ViewPrincipiosComponent
+      },
+      {
+        path: 'add-principios',
+        component: AddPrincipiosComponent
+      },
     ]
   },
   {

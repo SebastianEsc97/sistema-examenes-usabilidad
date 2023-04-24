@@ -1,0 +1,16 @@
+<mat-card>
+    <mat-list>
+        <div mat-subheader>
+            Principios
+        </div>
+        <mat-list-item *ngFor = "let p of principios">
+            <mat-icon mat-list-icon>category</mat-icon>
+            <div mat-line>{{ p.titulo }}</div>
+            <div mat-line>{{ p.descripcion }}</div>
+            <mat-divider></mat-divider>
+        </mat-list-item>
+    </mat-list>
+    <div class="container text-center">
+        <button routerLink="admin-dash/add-principios" mat-raised-button color="primary">Agregar principio</button>
+    </div>
+</mat-card>

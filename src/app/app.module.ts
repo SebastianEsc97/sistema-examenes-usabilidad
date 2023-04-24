@@ -23,6 +23,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { MatListModule } from '@angular/material/list';
 import { SidebarComponent } from './pages/admin/sidebar/sidebar.component';
 import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
+import { ViewPrincipiosComponent } from './pages/admin/view-principios/view-principios.component';
+import { AddPrincipiosComponent } from './pages/admin/add-principios/add-principios.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
     ExpertoDashboardComponent,
     ProfileComponent,
     SidebarComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    ViewPrincipiosComponent,
+    AddPrincipiosComponent
   ],
   imports: [
     BrowserModule,
