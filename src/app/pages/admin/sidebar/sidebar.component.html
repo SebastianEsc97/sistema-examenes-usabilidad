@@ -1,27 +1,20 @@
 <mat-card>
     <mat-action-list>
-        <div mat-subheader>Menú
-        </div>
-        <button routerLink="/admin-dash" mat-list-item>
-            <mat-icon>home</mat-icon>Inicio
-        </button>
-        <button mat-list-item routerLink="/admin-dash/profile">
-            <mat-icon mat-list-icon>account_circle</mat-icon>Perfil
-        </button>
-        <button mat-list-item routerLink="/admin-dash/principios">
-            <mat-icon mat-list-icon>list</mat-icon>Principios
-        </button>
-        <button mat-list-item routerLink="/admin-dash/add-principios">
-            <mat-icon mat-list-icon>add_circle_outline</mat-icon>Agregar Principio
-        </button>
-        <button mat-list-item routerLink="/admin-dash/profile">
-            <mat-icon mat-list-icon>quiz</mat-icon>Evaluaciones
-        </button>
-        <button mat-list-item routerLink="/admin-dash/profile">
-            <mat-icon mat-list-icon>add</mat-icon>Agregar Evaluación
-        </button>
-        <button mat-list-item routerLink="/admin-dash/profile">
-            <mat-icon mat-list-icon>logout</mat-icon>Salir
-        </button>
+      <div mat-subheader>Menu</div>
+      <button routerLink = "/admin-dash" mat-list-item>
+        <mat-icon mat-list-icon>home</mat-icon> Inicio
+      </button>
+      <button mat-list-item routerLink = "/admin-dash/profile">
+        <mat-icon mat-list-icon>account_circle</mat-icon>Perfil
+      </button>
+      <button mat-list-item routerLink = "/admin-dash/principios">
+        <mat-icon mat-list-icon>list</mat-icon>Gestionar Principios
+      </button>
+      <button mat-list-item routerLink = "/admin-dash/add-principio">
+        <mat-icon mat-list-icon>add_circle_outline</mat-icon>Agregar Principio
+      </button>  
+      <button mat-list-item (click) = "logout()">
+        <mat-icon mat-list-icon>logout</mat-icon>Salir
+      </button>
     </mat-action-list>
-</mat-card>
+  </mat-card>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { PrincipioService } from 'src/app/services/principio.service';
 import Swal from 'sweetalert2';
 
@@ -14,7 +15,7 @@ export class AddPrincipiosComponent implements OnInit {
     titulo: '',
     descripcion: ''
   }
-  constructor(private principioService:PrincipioService, private snack:MatSnackBar) { }
+  constructor(private principioService:PrincipioService, private snack:MatSnackBar, private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -31,6 +32,7 @@ export class AddPrincipiosComponent implements OnInit {
         this.principio.titulo = '';
         this.principio.descripcion = '';
         Swal.fire('Principio agregado','El principio ha sido agregado con exito','success');
+        this.router.navigate(['/admin/principios'])
       },(error)=>{
         console.log(error);
         Swal.fire('Error!!','Error al guardar el principio', 'error')

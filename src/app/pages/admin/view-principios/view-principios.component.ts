@@ -26,4 +26,28 @@ export class ViewPrincipiosComponent implements OnInit {
     )
   }
 
+  eliminarPrincipio(principioId:any){
+    Swal.fire({
+      title:'Eliminar Principio',
+      text:'¿Está seguro de continuar?',
+      icon:'warning',
+      showCancelButton:true,
+      confirmButtonColor:'',
+      cancelButtonColor:'',
+      confirmButtonText:'Eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) =>{
+      if(result.isConfirmed){
+        this.principioService.eliminarPrincipio(principioId).subscribe(
+          (data) =>{
+            this.principios = this.principios.filter((prinpio:any) => prinpio.principioId != principioId);
+            Swal.fire('Principio Eliminado','El principio ha sido eliminado con exito','success');
+          },(error)=>{
+            Swal.fire('Error','Error al eleminar el principio', 'error');
+          }
+        )
+      }
+    })
+  }
+
 }

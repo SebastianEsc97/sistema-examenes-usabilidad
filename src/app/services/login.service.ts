@@ -9,9 +9,8 @@ import { Subject } from 'rxjs';
 export class LoginService {
 
   public loginStatusSubject = new Subject<boolean>();
-  constructor(private http: HttpClient) {
 
-  }
+  constructor(private http: HttpClient) { }
 
   public generateToken(loginData: any) {
     return this.http.post(`${baserUrl}/generate-token`, loginData);
@@ -62,6 +61,4 @@ export class LoginService {
     let user = this.getUser();
     return user.authorities[0].authority;
   }
-
-
 }

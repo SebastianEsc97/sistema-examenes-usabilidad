@@ -25,6 +25,8 @@ import { SidebarComponent } from './pages/admin/sidebar/sidebar.component';
 import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
 import { ViewPrincipiosComponent } from './pages/admin/view-principios/view-principios.component';
 import { AddPrincipiosComponent } from './pages/admin/add-principios/add-principios.component';
+import { NgxUiLoaderModule } from "ngx-ui-loader";
+import { ActualizarPrincipioComponent } from './pages/admin/actualizar-principio/actualizar-principio.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { AddPrincipiosComponent } from './pages/admin/add-principios/add-princip
     SidebarComponent,
     WelcomeComponent,
     ViewPrincipiosComponent,
-    AddPrincipiosComponent
+    AddPrincipiosComponent,
+    ActualizarPrincipioComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +57,8 @@ import { AddPrincipiosComponent } from './pages/admin/add-principios/add-princip
     MatCardModule,
     MatToolbarModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    NgxUiLoaderModule
   ],
   providers: [AuthInterceptorProviders],
   bootstrap: [AppComponent]

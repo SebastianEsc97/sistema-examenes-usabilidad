@@ -11,6 +11,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
 import { ViewPrincipiosComponent } from './pages/admin/view-principios/view-principios.component';
 import { AddPrincipiosComponent } from './pages/admin/add-principios/add-principios.component';
+import { ActualizarPrincipioComponent } from './pages/admin/actualizar-principio/actualizar-principio.component';
 
 const routes: Routes = [
   {
@@ -34,21 +35,27 @@ const routes: Routes = [
     canActivate: [AdminGuard],
     children: [
       {
-        path: 'profile',
-        component: ProfileComponent
-      },
-      {
         path: '',
         component: WelcomeComponent
       },
+      {
+        path: 'profile',
+        component: ProfileComponent
+      },
+
       {
         path: 'principios',
         component: ViewPrincipiosComponent
       },
       {
-        path: 'add-principios',
+        path: 'add-principio',
         component: AddPrincipiosComponent
       },
+      {
+        path:'principios/:principioId',
+        component: ActualizarPrincipioComponent
+      }
+
     ]
   },
   {

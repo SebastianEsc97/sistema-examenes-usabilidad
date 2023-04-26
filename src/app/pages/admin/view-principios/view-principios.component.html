@@ -1,16 +1,22 @@
-<mat-card>
-    <mat-list>
-        <div mat-subheader>
-            Principios
-        </div>
-        <mat-list-item *ngFor = "let p of principios">
-            <mat-icon mat-list-icon>category</mat-icon>
-            <div mat-line>{{ p.titulo }}</div>
-            <div mat-line>{{ p.descripcion }}</div>
-            <mat-divider></mat-divider>
-        </mat-list-item>
-    </mat-list>
-    <div class="container text-center">
-        <button routerLink="admin-dash/add-principios" mat-raised-button color="primary">Agregar principio</button>
-    </div>
+<mat-card *ngFor="let p of principios">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>
+            {{ p.titulo }}
+        </mat-card-title>
+        <mat-card-subtitle>
+            {{ p.descripcion }}
+        </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-card-actions>
+            <button [routerLink]="'/admin-dash/principios/'+p.principioId" mat-flat-button color="primary"
+                class="ml20">Actualizar Principio</button>
+            <button mat-flat-button color="warn" class="ml10" (click)="eliminarPrincipio(p.principioId)">Eliminar Principio</button>
+        </mat-card-actions>
+    </mat-card-content>
+    
 </mat-card>
+<div class="container text-center mt20">
+    <button routerLink="/admin-dash/add-principio" mat-raised-button color="primary">Agregar principio</button>
+</div>

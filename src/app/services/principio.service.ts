@@ -16,4 +16,17 @@ export class PrincipioService {
   public agregarPrincipio(principio:any){
     return this.http.post(`${baserUrl}/principio/`,principio)
   }
+
+  public eliminarPrincipio(principioId:any){
+    return this.http.delete(`${baserUrl}/principio/${principioId}`)
+  }
+
+  public obtenerPrincipio(principioId:any){
+    return this.http.get(`${baserUrl}/principio/${principioId}`)
+  }
+  
+  public actualizarPrincipio(principioId:any){
+    return this.http.put(`${baserUrl}/principio/`, principioId)
+  }
+
 }
