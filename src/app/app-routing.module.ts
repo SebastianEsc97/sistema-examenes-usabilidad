@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SignupComponent } from './pages/signup/signup.component';
+import { SignupComponent } from './pages/admin/signup/signup.component';
 import { LoginComponent } from './pages/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
 import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
@@ -12,16 +12,12 @@ import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
 import { ViewPrincipiosComponent } from './pages/admin/view-principios/view-principios.component';
 import { AddPrincipiosComponent } from './pages/admin/add-principios/add-principios.component';
 import { ActualizarPrincipioComponent } from './pages/admin/actualizar-principio/actualizar-principio.component';
+import { ExpertoWelcomeComponent } from './pages/experto/experto-welcome/experto-welcome.component';
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    pathMatch: 'full'
-  },
-  {
-    path: 'signup',
-    component: SignupComponent,
     pathMatch: 'full'
   },
   {
@@ -42,7 +38,6 @@ const routes: Routes = [
         path: 'profile',
         component: ProfileComponent
       },
-
       {
         path: 'principios',
         component: ViewPrincipiosComponent
@@ -52,17 +47,34 @@ const routes: Routes = [
         component: AddPrincipiosComponent
       },
       {
-        path:'principios/:principioId',
+        path: 'principios/:principioId',
         component: ActualizarPrincipioComponent
-      }
-
+      },
+      {
+        path: 'signup',
+        component: SignupComponent,
+        pathMatch: 'full'
+      },
     ]
   },
   {
     path: 'expert-dash',
     component: ExpertoDashboardComponent,
-    pathMatch: 'full',
-    canActivate: [ExpertoGuard]
+    canActivate: [ExpertoGuard],
+    children: [
+      {
+        path: '',
+        component: ExpertoWelcomeComponent
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent
+      },
+      {
+        path: 'principios',
+        component: ViewPrincipiosComponent
+      },
+    ]
   },
 ];
 

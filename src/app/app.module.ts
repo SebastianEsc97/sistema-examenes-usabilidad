@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { SignupComponent } from './pages/signup/signup.component';
+import { SignupComponent } from './pages/admin/signup/signup.component';
 import { LoginComponent } from './pages/login/login.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -25,8 +25,11 @@ import { SidebarComponent } from './pages/admin/sidebar/sidebar.component';
 import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
 import { ViewPrincipiosComponent } from './pages/admin/view-principios/view-principios.component';
 import { AddPrincipiosComponent } from './pages/admin/add-principios/add-principios.component';
-import { NgxUiLoaderModule } from "ngx-ui-loader";
+import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from "ngx-ui-loader";
 import { ActualizarPrincipioComponent } from './pages/admin/actualizar-principio/actualizar-principio.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { ExpertoSidebarComponent } from './pages/experto/experto-sidebar/experto-sidebar.component';
+import { ExpertoWelcomeComponent } from './pages/experto/experto-welcome/experto-welcome.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +45,9 @@ import { ActualizarPrincipioComponent } from './pages/admin/actualizar-principio
     WelcomeComponent,
     ViewPrincipiosComponent,
     AddPrincipiosComponent,
-    ActualizarPrincipioComponent
+    ActualizarPrincipioComponent,
+    ExpertoSidebarComponent,
+    ExpertoWelcomeComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +63,11 @@ import { ActualizarPrincipioComponent } from './pages/admin/actualizar-principio
     MatToolbarModule,
     MatIconModule,
     MatListModule,
-    NgxUiLoaderModule
+    NgxUiLoaderModule,
+    MatMenuModule,
+    NgxUiLoaderHttpModule.forRoot({
+      showForeground: true
+    })
   ],
   providers: [AuthInterceptorProviders],
   bootstrap: [AppComponent]

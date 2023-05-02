@@ -7,10 +7,7 @@ import { LoginService } from './login.service';
   providedIn: 'root'
 })
 export class ExpertoGuard implements CanActivate {
-
-  constructor(private loginService: LoginService, private router: Router) {
-
-  }
+  constructor(private loginService: LoginService, private router: Router) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -21,5 +18,4 @@ export class ExpertoGuard implements CanActivate {
     this.router.navigate(['login']);
     return false
   }
-
 }

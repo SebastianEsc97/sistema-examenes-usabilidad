@@ -1,0 +1,22 @@
+<mat-card>
+    <mat-action-list>
+        <div mat-subheader style="font-size: 18px;">Opciones</div>
+        <mat-divider></mat-divider>
+        <button mat-list-item routerLink="/expert-dash">
+            <mat-icon>home</mat-icon>
+            Inicio
+        </button>
+        <button mat-list-item routerLink="/expert-dash/profile">
+            <mat-icon>account_circle</mat-icon>
+            Perfil
+        </button>
+        <button mat-list-item>
+            <mat-icon>add_circle_outline</mat-icon>
+            Evaluar
+        </button>
+        <button mat-list-item (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            Cerrar Sesión
+        </button>
+    </mat-action-list>
+</mat-card>

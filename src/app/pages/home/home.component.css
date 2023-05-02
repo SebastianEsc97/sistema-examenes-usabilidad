@@ -1,27 +1,28 @@
-.space1{
+.container {
+    place-content: center;
+}
+
+.space1 {
     margin-top: 2%;
 }
 
-.titlehp {
-    font-family: 'EB Garamond', serif;
+.title {
     font-size: xxx-large;
     text-align: center;
     color: white;
 }
 
-.texthp {
-    font-family: 'Source Serif Pro', serif;
-    color:white;
+.text {
+    color: white;
     text-align: justify;
-    font-size: x-large;
+    font-size: large;
     margin-left: 10%;
     margin-right: 10%;
-    line-height: 1.2;
+    line-height: 1.3;
 }
 
-.Inits{
-    font-family: 'Source Serif Pro', serif;
+.Inits {
     background: linear-gradient(#653463, #331A31);
     color: white;
-    margin-left: 47%;
+    margin-left: 50%;
 }

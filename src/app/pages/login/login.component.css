@@ -1,43 +1,38 @@
-.space1{
+.space{
     margin-top: 5%;
 }
 
-.space2{
-    margin-top: 10%;
-}
-
-.space3{
-    margin-top: 10%;
-}
-
-.full-width{
-    width: 100%;
-}
-
 .cardlog{
-    margin-top: 15%;
+    align-items: center;
     width: 100%;
-    background: linear-gradient(#FFFFFF, #D9D9D9);
-    border-radius: 40px;
+    background: linear-gradient(#FFFFFF, #d6cbcb);
+    border-radius: 8px;
     border-color: black !important;
     height: 100%;
+    place-content: center;
 }
 
 .inputlog{
-    padding-left: 10%;
-    width: 90%;
+    width: 80%;
     text-align: center;
     border-color: black !important;
 }
 
 
-.Inits{
-    font-family: 'Source Serif Pro', serif;
+button{
     background: linear-gradient(#653463, #331A31);
     font-size: larger;
+    width: 55%;
+    margin-bottom: 10%;
 }
 
-.titlelog {
-    font-family: 'EB Garamond', serif;
-    font-size: xx-large;
+mat-icon {
+    font-size: 80px;
+    color: rgb(67, 3, 80);
+    width: 80px;
+    height: 80px;
+    margin-top: 7%;
 }
+
+
+

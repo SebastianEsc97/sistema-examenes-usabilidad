@@ -1,19 +1,20 @@
-.example-spacer{
+.example-spacer {
     flex: 0.92 1 auto;
 }
 
-.buttonnav1{
-    width: 10%;
-    font-family: 'Source Serif Pro', serif;
-    font-size: x-large;
-}
-
-.buttonnav2{
-    width: 17%;
-    font-family: 'Source Serif Pro', serif;
-    font-size: x-large;
-}
-
-.icon1{
+.icon1 {
     max-width: 100%;
+}
+
+.navstyle {
+    margin-bottom: 15px;
+}
+
+.background {
+    background-color: #00ff55;
+}
+
+a{
+    text-decoration: none;
+    color: black;
 }
