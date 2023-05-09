@@ -11,16 +11,12 @@ import { LoginService } from 'src/app/services/login.service';
 export class LoginComponent implements OnInit {
 
   loginData = {
-    "username": '',
-    "password": ''
+    username: '',
+    password: ''
   }
 
-  constructor(private snack: MatSnackBar, private loginService: LoginService, private router: Router) {
-
-  }
-  ngOnInit(): void {
-
-  }
+  constructor(private snack: MatSnackBar, private loginService: LoginService, private router: Router) { }
+  ngOnInit(): void { }
 
   formSubmit() {
     if (this.loginData.username.trim() == '' || this.loginData.username.trim() == null) {
@@ -44,11 +40,9 @@ export class LoginComponent implements OnInit {
         this.loginService.getCurrentUser().subscribe((user: any) => {
           this.loginService.setUser(user);
           console.log(user);
-
           if (this.loginService.getUserRole() == "ADMIN") {
             this.router.navigate(['admin-dash']);
             this.loginService.loginStatusSubject.next(true);
-
           } else if (this.loginService.getUserRole() == "EXPERTO") {
             this.router.navigate(['expert-dash']);
             this.loginService.loginStatusSubject.next(true);

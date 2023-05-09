@@ -10,21 +10,18 @@ import Swal from 'sweetalert2';
   styleUrls: ['./experto-evaluacion.component.css']
 })
 export class ExpertoEvaluacionComponent implements OnInit {
-  user:any = null;
-  evaluaciones : any=[  ]
-  constructor(private EvaluarService: EvaluarService, private loginService: LoginService){}
+  user: any = null;
+  evaluaciones: any = []
+  constructor(private EvaluarService: EvaluarService, private loginService: LoginService) { }
   ngOnInit(): void {
-    this.user= this.loginService.getUserId();
-    this.EvaluarService.obtenerEvaluacionUsuario(this.user).subscribe(
-      (data: any) =>{
+    this.user = this.loginService.getUserId();
+    this.EvaluarService.obtenerEvaluacionPorUsuario(this.user).subscribe(
+      (data: any) => {
         this.evaluaciones = data;
         console.log(data);
-      },(error) =>{
-        Swal.fire('Error!!', 'Error al cargar las evaluaciones','error')
+      }, (error) => {
+        Swal.fire('Error!!', 'Error al cargar las evaluaciones', 'error')
       }
     )
   }
-
-
-
 }

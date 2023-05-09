@@ -6,9 +6,9 @@ import baserUrl from './helper';
 })
 export class UserService {
 
-  constructor(private httpClient:HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
-  public registrarUsuario(user:any){
+  public registrarUsuario(user: any) {
     return this.httpClient.post(`${baserUrl}/usuarios/`, user);
   }
 }

@@ -10,11 +10,14 @@
     margin-bottom: 15px;
 }
 
-.background {
-    background-color: #61606A;
-}
 
 a{
     text-decoration: none;
     color: black;
+}
+
+.mat-toolbar {
+    background: #653463;
+    color: #fff;
+    position: relative;
 }

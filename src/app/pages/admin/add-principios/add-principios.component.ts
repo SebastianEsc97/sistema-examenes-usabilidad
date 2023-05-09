@@ -15,30 +15,28 @@ export class AddPrincipiosComponent implements OnInit {
     titulo: '',
     descripcion: ''
   }
-  constructor(private principioService:PrincipioService, private snack:MatSnackBar, private router:Router) { }
+  constructor(private principioService: PrincipioService, private snack: MatSnackBar, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   formSubmit() {
-    if(this.principio.titulo.trim() == ''|| this.principio.titulo==null){
-      this.snack.open("El título es obligatorio!!",'',{
-        duration : 2000
+    if (this.principio.titulo.trim() == '' || this.principio.titulo == null) {
+      this.snack.open("El título es obligatorio!!", '', {
+        duration: 2000
       })
       return;
     }
     this.principioService.agregarPrincipio(this.principio).subscribe(
-      (dato:any)=>{
+      (dato: any) => {
         this.principio.titulo = '';
         this.principio.descripcion = '';
-        Swal.fire('Principio agregado','El principio ha sido agregado con exito','success');
+        Swal.fire('Principio agregado', 'El principio ha sido agregado con exito', 'success');
         this.router.navigate(['/admin/principios'])
-      },(error)=>{
+      }, (error) => {
         console.log(error);
-        Swal.fire('Error!!','Error al guardar el principio', 'error')
+        Swal.fire('Error!!', 'Error al guardar el principio', 'error')
       }
     )
   }
-  
-
 }

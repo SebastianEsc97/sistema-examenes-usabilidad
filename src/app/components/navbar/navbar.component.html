@@ -2,10 +2,8 @@
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
         <mat-icon>menu_books</mat-icon>
     </button>
-
     <span>Portal para evaluar la usabilidad</span>
     <span class="example-spacer"></span>
-
     <button mat-icon-button *ngIf="loginService.isLoggedIn()" [matMenuTriggerFor]="menu">
         <mat-icon>menu</mat-icon>
         {{ user.username }}

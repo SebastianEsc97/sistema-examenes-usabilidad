@@ -7,7 +7,7 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./experto-sidebar.component.css']
 })
 export class ExpertoSidebarComponent implements OnInit {
-  
+
   constructor(public login: LoginService) { }
   ngOnInit(): void {
   }

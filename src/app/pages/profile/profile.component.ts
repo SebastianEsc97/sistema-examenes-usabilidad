@@ -7,12 +7,11 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  user:any = null;
+  user: any = null;
 
-  constructor(private loginService:LoginService){}
+  constructor(private loginService: LoginService) { }
 
   ngOnInit(): void {
     this.user = this.loginService.getUser();
   }
-
 }

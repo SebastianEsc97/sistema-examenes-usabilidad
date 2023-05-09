@@ -1,10 +1,8 @@
-import { LoginService } from 'src/app/services/login.service';
 import { Component, OnInit } from '@angular/core';
+import { EvaluarService } from 'src/app/services/evaluar.service';
+import { LoginService } from 'src/app/services/login.service';
 import { PrincipioService } from 'src/app/services/principio.service';
-import { EvaluarService } from './../../../services/evaluar.service';
 import Swal from 'sweetalert2';
-
-
 
 @Component({
   selector: 'app-experto-evaluar',
@@ -13,31 +11,22 @@ import Swal from 'sweetalert2';
 })
 export class ExpertoEvaluarComponent implements OnInit {
 
-  user: any = null;
-  userId: any = null;
-  principios: any = [
-
-  ]
+  principios: any = []
 
   evaluacion = {
     titulo: '',
     descripcion: '',
     url: '',
-    activo: '',
+    activo: true,
     comentario: '',
-    usuario: ''
+    usuario: {
+      id: ''
+    }
   }
-
-  principioEvaluacio = {
-    respuesta: '',
-    evaluacion: '',
-    principios: ''
-  }
-
   constructor(private principioService: PrincipioService, private evaluarService: EvaluarService, private loginService: LoginService) { }
   ngOnInit(): void {
-    this.user = this.loginService.getUserId()
-    console.log(this.user)
+
+    this.evaluacion.usuario.id = JSON.stringify(this.loginService.getUserId())
     this.principioService.listarPrincipios().subscribe(
       (data: any) => {
         this.principios = data;
@@ -47,50 +36,24 @@ export class ExpertoEvaluarComponent implements OnInit {
       }
     )
   }
-
-
-
   formSubmit() {
-    // if(this.principio.titulo.trim() == ''|| this.principio.titulo==null){
-    //   this.snack.open("El título es obligatorio!!",'',{
-    //     duration : 2000
+    // if (this.principio.titulo.trim() == '' || this.principio.titulo == null) {
+    //   this.snack.open("El título es obligatorio!!", '', {
+    //     duration: 2000
     //   })
     //   return;
     // }
-    // this.user = localStorage.getItem('user');
-    var objeto = JSON.stringify(this.user);
-    console.log(objeto)
-    // this.userId = objeto.id;
-    console.log(this.userId)
-    this.evaluarService.agregarEvaluaciones(this.evaluacion).subscribe(
+    this.evaluarService.agregarEvaluacion(this.evaluacion).subscribe(
       (dato: any) => {
         this.evaluacion.titulo = '';
         this.evaluacion.descripcion = '';
         this.evaluacion.url = '';
-        this.evaluacion.activo = '';
         this.evaluacion.comentario = '';
-        this.evaluacion.usuario = this.user;
-        console.log(this.evaluacion);
-        Swal.fire('Evaluacion agregada', 'La evaluación ha sido agregada con exito', 'success');
+        Swal.fire('Principio agregado', 'El principio ha sido agregado con exito', 'success');
       }, (error) => {
         console.log(error);
-        Swal.fire('Error!!', 'Error al guardar la evaluación', 'error')
+        Swal.fire('Error!!', 'Error al guardar el principio', 'error')
       }
     )
-    // this.evaluarService.agregarPrincipioEvaluacion(this.evaluacion).subscribe(
-    //   (dato:any)=>{
-    //     this.evaluacion.titulo = '';
-    //     this.evaluacion.descripcion = '';
-    //     this.evaluacion.url = '';
-    //     this.evaluacion.activo = '';
-    //     this.evaluacion.comentario = '';
-    //     Swal.fire('Evaluacion agregada','La evaluación ha sido agregada con exito','success');
-    //   },(error)=>{
-    //     console.log(error);
-    //     Swal.fire('Error!!','Error al guardar la evaluación', 'error')
-    //   }
-    // )
   }
-
-
 }

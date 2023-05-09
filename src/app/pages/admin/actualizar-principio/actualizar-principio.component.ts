@@ -20,7 +20,6 @@ export class ActualizarPrincipioComponent implements OnInit {
     this.principioService.obtenerPrincipio(this.principioId).subscribe(
       (data) => {
         this.principio = data
-        console.log(this.principio)
       }, (error) => {
         console.log(error)
       }

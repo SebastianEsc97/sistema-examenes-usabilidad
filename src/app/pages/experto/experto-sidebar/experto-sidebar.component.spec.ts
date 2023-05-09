@@ -8,9 +8,9 @@ describe('ExpertoSidebarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ExpertoSidebarComponent ]
+      declarations: [ExpertoSidebarComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(ExpertoSidebarComponent);
     component = fixture.componentInstance;

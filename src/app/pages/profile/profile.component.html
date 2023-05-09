@@ -1,41 +1,41 @@
 <mat-card style="margin-left: 10px;">
-    <h1 class="text-center my-3">Detalles del perfil</h1>
-    <mat-divider></mat-divider>
-    <mat-card-content>
-        <div class="bootstrap-wrapper">
-            <div class="container">
-                <div class="text-center">
-                    <h1 class="mt20"></h1>
-                </div>
-                <div class="row">
-                    <div class="col-md-10 offset-md-1">
-                        <table class="table">
-                            <tbody>
-                              <tr>
-                                <th scope="row">Nombre</th>
-                                <td>{{ user.nombre }} {{ user.apellido }}</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">Usuario</th>
-                                <td>{{ user.username }}</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">Correo</th>
-                                <td>{{ user.email }}</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">Telefono</th>
-                                <td>{{ user.telefono }}</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">Rol</th>
-                                <td>{{ user.authorities[0].authority }}</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                    </div>
-                </div>
-            </div>
+  <h1 class="text-center my-3">Detalles del perfil</h1>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <div class="bootstrap-wrapper">
+      <div class="container">
+        <div class="text-center">
+          <h1 class="mt20"></h1>
         </div>
-    </mat-card-content>
+        <div class="row">
+          <div class="col-md-10 offset-md-1">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <th scope="row">Nombre</th>
+                  <td>{{ user.nombre }} {{ user.apellido }}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Usuario</th>
+                  <td>{{ user.username }}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Correo</th>
+                  <td>{{ user.email }}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Telefono</th>
+                  <td>{{ user.telefono }}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Rol</th>
+                  <td>{{ user.authorities[0].authority }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
 </mat-card>

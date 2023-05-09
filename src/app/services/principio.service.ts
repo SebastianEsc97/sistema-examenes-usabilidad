@@ -7,25 +7,25 @@ import baserUrl from './helper';
 })
 export class PrincipioService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  public listarPrincipios(){
+  public listarPrincipios() {
     return this.http.get(`${baserUrl}/principio/`)
   }
 
-  public agregarPrincipio(principio:any){
-    return this.http.post(`${baserUrl}/principio/`,principio)
+  public agregarPrincipio(principio: any) {
+    return this.http.post(`${baserUrl}/principio/`, principio)
   }
 
-  public eliminarPrincipio(principioId:any){
+  public eliminarPrincipio(principioId: any) {
     return this.http.delete(`${baserUrl}/principio/${principioId}`)
   }
 
-  public obtenerPrincipio(principioId:any){
+  public obtenerPrincipio(principioId: any) {
     return this.http.get(`${baserUrl}/principio/${principioId}`)
   }
-  
-  public actualizarPrincipio(principioId:any){
+
+  public actualizarPrincipio(principioId: any) {
     return this.http.put(`${baserUrl}/principio/`, principioId)
   }
 
