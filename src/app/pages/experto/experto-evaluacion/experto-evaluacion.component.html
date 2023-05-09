@@ -1,0 +1,23 @@
+<mat-card *ngFor="let p of evaluaciones">
+  <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>
+          {{ p.titulo }}
+      </mat-card-title>
+      <mat-card-subtitle>
+          {{ p.descripcion }}
+      </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+      <mat-card-actions>
+          <button [routerLink]="'/expert-dash/evaluaciones'+p.evaluacionId" mat-flat-button color="primary"
+              class="ml20">Actualizar Evaluacion</button>
+      </mat-card-actions>
+  </mat-card-content>
+</mat-card>
+<mat-card>
+  <mat-divider></mat-divider>
+  <div class="container text-center my-3">
+      <button routerLink="/expert-dash/evaluar" mat-raised-button color="primary">Agregar Evaluación</button>
+  </div>
+</mat-card>

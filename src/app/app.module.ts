@@ -1,3 +1,4 @@
+import { MatSliderModule } from '@angular/material/slider';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -30,6 +31,9 @@ import { ActualizarPrincipioComponent } from './pages/admin/actualizar-principio
 import { MatMenuModule } from '@angular/material/menu';
 import { ExpertoSidebarComponent } from './pages/experto/experto-sidebar/experto-sidebar.component';
 import { ExpertoWelcomeComponent } from './pages/experto/experto-welcome/experto-welcome.component';
+import { ExpertoEvaluacionComponent } from './pages/experto/experto-evaluacion/experto-evaluacion.component';
+import { ExpertoEvaluarComponent } from './pages/experto/experto-evaluar/experto-evaluar.component';
+
 
 @NgModule({
   declarations: [
@@ -47,7 +51,9 @@ import { ExpertoWelcomeComponent } from './pages/experto/experto-welcome/experto
     AddPrincipiosComponent,
     ActualizarPrincipioComponent,
     ExpertoSidebarComponent,
-    ExpertoWelcomeComponent
+    ExpertoWelcomeComponent,
+    ExpertoEvaluacionComponent,
+    ExpertoEvaluarComponent
   ],
   imports: [
     BrowserModule,
@@ -65,6 +71,7 @@ import { ExpertoWelcomeComponent } from './pages/experto/experto-welcome/experto
     MatListModule,
     NgxUiLoaderModule,
     MatMenuModule,
+    MatSliderModule,
     NgxUiLoaderHttpModule.forRoot({
       showForeground: true
     })

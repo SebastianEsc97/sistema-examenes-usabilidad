@@ -13,6 +13,8 @@ import { ViewPrincipiosComponent } from './pages/admin/view-principios/view-prin
 import { AddPrincipiosComponent } from './pages/admin/add-principios/add-principios.component';
 import { ActualizarPrincipioComponent } from './pages/admin/actualizar-principio/actualizar-principio.component';
 import { ExpertoWelcomeComponent } from './pages/experto/experto-welcome/experto-welcome.component';
+import { ExpertoEvaluacionComponent } from './pages/experto/experto-evaluacion/experto-evaluacion.component';
+import { ExpertoEvaluarComponent } from './pages/experto/experto-evaluar/experto-evaluar.component';
 
 const routes: Routes = [
   {
@@ -73,6 +75,14 @@ const routes: Routes = [
       {
         path: 'principios',
         component: ViewPrincipiosComponent
+      },
+      {
+        path: 'evaluacion',
+        component: ExpertoEvaluacionComponent
+      },
+      {
+        path: 'evaluar',
+        component: ExpertoEvaluarComponent
       },
     ]
   },
