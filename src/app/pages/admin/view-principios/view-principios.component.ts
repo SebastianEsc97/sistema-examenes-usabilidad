@@ -9,16 +9,12 @@ import Swal from 'sweetalert2';
 })
 export class ViewPrincipiosComponent implements OnInit {
 
-  principios: any = [
-
-
-  ]
+  principios: any = []
   constructor(private principioService: PrincipioService) { }
   ngOnInit(): void {
     this.principioService.listarPrincipios().subscribe(
       (data: any) => {
         this.principios = data;
-        console.log(this.principios)
       }, (error) => {
         console.log(error)
         Swal.fire('Error!!', 'Error al cargar las categorias', 'error')
@@ -26,24 +22,24 @@ export class ViewPrincipiosComponent implements OnInit {
     )
   }
 
-  eliminarPrincipio(principioId:any){
+  eliminarPrincipio(principioId: any) {
     Swal.fire({
-      title:'Eliminar Principio',
-      text:'¿Está seguro de continuar?',
-      icon:'warning',
-      showCancelButton:true,
-      confirmButtonColor:'',
-      cancelButtonColor:'',
-      confirmButtonText:'Eliminar',
+      title: 'Eliminar Principio',
+      text: '¿Está seguro de continuar?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '',
+      cancelButtonColor: '',
+      confirmButtonText: 'Eliminar',
       cancelButtonText: 'Cancelar'
-    }).then((result) =>{
-      if(result.isConfirmed){
+    }).then((result) => {
+      if (result.isConfirmed) {
         this.principioService.eliminarPrincipio(principioId).subscribe(
-          (data) =>{
-            this.principios = this.principios.filter((prinpio:any) => prinpio.principioId != principioId);
-            Swal.fire('Principio Eliminado','El principio ha sido eliminado con exito','success');
-          },(error)=>{
-            Swal.fire('Error','Error al eleminar el principio', 'error');
+          (data) => {
+            this.principios = this.principios.filter((prinpio: any) => prinpio.principioId != principioId);
+            Swal.fire('Principio Eliminado', 'El principio ha sido eliminado con exito', 'success');
+          }, (error) => {
+            Swal.fire('Error', 'Error al eleminar el principio', 'error');
           }
         )
       }
