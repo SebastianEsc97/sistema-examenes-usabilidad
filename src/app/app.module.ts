@@ -33,6 +33,8 @@ import { ExpertoSidebarComponent } from './pages/experto/experto-sidebar/experto
 import { ExpertoWelcomeComponent } from './pages/experto/experto-welcome/experto-welcome.component';
 import { ExpertoEvaluacionComponent } from './pages/experto/experto-evaluacion/experto-evaluacion.component';
 import { ExpertoEvaluarComponent } from './pages/experto/experto-evaluar/experto-evaluar.component';
+import { ActualizarEvaluacionComponent } from './pages/experto/actualizar-evaluacion/actualizar-evaluacion.component';
+import { ExpertoGReporteComponent } from './pages/experto/experto-g-reporte/experto-g-reporte.component';
 
 
 @NgModule({
@@ -53,7 +55,9 @@ import { ExpertoEvaluarComponent } from './pages/experto/experto-evaluar/experto
     ExpertoSidebarComponent,
     ExpertoWelcomeComponent,
     ExpertoEvaluacionComponent,
-    ExpertoEvaluarComponent
+    ExpertoEvaluarComponent,
+    ActualizarEvaluacionComponent,
+    ExpertoGReporteComponent
   ],
   imports: [
     BrowserModule,

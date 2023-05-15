@@ -14,7 +14,7 @@
                         </mat-form-field>
                         <mat-form-field class="w100" appearance="outline">
                             <mat-label>Descripción</mat-label>
-                            <textarea name="descripcion" matInput placeholder="Digite la descripción de la evaluación"
+                            <textarea required name="descripcion" matInput placeholder="Digite la descripción de la evaluación"
                                 rows="4" [(ngModel)]="evaluacion.descripcion">
                             </textarea>
                         </mat-form-field>
@@ -24,13 +24,17 @@
                                 placeholder="Digite la URL del sitio que desea evaluar" [(ngModel)]="evaluacion.url">
                         </mat-form-field>
                         <h1 class="text-center my-3">Principios</h1>
-                        <div *ngFor="let p of principios">
+                        <div *ngFor="let p of principios; let i = index" >
                             <mat-card-title>
                                 {{ p.titulo }}
                             </mat-card-title>
                             <mat-card-subtitle>
                                 {{ p.descripcion }}
                             </mat-card-subtitle>
+                            <input required autofocus type="number" name="respuesta" matInput
+                            placeholder="Respuesta" [(ngModel)]="respuestas[i]" (blur)="guardarRespuesta(i, respuestas[i])">
+                            <input required autofocus type="text" name="comentario" matInput
+                            placeholder="Comentario principio" [(ngModel)]="comentarios[i]" (blur)="guardarComnetario(i, comentarios[i])">
                         </div>
                         <br>
                         <mat-form-field class="w100" appearance="outline">

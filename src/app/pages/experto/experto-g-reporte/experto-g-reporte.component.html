@@ -1,9 +1,8 @@
 <mat-card>
   <div class="container text-center my-3">
-    <button routerLink="/expert-dash/evaluar" mat-raised-button color="primary">Agregar Evaluación</button>
+    Generar Reporte
   </div>
 </mat-card>
-<mat-divider></mat-divider>
 <mat-card *ngFor="let p of evaluaciones">
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
@@ -16,8 +15,8 @@
   </mat-card-header>
   <mat-card-content>
     <mat-card-actions>
-      <button [routerLink]="'/expert-dash/actualizar-evaluacion/'+p.evaluacionId" mat-flat-button color="primary"
-        class="ml20">Actualizar Evaluacion</button>
+      <button id="btn-descargar-pdf" (click)="generarPDF('/expert-dash/actualizar-evaluacion/' + p.evaluacionId)" mat-flat-button color="primary"
+        class="ml20">Generar</button>
     </mat-card-actions>
   </mat-card-content>
 </mat-card>

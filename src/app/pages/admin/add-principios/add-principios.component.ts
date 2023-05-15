@@ -31,7 +31,7 @@ export class AddPrincipiosComponent implements OnInit {
       (dato: any) => {
         this.principio.titulo = '';
         this.principio.descripcion = '';
-        Swal.fire('Principio agregado', 'El principio ha sido agregado con exito', 'success');
+        Swal.fire('Principio agregado', 'El principio ha sido agregado con exito', 'success').then (function () { window.location.href ="/admin-dash/principios"});
         this.router.navigate(['/admin/principios'])
       }, (error) => {
         console.log(error);

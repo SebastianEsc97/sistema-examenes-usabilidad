@@ -1,3 +1,9 @@
+<mat-card>
+  <div class="container text-center my-3">
+      <button routerLink="/admin-dash/add-principio" mat-raised-button color="primary">Agregar principio</button>
+  </div>
+</mat-card>
+<mat-divider></mat-divider>
 <mat-card *ngFor="let p of principios">
     <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
@@ -16,10 +22,4 @@
                 Principio</button>
         </mat-card-actions>
     </mat-card-content>
-</mat-card>
-<mat-card>
-    <mat-divider></mat-divider>
-    <div class="container text-center my-3">
-        <button routerLink="/admin-dash/add-principio" mat-raised-button color="primary">Agregar principio</button>
-    </div>
 </mat-card>

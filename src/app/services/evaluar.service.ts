@@ -22,6 +22,9 @@ export class EvaluarService {
     return this.http.put(`${baserUrl}/evaluacion/`, evaluacionId)
   }
 
+  public obtenerEvaluacion(evaluacionId: any) {
+    return this.http.get(`${baserUrl}/evaluacion/${evaluacionId}`)
+  }
   public obtenerEvaluacionPorUsuario(usuarioId: any) {
     return this.http.get(`${baserUrl}/evaluacion/usuario/${usuarioId}`)
   }

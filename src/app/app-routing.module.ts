@@ -15,6 +15,8 @@ import { ActualizarPrincipioComponent } from './pages/admin/actualizar-principio
 import { ExpertoWelcomeComponent } from './pages/experto/experto-welcome/experto-welcome.component';
 import { ExpertoEvaluacionComponent } from './pages/experto/experto-evaluacion/experto-evaluacion.component';
 import { ExpertoEvaluarComponent } from './pages/experto/experto-evaluar/experto-evaluar.component';
+import { ActualizarEvaluacionComponent } from './pages/experto/actualizar-evaluacion/actualizar-evaluacion.component';
+import { ExpertoGReporteComponent } from './pages/experto/experto-g-reporte/experto-g-reporte.component';
 
 const routes: Routes = [
   {
@@ -83,6 +85,14 @@ const routes: Routes = [
       {
         path: 'evaluar',
         component: ExpertoEvaluarComponent
+      },
+      {
+        path: 'actualizar-evaluacion/:evaluacionId',
+        component: ActualizarEvaluacionComponent
+      },
+      {
+        path: 'reporte',
+        component: ExpertoGReporteComponent
       },
     ]
   },
