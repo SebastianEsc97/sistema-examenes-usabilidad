@@ -11,4 +11,21 @@ export class UserService {
   public registrarUsuario(user: any) {
     return this.httpClient.post(`${baserUrl}/usuarios/`, user);
   }
+
+  public listarUsuarios() {
+    return this.httpClient.get(`${baserUrl}/usuarios/`)
+  }
+
+  public eliminarUsuario(usuarioId: any) {
+    return this.httpClient.delete(`${baserUrl}/usuarios/${usuarioId}`)
+  }
+
+  public actualizarUsuario(usuarioId: any) {
+    return this.httpClient.put(`${baserUrl}/usuarios/`, usuarioId)
+  }
+
+  public obtenerUsuario(usuarioId: any) {
+    return this.httpClient.get(`${baserUrl}/usuarios/${usuarioId}`)
+  }
+
 }

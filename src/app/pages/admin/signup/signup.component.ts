@@ -15,7 +15,8 @@ export class SignupComponent implements OnInit {
     apellido: '',
     telefono: '',
     username: '',
-    password: ''
+    password: '',
+    descripcion: ''
   }
 
   ngOnInit(): void {

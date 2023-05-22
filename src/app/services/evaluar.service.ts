@@ -33,4 +33,8 @@ export class EvaluarService {
     return this.http.post(`${baserUrl}/principiosevaluaciones/`, principioEvaluacion)
   }
 
+  public obtenerPrincipioEvaluacionxEvaluacion(evaluacionId: any){
+    return this.http.get(`${baserUrl}/principiosevaluaciones/evaluacion/${evaluacionId}`)
+  }
+
 }

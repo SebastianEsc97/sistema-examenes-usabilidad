@@ -18,6 +18,7 @@ import * as pdfFonts from "pdfmake/build/vfs_fonts";
 export class ExpertoGReporteComponent implements OnInit {
   user: any = null;
   evaluaciones: any = []
+  evaluacion: any = null;
   constructor(private EvaluarService: EvaluarService, private loginService: LoginService) { }
   ngOnInit(): void {
     this.user = this.loginService.getUserId();
@@ -32,10 +33,28 @@ export class ExpertoGReporteComponent implements OnInit {
     )
   }
 
-  generarPDF(url: string){
+  generarPDF(evaluacionId: string) {
+    this.EvaluarService.obtenerEvaluacion(evaluacionId).subscribe((data: any) => {
+      this.evaluacion = data;
+      console.log(this.evaluacion);
+      const pdfDefinition: any = {
+        content: [
+          {
+            text: this.evaluacion.titulo, style: 'header'
+          },
+          {
+            text: this.evaluacion.descripcion, style: 'subheader'
+          },
+          {
+            text: this.evaluacion.url, style: 'subheader'
+          }
+        ]
+      }
 
+      const pdf = pdfMake.createPdf(pdfDefinition);
+      pdf.open();
+    })
   }
-
 }
 
 

@@ -17,6 +17,8 @@ import { ExpertoEvaluacionComponent } from './pages/experto/experto-evaluacion/e
 import { ExpertoEvaluarComponent } from './pages/experto/experto-evaluar/experto-evaluar.component';
 import { ActualizarEvaluacionComponent } from './pages/experto/actualizar-evaluacion/actualizar-evaluacion.component';
 import { ExpertoGReporteComponent } from './pages/experto/experto-g-reporte/experto-g-reporte.component';
+import { ViewUsuariosComponent } from './pages/admin/view-usuarios/view-usuarios.component';
+import { ActualizarUsuarioComponent } from './pages/admin/actualizar-usuario/actualizar-usuario.component';
 
 const routes: Routes = [
   {
@@ -58,6 +60,14 @@ const routes: Routes = [
         path: 'signup',
         component: SignupComponent,
         pathMatch: 'full'
+      },
+      {
+        path: 'users',
+        component: ViewUsuariosComponent
+      },
+      {
+        path: 'usuarios/:usuarioId',
+        component: ActualizarUsuarioComponent
       },
     ]
   },

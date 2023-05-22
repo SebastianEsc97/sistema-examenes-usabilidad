@@ -1,0 +1,44 @@
+<mat-card>
+  <h1 class="text-center my-3">Actualizar Usuario</h1>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+      <h1 class="mt20"></h1>
+      <div class="bootstrap-wrapper">
+          <div class="row">
+              <div class="col-md-8 offset-md-2">
+                  <form *ngIf="usuario" (ngSubmit)="actualizarUsuario()">
+                      <mat-form-field class="w100" appearance="outline">
+                          <mat-label>email</mat-label>
+                          <input required autofocus type="email" name="email" matInput
+                              placeholder="Digite el email del usuario" [(ngModel)]="usuario.email">
+                      </mat-form-field>
+                      <mat-form-field class="w100" appearance="outline">
+                          <mat-label>Nombre</mat-label>
+                          <input required name="nombre" matInput placeholder="Digite el nombre del usuario"
+                               [(ngModel)]="usuario.nombre">
+                      </mat-form-field>
+                      <mat-form-field class="w100" appearance="outline">
+                        <mat-label>Apellido</mat-label>
+                        <input required name="apellido" matInput placeholder="Digite los apellidos del usuario"
+                             [(ngModel)]="usuario.apellido">
+                    </mat-form-field>
+                    <mat-form-field class="w100" appearance="outline">
+                      <mat-label>Telefono</mat-label>
+                      <input required name="telefono" matInput placeholder="Digite el telefono"
+                           [(ngModel)]="usuario.telefono">
+                  </mat-form-field>
+                  <mat-form-field class="w100" appearance="outline">
+                    <mat-label>Descripción</mat-label>
+                    <textarea required name="descripcion" matInput placeholder="Digite una breve descripción del experto"
+                    rows="5" [(ngModel)]="usuario.escripcion">
+                </textarea>
+                </mat-form-field>
+                      <div class="container text-center mt15">
+                          <button mat-raised-button color="primary">Guardar</button>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </mat-card-content>
+</mat-card>

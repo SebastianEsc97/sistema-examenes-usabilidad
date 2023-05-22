@@ -81,10 +81,10 @@ export class ExpertoEvaluarComponent implements OnInit {
             }
           )
         });
-        Swal.fire('Principio agregado', 'El principio ha sido agregado con exito', 'success').then (function () { window.location.href ="/expert-dash/evaluacion"});
+        Swal.fire('Evaluación agregado', 'La evaluación ha sido agregado con exito', 'success').then (function () { window.location.href ="/expert-dash/evaluacion"});
       }, (error) => {
         console.log(error);
-        Swal.fire('Error!!', 'Error al guardar el principio', 'error')
+        Swal.fire('Error!!', 'Error al guardar la evaluación', 'error')
       }
     )
 
