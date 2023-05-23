@@ -1,4 +1,4 @@
-<mat-card style="margin-left: 10px;">
+<mat-card>
   <h1 class="text-center my-3">Detalles del perfil</h1>
   <mat-divider></mat-divider>
   <mat-card-content>
@@ -12,13 +12,18 @@
             <table class="table">
               <tbody>
                 <tr>
-                  <th scope="row">Nombre</th>
-                  <td>{{ user.nombre }} {{ user.apellido }}</td>
-                </tr>
-                <tr>
                   <th scope="row">Usuario</th>
                   <td>{{ user.username }}</td>
                 </tr>
+                <tr>
+                  <th scope="row">Nombres</th>
+                  <td>{{ user.nombre }}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Apellidos</th>
+                  <td>{{ user.apellido }}</td>
+                </tr>
+
                 <tr>
                   <th scope="row">Correo</th>
                   <td>{{ user.email }}</td>

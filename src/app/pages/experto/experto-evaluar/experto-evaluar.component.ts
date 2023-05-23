@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 export class ExpertoEvaluarComponent implements OnInit {
 
   principios: any = [];
-  respuestas: any=[];
+  respuestas: any = [];
   comentarios: any = [];
   evaluacion = {
     id: '',
@@ -66,13 +66,13 @@ export class ExpertoEvaluarComponent implements OnInit {
         this.evaluacion.descripcion = '';
         this.evaluacion.url = '';
         this.evaluacion.comentario = '';
-        this.principios.forEach((principio:any) => {
+        this.principios.forEach((principio: any) => {
           this.principioEvaluacion.principio.principioId = principio.principioId;
           this.principioEvaluacion.respuesta = this.respuestas[principio.principioId - 1];
           this.principioEvaluacion.comentario = this.comentarios[principio.principioId - 1];
-          console.log("principio"+this.principioEvaluacion.principio.principioId);
-          console.log("evaluacion"+this.principioEvaluacion.evaluacion.evaluacionId);
-          console.log("Respuesta"+this.principioEvaluacion.respuesta);
+          console.log("principio" + this.principioEvaluacion.principio.principioId);
+          console.log("evaluacion" + this.principioEvaluacion.evaluacion.evaluacionId);
+          console.log("Respuesta" + this.principioEvaluacion.respuesta);
           this.evaluarService.agregarPrincipioEvaluacion(this.principioEvaluacion).subscribe(
             (dato: any) => {
               console.log(dato);
@@ -81,7 +81,7 @@ export class ExpertoEvaluarComponent implements OnInit {
             }
           )
         });
-        Swal.fire('Evaluación agregado', 'La evaluación ha sido agregado con exito', 'success').then (function () { window.location.href ="/expert-dash/evaluacion"});
+        Swal.fire('Evaluación Guardada', 'La evaluación se ha guardado con exito', 'success').then(function () { window.location.href = "/expert-dash/evaluacion" });
       }, (error) => {
         console.log(error);
         Swal.fire('Error!!', 'Error al guardar la evaluación', 'error')
@@ -93,7 +93,7 @@ export class ExpertoEvaluarComponent implements OnInit {
   guardarRespuesta(indice: number, valor: string) {
     this.respuestas[indice] = valor;
   }
-  guardarComnetario(indice: number, valor: string){
+  guardarComentario(indice: number, valor: string) {
     this.comentarios[indice] = valor;
   }
 }

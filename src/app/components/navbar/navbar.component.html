@@ -4,11 +4,11 @@
     </button>
     <span>Portal para evaluar la usabilidad</span>
     <span class="example-spacer"></span>
-    <button mat-icon-button *ngIf="loginService.isLoggedIn()" [matMenuTriggerFor]="menu">
-        <mat-icon>menu</mat-icon>
+    <button mat-icon-button *ngIf="loginService.isLoggedIn()">
+        <!-- <mat-icon>menu</mat-icon> -->
         {{ user.username }}
     </button>
-    <mat-menu #menu="matMenu" class="background">
+    <!-- <mat-menu #menu="matMenu" class="background">
         <button mat-menu-item>
             <mat-icon>logout</mat-icon>
             <span>
@@ -22,5 +22,6 @@
                 </a>
             </span>
         </button>
-    </mat-menu>
+    </mat-menu> -->
 </mat-toolbar>
+<hr>

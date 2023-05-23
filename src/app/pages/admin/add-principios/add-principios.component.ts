@@ -22,7 +22,7 @@ export class AddPrincipiosComponent implements OnInit {
 
   formSubmit() {
     if (this.principio.titulo.trim() == '' || this.principio.titulo == null) {
-      this.snack.open("El título es obligatorio!!", '', {
+      this.snack.open("El título es obligatorio!!", 'Aceptar', {
         duration: 2000
       })
       return;

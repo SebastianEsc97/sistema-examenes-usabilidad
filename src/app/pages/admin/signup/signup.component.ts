@@ -25,7 +25,6 @@ export class SignupComponent implements OnInit {
   constructor(private userService: UserService, private snack: MatSnackBar) { }
 
   formSubmit() {
-    // faltan poner validaciones
     if (this.user.username == '' || this.user.username == null) {
       this.snack.open('El nombre de usuario es requerido', 'Aceptar', {
         duration: 2000,

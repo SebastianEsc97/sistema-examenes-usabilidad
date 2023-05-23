@@ -17,7 +17,7 @@ export class ViewPrincipiosComponent implements OnInit {
         this.principios = data;
       }, (error) => {
         console.log(error)
-        Swal.fire('Error!!', 'Error al cargar las categorias', 'error')
+        Swal.fire('Error!!', 'Error al cargar los principios', 'error')
       }
     )
   }
@@ -25,7 +25,7 @@ export class ViewPrincipiosComponent implements OnInit {
   eliminarPrincipio(principioId: any) {
     Swal.fire({
       title: 'Eliminar Principio',
-      text: '¿Está seguro de continuar?',
+      text: '¿Estás seguro que deseas eliminar este principio?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '',
@@ -36,7 +36,7 @@ export class ViewPrincipiosComponent implements OnInit {
       if (result.isConfirmed) {
         this.principioService.eliminarPrincipio(principioId).subscribe(
           (data) => {
-            this.principios = this.principios.filter((prinpio: any) => prinpio.principioId != principioId);
+            this.principios = this.principios.filter((principio: any) => principio.principioId != principioId);
             Swal.fire('Principio Eliminado', 'El principio ha sido eliminado con exito', 'success');
           }, (error) => {
             Swal.fire('Error', 'Error al eleminar el principio', 'error');

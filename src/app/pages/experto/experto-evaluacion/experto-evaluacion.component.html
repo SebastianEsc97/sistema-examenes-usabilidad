@@ -3,21 +3,22 @@
     <button routerLink="/expert-dash/evaluar" mat-raised-button color="primary">Agregar Evaluación</button>
   </div>
 </mat-card>
-<mat-divider></mat-divider>
-<mat-card *ngFor="let p of evaluaciones">
+<mat-card *ngFor="let e of evaluaciones">
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
     <mat-card-title>
-      {{ p.titulo }}
+      {{ e.titulo }}
     </mat-card-title>
     <mat-card-subtitle>
-      {{ p.descripcion }}
+      {{ e.descripcion }}
     </mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
     <mat-card-actions>
-      <button [routerLink]="'/expert-dash/actualizar-evaluacion/'+p.evaluacionId" mat-flat-button color="primary"
-        class="ml20">Actualizar Evaluacion</button>
+      <button [routerLink]="'/expert-dash/actualizar-evaluacion/'+e.evaluacionId" mat-flat-button color="primary"
+        class="ml20">Actualizar Evaluación</button>
+        <button mat-flat-button color="warn" class="ml10" (click)="eliminarEvaluacion(e.evaluacionId)">Eliminar
+          Evaluación</button>
     </mat-card-actions>
   </mat-card-content>
 </mat-card>

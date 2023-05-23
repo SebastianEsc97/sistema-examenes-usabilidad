@@ -14,8 +14,9 @@
                         </mat-form-field>
                         <mat-form-field class="w100" appearance="outline">
                             <mat-label>Descripción</mat-label>
-                            <textarea required name="descripcion" matInput placeholder="Digite la descripción de la evaluación"
-                                rows="4" [(ngModel)]="evaluacion.descripcion">
+                            <textarea required name="descripcion" matInput
+                                placeholder="Digite la descripción de la evaluación" rows="4"
+                                [(ngModel)]="evaluacion.descripcion">
                             </textarea>
                         </mat-form-field>
                         <mat-form-field class="w100" appearance="outline">
@@ -24,22 +25,31 @@
                                 placeholder="Digite la URL del sitio que desea evaluar" [(ngModel)]="evaluacion.url">
                         </mat-form-field>
                         <h1 class="text-center my-3">Principios</h1>
-                        <div *ngFor="let p of principios; let i = index" >
+                        <div *ngFor="let p of principios; let i = index">
                             <mat-card-title>
                                 {{ p.titulo }}
                             </mat-card-title>
                             <mat-card-subtitle>
                                 {{ p.descripcion }}
                             </mat-card-subtitle>
-                            <input required autofocus type="number" name="respuesta" matInput
-                            placeholder="Respuesta" [(ngModel)]="respuestas[i]" (blur)="guardarRespuesta(i, respuestas[i])">
-                            <input required autofocus type="text" name="comentario" matInput
-                            placeholder="Comentario principio" [(ngModel)]="comentarios[i]" (blur)="guardarComnetario(i, comentarios[i])">
+                            <mat-form-field class="w100" appearance="outline">
+                                <mat-label>Calificación</mat-label>
+                                <input required autofocus type="number" name="respuesta" matInput
+                                    placeholder="Digite su puntaje" [(ngModel)]="respuestas[i]"
+                                    (blur)="guardarRespuesta(i, respuestas[i])">
+                            </mat-form-field>
+                            <mat-form-field class="w100" appearance="outline">
+                                <mat-label>Comentarios</mat-label>
+                                <textarea required name="comentario" matInput
+                                    placeholder="Digite sus comentarios" rows="3" [(ngModel)]="comentarios[i]"
+                                    (blur)="guardarComentario(i, comentarios[i])">
+                                </textarea>
+                            </mat-form-field>
                         </div>
                         <br>
                         <mat-form-field class="w100" appearance="outline">
-                            <mat-label>Comentario</mat-label>
-                            <textarea name="comentario" matInput placeholder="Digite comentarios adicionales" rows="4"
+                            <mat-label>Comentarios adicionales</mat-label>
+                            <textarea name="comentario" matInput placeholder="Digite sus comentarios adicionales" rows="4"
                                 [(ngModel)]="evaluacion.comentario">
                             </textarea>
                         </mat-form-field>

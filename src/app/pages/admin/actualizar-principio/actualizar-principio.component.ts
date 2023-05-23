@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PrincipioService } from 'src/app/services/principio.service';
 import Swal from 'sweetalert2';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-actualizar-principio',
@@ -10,7 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class ActualizarPrincipioComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private principioService: PrincipioService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private principioService: PrincipioService, private router: Router, private snack: MatSnackBar) { }
 
   principioId = 0;
   principio: any;
@@ -24,17 +25,15 @@ export class ActualizarPrincipioComponent implements OnInit {
         console.log(error)
       }
     )
-    this.principioService.listarPrincipios().subscribe(
-      (data: any) => {
-        this.principio = data;
-      },
-      (error) => {
-        alert('Error al cargar categorias')
-      }
-    )
   }
 
   public actualizarPrincipio() {
+    if (this.principio.titulo.trim() == '' || this.principio.titulo == null) {
+      this.snack.open("El título es obligatorio!!", 'Aceptar', {
+        duration: 2000
+      })
+      return;
+    }
     this.principioService.actualizarPrincipio(this.principio).subscribe(
       (data) => {
         Swal.fire('Principio Actualizado', 'El principio se ha actualizado con exito', 'success').then(

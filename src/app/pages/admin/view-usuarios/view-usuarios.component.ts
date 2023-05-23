@@ -18,7 +18,7 @@ export class ViewUsuariosComponent implements OnInit {
         this.usuarios= data;
       }, (error) => {
         console.log(error);
-        Swal.fire('Error!!', 'Error al cargar los usuarios', 'error')
+        Swal.fire('Error!!', 'Error al cargar los expertos', 'error')
       }
     )
 
@@ -26,8 +26,8 @@ export class ViewUsuariosComponent implements OnInit {
 
   eliminarUsuario(usuarioId: any) {
     Swal.fire({
-      title: 'Eliminar Usuario',
-      text: '¿Está seguro de continuar?',
+      title: 'Eliminar Experto',
+      text: '¿Está seguro de eliminar al experto?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '',
@@ -39,9 +39,9 @@ export class ViewUsuariosComponent implements OnInit {
         this.userService.eliminarUsuario(usuarioId).subscribe(
           (data) => {
             this.usuarios = this.usuarios.filter((user: any) => user.id != usuarioId);
-            Swal.fire('Usuario Eliminado', 'El Usuario ha sido eliminado con exito', 'success');
+            Swal.fire('Experto Eliminado', 'El experto ha sido eliminado con exito', 'success');
           }, (error) => {
-            Swal.fire('Error', 'Error al eliminar el usuario', 'error');
+            Swal.fire('Error', 'Error al eliminar el experto', 'error');
           }
         )
       }

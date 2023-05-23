@@ -1,39 +1,34 @@
-.space{
-    margin-top: 5%;
+.space {
+  margin-top: 5%;
 }
 
-.cardlog{
-    margin-top: 20%;
-    align-items: center;
-    width: 100%;
-    background: linear-gradient(#FFFFFF, #d6cbcb);
-    border-radius: 8px;
-    border-color: black !important;
-    height: 100%;
-    place-content: center;
+.cardlog {
+  margin-top: 20%;
+  align-items: center;
+  width: 100%;
+  background: linear-gradient(#ffffff, #e6dcdc);
+  border-radius: 8px;
+  border-color: black !important;
+  height: 100%;
+  place-content: center;
 }
 
-.inputlog{
-    width: 80%;
-    text-align: center;
-    border-color: black !important;
+.inputlog {
+  width: 80%;
+  text-align: center;
+  border-color: black !important;
 }
 
-
-button{
-    background: linear-gradient(#653463, #331A31);
-    font-size: larger;
-    width: 55%;
-    margin-bottom: 10%;
+button {
+  background: linear-gradient(#653463, #331a31);
+  font-size: larger;
+  width: 55%;
+  margin-bottom: 10%;
 }
 
 mat-icon {
-    font-size: 80px;
-    color: rgb(67, 3, 80);
-    width: 80px;
-    height: 80px;
-    margin-top: 7%;
+  font-size: 80px;
+  color: rgb(67, 3, 80);
+  width: 80px;
+  height: 80px;
 }
-
-
-

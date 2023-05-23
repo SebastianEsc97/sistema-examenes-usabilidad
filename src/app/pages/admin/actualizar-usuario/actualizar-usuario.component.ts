@@ -33,14 +33,14 @@ export class ActualizarUsuarioComponent implements OnInit {
   public actualizarUsuario() {
     this.userService.actualizarUsuario(this.usuario).subscribe(
       (data) => {
-        Swal.fire('usuario Actualizado', 'El usuario se ha actualizado con exito', 'success').then(
+        Swal.fire('Experto Actualizado', 'El experto se ha actualizado con exito', 'success').then(
           (e) => {
             this.router.navigate(['/admin-dash/users'])
           }
         );
       },
       (error) => {
-        Swal.fire('Error al actualizar', 'No se ha podido actualizar el usuario', 'error')
+        Swal.fire('Error al actualizar', 'No se ha podido actualizar el experto', 'error')
       }
     )
   }

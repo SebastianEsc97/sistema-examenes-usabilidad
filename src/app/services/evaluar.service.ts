@@ -25,6 +25,10 @@ export class EvaluarService {
   public obtenerEvaluacion(evaluacionId: any) {
     return this.http.get(`${baserUrl}/evaluacion/${evaluacionId}`)
   }
+
+  public eliminarEvaluacion(evaluacionId: any) {
+    return this.http.delete(`${baserUrl}/evaluacion/${evaluacionId}`)
+  }
   public obtenerEvaluacionPorUsuario(usuarioId: any) {
     return this.http.get(`${baserUrl}/evaluacion/usuario/${usuarioId}`)
   }

@@ -12,10 +12,10 @@ import Swal from 'sweetalert2';
 export class ExpertoEvaluacionComponent implements OnInit {
   user: any = null;
   evaluaciones: any = []
-  constructor(private EvaluarService: EvaluarService, private loginService: LoginService) { }
+  constructor(private evaluarService: EvaluarService, private loginService: LoginService) { }
   ngOnInit(): void {
     this.user = this.loginService.getUserId();
-    this.EvaluarService.obtenerEvaluacionPorUsuario(this.user).subscribe(
+    this.evaluarService.obtenerEvaluacionPorUsuario(this.user).subscribe(
       (data: any) => {
         this.evaluaciones = data.filter((evaluacion: { activo: boolean }) => evaluacion.activo === true);
 
@@ -24,5 +24,29 @@ export class ExpertoEvaluacionComponent implements OnInit {
         Swal.fire('Error!!', 'Error al cargar las evaluaciones', 'error')
       }
     )
+  }
+
+  eliminarEvaluacion(evaluacionId: any) {
+    Swal.fire({
+      title: 'Eliminar Evaluación',
+      text: '¿Estás seguro que deseas eliminar esta evaluación?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '',
+      cancelButtonColor: '',
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.evaluarService.eliminarEvaluacion(evaluacionId).subscribe(
+          (data) => {
+            this.evaluaciones = this.evaluaciones.filter((evaluacion: any) => evaluacion.evaluacionId != evaluacionId);
+            Swal.fire('Evalución Eliminada', 'La evaluación ha sido eliminado con exito', 'success');
+          }, (error) => {
+            Swal.fire('Error', 'Error al eleminar la evaluación', 'error');
+          }
+        )
+      }
+    })
   }
 }
