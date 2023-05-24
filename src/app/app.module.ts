@@ -10,7 +10,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HomeComponent } from './pages/home/home.component';
@@ -71,6 +71,7 @@ import { ActualizarUsuarioComponent } from './pages/admin/actualizar-usuario/act
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     MatSnackBarModule,
     MatCardModule,

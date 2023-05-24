@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PrincipioService } from 'src/app/services/principio.service';
 import Swal from 'sweetalert2';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-actualizar-principio',
@@ -10,6 +11,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./actualizar-principio.component.css']
 })
 export class ActualizarPrincipioComponent implements OnInit {
+
+  titulo = new FormControl('', Validators.required);
+  descripcion = new FormControl('', Validators.required);
 
   constructor(private route: ActivatedRoute, private principioService: PrincipioService, private router: Router, private snack: MatSnackBar) { }
 

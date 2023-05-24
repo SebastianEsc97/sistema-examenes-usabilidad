@@ -10,20 +10,40 @@
                         <mat-form-field class="w100" appearance="outline">
                             <mat-label>Titulo</mat-label>
                             <input required autofocus type="text" name="titulo" matInput
-                                placeholder="Digite el título de la evaluación" [(ngModel)]="evaluacion.titulo">
+                                placeholder="Digite el título de la evaluación" [(ngModel)]="evaluacion.titulo"
+                                [formControl]="titulo">
                         </mat-form-field>
+                        <div class="alert alert-success" *ngIf="titulo.dirty && titulo.valid">
+                            Correcto
+                        </div>
+                        <div class="alert alert-danger" *ngIf="titulo.invalid && titulo.touched">
+                            Este campo es obligatorio
+                        </div>
                         <mat-form-field class="w100" appearance="outline">
                             <mat-label>Descripción</mat-label>
                             <textarea required name="descripcion" matInput
                                 placeholder="Digite la descripción de la evaluación" rows="4"
-                                [(ngModel)]="evaluacion.descripcion">
+                                [(ngModel)]="evaluacion.descripcion" [formControl]="descripcion">
                             </textarea>
                         </mat-form-field>
+                        <div class="alert alert-success" *ngIf="descripcion.dirty && descripcion.valid">
+                            Correcto
+                        </div>
+                        <div class="alert alert-danger" *ngIf="descripcion.invalid && descripcion.touched">
+                            Este campo es obligatorio
+                        </div>
                         <mat-form-field class="w100" appearance="outline">
                             <mat-label>URL</mat-label>
                             <input required autofocus type="text" name="url" matInput
-                                placeholder="Digite la URL del sitio que desea evaluar" [(ngModel)]="evaluacion.url">
+                                placeholder="Digite la URL del sitio que desea evaluar" [(ngModel)]="evaluacion.url"
+                                [formControl]="url">
                         </mat-form-field>
+                        <div class="alert alert-success" *ngIf="url.dirty && url.valid">
+                            Correcto
+                        </div>
+                        <div class="alert alert-danger" *ngIf="url.invalid && url.touched">
+                            Este campo es obligatorio
+                        </div>
                         <h1 class="text-center my-3">Principios</h1>
                         <div *ngFor="let p of principios; let i = index">
                             <mat-card-title>
@@ -40,21 +60,27 @@
                             </mat-form-field>
                             <mat-form-field class="w100" appearance="outline">
                                 <mat-label>Comentarios</mat-label>
-                                <textarea required name="comentario" matInput
-                                    placeholder="Digite sus comentarios" rows="3" [(ngModel)]="comentarios[i]"
-                                    (blur)="guardarComentario(i, comentarios[i])">
+                                <textarea required name="comentario" matInput placeholder="Digite sus comentarios"
+                                    rows="3" [(ngModel)]="comentarios[i]" (blur)="guardarComentario(i, comentarios[i])">
                                 </textarea>
                             </mat-form-field>
                         </div>
                         <br>
                         <mat-form-field class="w100" appearance="outline">
                             <mat-label>Comentarios adicionales</mat-label>
-                            <textarea name="comentario" matInput placeholder="Digite sus comentarios adicionales" rows="4"
-                                [(ngModel)]="evaluacion.comentario">
+                            <textarea name="comentario" matInput placeholder="Digite sus comentarios adicionales"
+                                rows="4" [(ngModel)]="evaluacion.comentario" [formControl]="comentario">
                             </textarea>
                         </mat-form-field>
+                        <div class="alert alert-success" *ngIf="comentario.dirty && comentario.valid">
+                            Correcto
+                        </div>
+                        <div class="alert alert-danger" *ngIf="comentario.invalid && comentario.touched">
+                            Este campo es obligatorio
+                        </div>
                         <div class="container text-center mt15">
-                            <button mat-raised-button color="primary">Guardar</button>
+                            <button mat-raised-button color="primary"
+                                [disabled]="titulo.invalid || descripcion.invalid || url.invalid || comentario.invalid">Guardar</button>
                         </div>
                     </form>
                 </div>

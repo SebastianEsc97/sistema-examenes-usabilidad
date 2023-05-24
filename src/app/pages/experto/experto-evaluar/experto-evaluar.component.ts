@@ -3,6 +3,7 @@ import { EvaluarService } from 'src/app/services/evaluar.service';
 import { LoginService } from 'src/app/services/login.service';
 import { PrincipioService } from 'src/app/services/principio.service';
 import Swal from 'sweetalert2';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-experto-evaluar',
@@ -10,6 +11,13 @@ import Swal from 'sweetalert2';
   styleUrls: ['./experto-evaluar.component.css']
 })
 export class ExpertoEvaluarComponent implements OnInit {
+
+  titulo = new FormControl('', Validators.required);
+  descripcion = new FormControl('', Validators.required);
+  url = new FormControl('', Validators.required);
+  respuestass = new FormControl('', Validators.required);
+  comentarioss = new FormControl('', Validators.required);
+  comentario = new FormControl('', Validators.required);
 
   principios: any = [];
   respuestas: any = [];

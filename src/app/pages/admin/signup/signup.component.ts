@@ -2,6 +2,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-signup',
@@ -9,6 +10,14 @@ import Swal from 'sweetalert2';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
+
+  correo = new FormControl('', [Validators.required, Validators.pattern('^(.+)@(\\S+)$')]);
+  nombre = new FormControl('', Validators.required);
+  apellido = new FormControl('', Validators.required);
+  telefono = new FormControl('', Validators.required);
+  usuario = new FormControl('', Validators.required);
+  contrasenia = new FormControl('', Validators.required);
+  descripcion = new FormControl('', Validators.required);
   public user = {
     email: '',
     nombre: '',

@@ -10,16 +10,30 @@
                         <mat-form-field class="w100" appearance="outline">
                             <mat-label>Titulo</mat-label>
                             <input required autofocus type="text" name="titulo" matInput
-                                placeholder="Digite el título del principio" [(ngModel)]="principio.titulo">
+                                placeholder="Digite el título del principio" [(ngModel)]="principio.titulo"
+                                [formControl]="titulo">
                         </mat-form-field>
+                        <div class="alert alert-success" *ngIf="titulo.dirty && titulo.valid">
+                            Correcto
+                        </div>
+                        <div class="alert alert-danger" *ngIf="titulo.invalid && titulo.touched">
+                            Este campo es obligatorio
+                        </div>
                         <mat-form-field class="w100" appearance="outline">
                             <mat-label>Descripción</mat-label>
                             <textarea name="descripcion" matInput placeholder="Digite la descripción del principio"
-                                rows="15" [(ngModel)]="principio.descripcion">
+                                rows="15" [(ngModel)]="principio.descripcion" [formControl]="descripcion">
                             </textarea>
                         </mat-form-field>
+                        <div class="alert alert-success" *ngIf="descripcion.dirty && descripcion.valid">
+                            Correcto
+                        </div>
+                        <div class="alert alert-danger" *ngIf="descripcion.invalid && descripcion.touched">
+                            Este campo es obligatorio
+                        </div>
                         <div class="container text-center mt15">
-                            <button mat-raised-button color="primary">Guardar</button>
+                            <button mat-raised-button color="primary"
+                                [disabled]=" titulo.invalid || descripcion.invalid">Guardar</button>
                         </div>
                     </form>
                 </div>

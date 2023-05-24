@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { PrincipioService } from 'src/app/services/principio.service';
 import Swal from 'sweetalert2';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-principios',
@@ -10,6 +11,10 @@ import Swal from 'sweetalert2';
   styleUrls: ['./add-principios.component.css']
 })
 export class AddPrincipiosComponent implements OnInit {
+
+  titulo = new FormControl('', Validators.required);
+  descripcion = new FormControl('', Validators.required);
+  
 
   principio = {
     titulo: '',
