@@ -51,6 +51,7 @@
                 {{ p.descripcion }}
               </mat-card-subtitle>
               <br>
+              <br>
               <div *ngFor="let pe of principioEvaluaciones; let i = index">
                 <div *ngIf="pe.principio.principioId === p.principioId">
                   <mat-form-field class="w100" appearance="outline">
