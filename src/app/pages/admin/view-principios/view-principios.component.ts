@@ -10,11 +10,18 @@ import Swal from 'sweetalert2';
 export class ViewPrincipiosComponent implements OnInit {
 
   principios: any = []
+  principio = {
+    principioId : 0,
+    titulo: '',
+    descripcion: '',
+    activo: false
+  }
   constructor(private principioService: PrincipioService) { }
   ngOnInit(): void {
     this.principioService.listarPrincipios().subscribe(
       (data: any) => {
         this.principios = data;
+        this.principios = data.filter((principio: { activo: boolean }) => principio.activo === true);
       }, (error) => {
         console.log(error)
         Swal.fire('Error!!', 'Error al cargar los principios', 'error')
@@ -23,6 +30,7 @@ export class ViewPrincipiosComponent implements OnInit {
   }
 
   eliminarPrincipio(principioId: any) {
+    console.log(principioId)
     Swal.fire({
       title: 'Eliminar Principio',
       text: '¿Estás seguro que deseas eliminar este principio?',
@@ -33,16 +41,27 @@ export class ViewPrincipiosComponent implements OnInit {
       confirmButtonText: 'Eliminar',
       cancelButtonText: 'Cancelar'
     }).then((result) => {
-      if (result.isConfirmed) {
-        this.principioService.eliminarPrincipio(principioId).subscribe(
-          (data) => {
-            this.principios = this.principios.filter((principio: any) => principio.principioId != principioId);
+      console.log(result);
+
+        this.principioService.obtenerPrincipio(principioId).subscribe(
+          (data: any) => {
+            console.log(data);
+            this.principio.principioId = principioId;
+            this.principio.titulo = data.titulo;
+            this.principio.descripcion = data.descripcion;
+            this.principioService.actualizarPrincipio(this.principio).subscribe(
+              (data) => {
+
+              }
+            )
+            // location.reload();
+            // this.principios = this.principios.filter((principio: any) => principio.principioId != principioId);
             Swal.fire('Principio Eliminado', 'El principio ha sido eliminado con exito', 'success');
           }, (error) => {
             Swal.fire('Error', 'Error al eleminar el principio', 'error');
           }
         )
-      }
+
     })
   }
 

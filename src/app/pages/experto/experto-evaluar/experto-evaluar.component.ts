@@ -51,6 +51,7 @@ export class ExpertoEvaluarComponent implements OnInit {
       (data: any) => {
         this.principios = data;
         this.principioEvaluacion.principio.principioId = data.id;
+        this.principios = data.filter((evaluacion: { activo: boolean }) => evaluacion.activo === true);
       }, (error) => {
         console.log(error)
         Swal.fire('Error!!', 'Error al cargar las categorias', 'error')
