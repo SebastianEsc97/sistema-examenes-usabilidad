@@ -25,7 +25,7 @@ export class UserService {
   }
 
   public obtenerUsuario(usuarioId: any) {
-    return this.httpClient.get(`${baserUrl}/usuarios/${usuarioId}`)
+    return this.httpClient.get(`${baserUrl}/usuarios/listarPorId/${usuarioId}`)
   }
 
 }

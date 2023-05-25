@@ -78,9 +78,6 @@ export class ExpertoEvaluarComponent implements OnInit {
           this.principioEvaluacion.principio.principioId = principio.principioId;
           this.principioEvaluacion.respuesta = this.respuestas[principio.principioId - 1];
           this.principioEvaluacion.comentario = this.comentarios[principio.principioId - 1];
-          console.log("principio" + this.principioEvaluacion.principio.principioId);
-          console.log("evaluacion" + this.principioEvaluacion.evaluacion.evaluacionId);
-          console.log("Respuesta" + this.principioEvaluacion.respuesta);
           this.evaluarService.agregarPrincipioEvaluacion(this.principioEvaluacion).subscribe(
             (dato: any) => {
               console.log(dato);

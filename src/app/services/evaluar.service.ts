@@ -18,8 +18,8 @@ export class EvaluarService {
     return this.http.post(`${baserUrl}/evaluacion/`, evaluacion)
   }
 
-  public actualizarEvaluacion(evaluacionId: any) {
-    return this.http.put(`${baserUrl}/evaluacion/`, evaluacionId)
+  public actualizarEvaluacion(evaluacion: any) {
+    return this.http.put(`${baserUrl}/evaluacion/`, evaluacion)
   }
 
   public obtenerEvaluacion(evaluacionId: any) {
@@ -41,4 +41,7 @@ export class EvaluarService {
     return this.http.get(`${baserUrl}/principiosevaluaciones/evaluacion/${evaluacionId}`)
   }
 
+  public actualizarPrincipioEvaluacion(princpioEvaluacion: any) {
+    return this.http.put(`${baserUrl}/principiosevaluaciones/`, princpioEvaluacion)
+  }
 }

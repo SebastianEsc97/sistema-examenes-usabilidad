@@ -3,6 +3,7 @@ import { EvaluarService } from './../../../services/evaluar.service';
 import { Component, OnInit } from '@angular/core';
 
 import Swal from 'sweetalert2';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-experto-evaluacion',
@@ -11,8 +12,23 @@ import Swal from 'sweetalert2';
 })
 export class ExpertoEvaluacionComponent implements OnInit {
   user: any = null;
+
+  evaluacion = {
+    evaluacionId: 0,
+    titulo: '',
+    descripcion: '',
+    url: '',
+    activo: false,
+    comentario: '',
+    usuario: {
+      id: ''
+    }
+  }
+  principioEvaluacion: any;
+  evaluacionId =0;
+
   evaluaciones: any = []
-  constructor(private evaluarService: EvaluarService, private loginService: LoginService) { }
+  constructor(private evaluarService: EvaluarService, private loginService: LoginService, private route: ActivatedRoute) { }
   ngOnInit(): void {
     this.user = this.loginService.getUserId();
     this.evaluarService.obtenerEvaluacionPorUsuario(this.user).subscribe(
@@ -49,4 +65,32 @@ export class ExpertoEvaluacionComponent implements OnInit {
       }
     })
   }
+
+  actualizarEvaluacion(evaluacionId: any){
+    this.evaluarService.obtenerEvaluacion(evaluacionId).subscribe(
+      (data: any) => {
+        this.evaluacion.evaluacionId = evaluacionId;
+        this.evaluacion.titulo = data.titulo;
+        this.evaluacion.descripcion = data.descripcion;
+        this.evaluacion.url = data.url;
+        this.evaluacion.comentario = data.comentario;
+        this.evaluacion.usuario.id = data.usuario.id;
+        console.log(this.evaluacion);
+        this.evaluarService.actualizarEvaluacion(this.evaluacion).subscribe(
+          (data) => {
+            location.reload();
+          },
+          (error) => {
+
+          }
+        )
+      }, (error) => {
+        console.log(error)
+      }
+    )
+
+
+  }
+
+
 }

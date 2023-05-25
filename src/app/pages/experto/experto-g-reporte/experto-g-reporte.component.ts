@@ -6,6 +6,7 @@ import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 import * as pdfMake from "pdfmake/build/pdfmake";
 import * as pdfFonts from "pdfmake/build/vfs_fonts";
+import { PrincipioService } from 'src/app/services/principio.service';
 (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
 
 
@@ -19,7 +20,7 @@ export class ExpertoGReporteComponent implements OnInit {
   user: any = null;
   evaluaciones: any = []
   evaluacion: any = null;
-  constructor(private EvaluarService: EvaluarService, private loginService: LoginService) { }
+  constructor(private EvaluarService: EvaluarService, private loginService: LoginService, private principioService: PrincipioService) { }
   ngOnInit(): void {
     this.user = this.loginService.getUserId();
     this.EvaluarService.obtenerEvaluacionPorUsuario(this.user).subscribe(
@@ -37,11 +38,13 @@ export class ExpertoGReporteComponent implements OnInit {
     this.EvaluarService.obtenerEvaluacion(evaluacionId).subscribe((data: any) => {
       this.evaluacion = data;
       console.log(this.evaluacion);
+
       const pdfDefinition: any = {
         content: [
+
           {
-            text: this.evaluacion.titulo, style: 'header'
-          },
+            text: this.evaluacion.titulo, style: 'header', alignment: 'center', fontSize:20
+          },'\n',
           {
             text: this.evaluacion.descripcion, style: 'subheader'
           },
