@@ -17,10 +17,34 @@
     <mat-card-actions>
       <button [routerLink]="'/expert-dash/actualizar-evaluacion/'+e.evaluacionId" mat-flat-button color="primary"
         class="ml20">Actualizar Evaluación</button>
-        <!-- <button mat-flat-button color="warn" class="ml10" (click)="eliminarEvaluacion(e.evaluacionId)">Eliminar
+      <!-- <button mat-flat-button color="warn" class="ml10" (click)="eliminarEvaluacion(e.evaluacionId)">Eliminar
           Evaluación</button> -->
-          <button mat-flat-button color="secondary" class="ml10" (click)="actualizarEvaluacion(e.evaluacionId)">Terminar
-            Evaluación</button>
+      <button mat-flat-button color="accent" class="ml10" (click)="actualizarEvaluacion(e.evaluacionId)">Terminar
+        Evaluación</button>
     </mat-card-actions>
   </mat-card-content>
+</mat-card>
+
+<mat-card *ngFor="let e of evaluaciones">
+  <mat-card>
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>
+        {{ e.titulo }}
+      </mat-card-title>
+      <mat-card-subtitle>
+        {{ e.descripcion }}
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-card-actions>
+        <button [routerLink]="'/expert-dash/actualizar-evaluacion/'+e.evaluacionId" mat-flat-button color="primary"
+          class="ml20">Actualizar Evaluación</button>
+        <!-- <button mat-flat-button color="warn" class="ml10" (click)="eliminarEvaluacion(e.evaluacionId)">Eliminar
+          Evaluación</button> -->
+        <button mat-flat-button color="accent" class="ml10" (click)="actualizarEvaluacion(e.evaluacionId)">Terminar
+          Evaluación</button>
+      </mat-card-actions>
+    </mat-card-content>
+  </mat-card>
 </mat-card>

@@ -18,8 +18,6 @@ export class ActualizarEvaluacionComponent {
   respuestass = new FormControl('', Validators.required);
   comentarioss = new FormControl('', Validators.required);
   comentario = new FormControl('', Validators.required);
-
-
   respuestas: any = [];
   comentarios: any = [];
   evaluacion = {
@@ -84,7 +82,6 @@ export class ActualizarEvaluacionComponent {
     )
   }
 
-
   actualizarEvaluacion() {
     console.log(this.evaluacion);
     this.evaluarService.actualizarEvaluacion(this.evaluacion).subscribe(
@@ -107,7 +104,7 @@ export class ActualizarEvaluacionComponent {
         }
         Swal.fire('Evaluación Actualizada', 'La evaluación se ha actualizado con exito', 'success').then(
           (e) => {
-            this.router.navigate(['/admin-dash/evaluacion'])
+            this.router.navigate(['/expert-dash/evaluacion'])
           }
         );
       },
@@ -115,16 +112,12 @@ export class ActualizarEvaluacionComponent {
         Swal.fire('Error al actualizar', 'No se ha podido actualizar la evaluación', 'error')
       }
     )
-
-
   }
-
-
-
 
   guardarRespuesta(indice: number, valor: string) {
     this.respuestas[indice] = valor;
   }
+
   guardarComentario(indice: number, valor: string) {
     this.comentarios[indice] = valor;
   }

@@ -71,10 +71,6 @@ export class ExpertoEvaluarComponent implements OnInit {
       (dato: any) => {
         this.principioEvaluacion.evaluacion.evaluacionId = dato.evaluacionId;
         console.log(this.principioEvaluacion.evaluacion.evaluacionId);
-        this.evaluacion.titulo = '';
-        this.evaluacion.descripcion = '';
-        this.evaluacion.url = '';
-        this.evaluacion.comentario = '';
         this.principios.forEach((principio: any) => {
           this.principioEvaluacion.principio.principioId = principio.principioId;
           this.principioEvaluacion.respuesta = this.respuestas[principio.principioId - 1];

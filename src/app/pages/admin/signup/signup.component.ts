@@ -47,15 +47,14 @@ export class SignupComponent implements OnInit {
         Swal.fire({
           position: 'center',
           icon: 'success',
-          title: '¡El usuario ha sido registrado exitosamente!',
-          showConfirmButton: false,
-          timer: 2500
-        })
+          title: '¡El experto ha sido registrado exitosamente!',
+          showConfirmButton: true
+        }).then(function () { window.location.href ="/admin-dash/users"})
       }, (error) => {
-        this.snack.open('El nombre de usuario ya ha sido registrado, escoga otro', 'Aceptar', {
+        this.snack.open('El nombre de usuario ya ha sido registrado, intenta con otro', 'Aceptar', {
           duration: 2500,
           verticalPosition: 'top',
-          horizontalPosition: 'right'
+          horizontalPosition: 'center'
         });
       }
     )

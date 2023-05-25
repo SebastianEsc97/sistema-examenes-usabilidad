@@ -3,7 +3,6 @@
       <button routerLink="/admin-dash/signup" mat-raised-button color="primary">Agregar Experto</button>
   </div>
 </mat-card>
-<mat-divider></mat-divider>
 <mat-card *ngFor="let u of usuarios">
     <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
@@ -17,9 +16,9 @@
     <mat-card-content>
         <mat-card-actions>
             <button [routerLink]="'/admin-dash/usuarios/'+u.id" mat-flat-button color="primary"
-                class="ml20">Actualizar usuario</button>
-            <button mat-flat-button color="warn" class="ml10" (click)="eliminarUsuario(u.id)">Eliminar
-                Usuario</button>
+                class="ml20">Actualizar experto</button>
+            <!-- <button mat-flat-button color="warn" class="ml10" (click)="eliminarUsuario(u.id)">Eliminar
+                Usuario</button> -->
         </mat-card-actions>
     </mat-card-content>
 </mat-card>
