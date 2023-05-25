@@ -49,3 +49,11 @@ body {
 .ml70{
   margin-left: 70px !important;
 }
+
+.color-actualizar{
+  background-color: rgb(51, 169, 248) !important;
+}
+
+.color-terminar{
+  background-color: rgb(66, 187, 106) !important;
+}

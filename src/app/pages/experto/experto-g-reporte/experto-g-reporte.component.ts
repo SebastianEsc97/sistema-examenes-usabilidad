@@ -25,8 +25,8 @@ export class ExpertoGReporteComponent implements OnInit {
   evaluacionId = 0;
   respuestas: any = [];
   valoresFinales: any = [];
-  valorFinal= 0;
-  promedio= 0;
+  valorFinal = 0;
+  promedio = 0;
   constructor(private evaluarService: EvaluarService, private loginService: LoginService, private principioService: PrincipioService) { }
   ngOnInit(): void {
     this.user = this.loginService.getUserId();
@@ -60,11 +60,11 @@ export class ExpertoGReporteComponent implements OnInit {
           pe.respuesta = pe.respuesta || ''; // Asignar valor predeterminado si es nulo o indefinido
           pe.comentario = pe.comentario || ''; // Asignar valor predeterminado si es nulo o indefinido
         }
-        for(let i = 0; i < this.principios.length; i++) {
-          for(let j = 0; j < this.principioEvaluaciones.length; j++) {
+        for (let i = 0; i < this.principios.length; i++) {
+          for (let j = 0; j < this.principioEvaluaciones.length; j++) {
             console.log(this.principios[i].principioId);
             console.log(this.principioEvaluaciones[j].principio.principioId);
-            if(this.principios[i].principioId === this.principioEvaluaciones[j].principio.principioId) {
+            if (this.principios[i].principioId === this.principioEvaluaciones[j].principio.principioId) {
               this.respuestas.push(this.principios[i]);
               this.valoresFinales.push(this.principioEvaluaciones[j].respuesta);
             }
@@ -73,7 +73,7 @@ export class ExpertoGReporteComponent implements OnInit {
         console.log(this.respuestas);
         console.log(this.valoresFinales);
         this.valorFinal = this.valoresFinales.reduce((total: any, numero: any) => total + numero, 0);
-        this.promedio = (this.valorFinal/this.valoresFinales.length) * 10;
+        this.promedio = (this.valorFinal / this.valoresFinales.length) * 10;
         console.log(this.promedio);
         this.pdf(evaluacionId);
       }, (error) => {
@@ -84,7 +84,7 @@ export class ExpertoGReporteComponent implements OnInit {
 
 
   }
-  pdf(evaluacionId: string){
+  pdf(evaluacionId: string) {
     this.evaluarService.obtenerEvaluacion(evaluacionId).subscribe((data: any) => {
       this.evaluacion = data;
       console.log(this.promedio);
@@ -95,25 +95,90 @@ export class ExpertoGReporteComponent implements OnInit {
           {
             columns: [
               {
-                text: this.evaluacion.titulo, style: 'header',alignment: 'bottom', verticalAlignment: 'bottom', fontSize:15
+                text: this.evaluacion.titulo,
+                style: 'header',
+                alignment: 'bottom',
+                verticalAlignment: 'bottom',
+                fontSize: 15
               },
               {
-                text: this.promedio+'%', style: 'header',alignment: 'justify', fontSize:50
+                text: this.promedio + '%',
+                style: 'header',
+                alignment: 'justify',
+                fontSize: 50,
+                color: this.promedio < 50 ? 'red' : 'blue'
               }
             ]
 
-          },'\n',
+          }, '\n',
           {
             text: '', canvas: [{ type: 'line', x1: 0, y1: 10, x2: 595.28, y2: 10, lineWidth: 3 }]
           },
           {
-            text: this.evaluacion.descripcion, style: 'subheader'
+            text: 'La usabilidad web se refiere a la facilidad con la que los usuarios pueden interactuar con un sitio web y lograr sus objetivos de manera eficiente y satisfactoria. Se trata de diseñar y desarrollar interfaces web que sean intuitivas, accesibles y que brinden una experiencia positiva al usuario.', alignment: 'justify'
           },
           {
-            text: this.evaluacion.url, style: 'subheader'
+            text: '\nLa importancia de evaluar la usabilidad web en las distintas páginas radica en varios aspectos:', style: 'header', fontSize: 10
+          },
+          {
+            ol: [
+              'Experiencia del usuario: La usabilidad web influye directamente en la experiencia del usuario. Si un sitio web es difícil de navegar, confuso o presenta obstáculos para completar tareas, los usuarios se sentirán frustrados y es probable que abandonen el sitio. Por otro lado, si un sitio web es fácil de usar, los usuarios se sentirán más satisfechos y es más probable que vuelvan y recomienden el sitio a otros.',
+              'Cumplimiento de objetivos: Los sitios web generalmente tienen objetivos específicos, como vender productos, brindar información o permitir la interacción con servicios. Evaluar la usabilidad web ayuda a garantizar que los usuarios puedan alcanzar estos objetivos de manera eficiente. Una buena usabilidad ayuda a reducir obstáculos y facilita a los usuarios encontrar lo que están buscando, realizar compras o completar formularios, lo cual contribuye al éxito del sitio web.',
+              'Retención de usuarios: Los usuarios tienen muchas opciones en línea, y si un sitio web no satisface sus necesidades o les resulta complicado, es probable que abandonen y busquen alternativas. Evaluar y mejorar la usabilidad web ayuda a retener a los usuarios al brindarles una experiencia agradable y efectiva, lo que puede generar fidelidad a largo plazo.',
+              'Mejora del posicionamiento en los motores de búsqueda: Los motores de búsqueda, como Google, consideran la usabilidad web como un factor importante para determinar el posicionamiento de un sitio web en los resultados de búsqueda. Si un sitio web tiene una buena usabilidad, es más probable que los usuarios pasen más tiempo en él, lo compartan en redes sociales y vuelvan a visitarlo. Estos factores pueden influir positivamente en el posicionamiento orgánico del sitio.'
+            ], alignment: 'justify'
+          },
+          {
+            text: '\nEvaluación realizada por:' + this.user.nombre + this.user.apellidos, style: 'header', fontSize: 8
+          },
+          {
+            text: '\n' + this.user.descripcion, style: 'subheader'
+          },
+          {
+            text: '\nURL de la página web a la cual se le realizó la evaluación:', fontSize: 8
+          },
+          {
+            text: '\nEnlace al sitio web',
+            link: this.evaluacion.url,
+            style: 'subheader',
+            decoration: 'underline',
+            color: 'blue',
+            bold: true
+          },
+          {
+            text: '\nDescripción de la página brindada por el experto evaluador:', fontSize: 8
+          },
+          {
+            text: '\n'+this.evaluacion.descripcion, style: 'subheader'
+          },
+          {
+            text: '\nResultados proporcionados por el experto evaluador:', style: 'header', fontSize: 8
+          },
+          {
+            style: 'table',
+            table: {
+              body: (() => {
+                const tableRows = [['Principio', 'Descripción', 'Resultado', 'Comentario']];
+
+                for (let i = 0; i < this.respuestas.length; i++) {
+                      const aux= [this.respuestas[i].titulo, this.respuestas[i].descripcion, this.principioEvaluaciones[i].respuesta, this.principioEvaluaciones[i].comentario];
+                      tableRows.push(aux);
+                }
+                return tableRows;
+              })()
+            }
+          },
+          {
+            text:'\nComentarios adicionales', style: 'header', fontSize: 8
+          },
+          {
+            text:'\n' + this.evaluacion.comentario, style: 'subheader'
           }
+
+
         ]
       }
+      this.respuestas = [];
       this.valoresFinales = [];
       this.valorFinal = 0;
       this.promedio = 0;

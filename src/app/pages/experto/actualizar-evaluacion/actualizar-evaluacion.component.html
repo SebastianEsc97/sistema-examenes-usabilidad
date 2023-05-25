@@ -51,12 +51,13 @@
                 {{ p.descripcion }}
               </mat-card-subtitle>
               <br>
+              <br>
               <div *ngFor="let pe of principioEvaluaciones; let i = index">
                 <div *ngIf="pe.principio.principioId === p.principioId">
                   <mat-form-field class="w100" appearance="outline">
                     <mat-label>Calificación</mat-label>
                     <input required autofocus type="number" name="respuesta{{i}}" matInput placeholder="Digite su puntaje"
-                      [(ngModel)]="pe.respuesta" >
+                      [(ngModel)]="pe.respuesta" min="0" max="10">
                   </mat-form-field>
                   <mat-form-field class="w100" appearance="outline">
                     <mat-label>Comentarios</mat-label>

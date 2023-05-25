@@ -56,7 +56,7 @@
                                 <mat-label>Calificación</mat-label>
                                 <input required autofocus type="number" name="respuesta" matInput
                                     placeholder="Digite su puntaje" [(ngModel)]="respuestas[i]"
-                                    (blur)="guardarRespuesta(i, respuestas[i])">
+                                    (blur)="guardarRespuesta(i, respuestas[i])" min="0" max="10">
                             </mat-form-field>
                             <mat-form-field class="w100" appearance="outline">
                                 <mat-label>Comentarios</mat-label>

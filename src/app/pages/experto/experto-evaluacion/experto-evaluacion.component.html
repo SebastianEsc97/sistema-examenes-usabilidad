@@ -39,10 +39,10 @@
     <mat-card-content>
       <mat-card-actions>
         <button [routerLink]="'/expert-dash/actualizar-evaluacion/'+e.evaluacionId" mat-flat-button color="primary"
-          class="ml20">Actualizar Evaluación</button>
+          class="ml20 color-actualizar">Actualizar Evaluación</button>
         <!-- <button mat-flat-button color="warn" class="ml10" (click)="eliminarEvaluacion(e.evaluacionId)">Eliminar
           Evaluación</button> -->
-        <button mat-flat-button color="accent" class="ml10" (click)="actualizarEvaluacion(e.evaluacionId)">Terminar
+        <button mat-flat-button color="warn" class="ml10 color-terminar" (click)="actualizarEvaluacion(e.evaluacionId)">Terminar
           Evaluación</button>
       </mat-card-actions>
     </mat-card-content>
