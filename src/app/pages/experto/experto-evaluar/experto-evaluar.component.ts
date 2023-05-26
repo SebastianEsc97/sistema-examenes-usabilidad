@@ -22,6 +22,8 @@ export class ExpertoEvaluarComponent implements OnInit {
   principios: any = [];
   respuestas: any = [];
   comentarios: any = [];
+  principiosActivos: any = [];
+  aux= 0;
   evaluacion = {
     id: '',
     titulo: '',
@@ -51,7 +53,9 @@ export class ExpertoEvaluarComponent implements OnInit {
       (data: any) => {
         this.principios = data;
         this.principioEvaluacion.principio.principioId = data.id;
-        this.principios = data.filter((evaluacion: { activo: boolean }) => evaluacion.activo === true);
+        this.principiosActivos = data.filter((evaluacion: { activo: boolean }) => evaluacion.activo === true);
+        console.log(this.principios);
+        console.log(this.principiosActivos);
       }, (error) => {
         console.log(error)
         Swal.fire('Error!!', 'Error al cargar las categorias', 'error')
@@ -71,10 +75,11 @@ export class ExpertoEvaluarComponent implements OnInit {
       (dato: any) => {
         this.principioEvaluacion.evaluacion.evaluacionId = dato.evaluacionId;
         console.log(this.principioEvaluacion.evaluacion.evaluacionId);
-        this.principios.forEach((principio: any) => {
+        this.principiosActivos.forEach((principio: any) => {
           this.principioEvaluacion.principio.principioId = principio.principioId;
-          this.principioEvaluacion.respuesta = this.respuestas[principio.principioId - 1];
-          this.principioEvaluacion.comentario = this.comentarios[principio.principioId - 1];
+          this.principioEvaluacion.respuesta = this.respuestas[this.aux];
+          this.principioEvaluacion.comentario = this.comentarios[this.aux];
+          this.aux = this.aux +1;
           this.evaluarService.agregarPrincipioEvaluacion(this.principioEvaluacion).subscribe(
             (dato: any) => {
               console.log(dato);
