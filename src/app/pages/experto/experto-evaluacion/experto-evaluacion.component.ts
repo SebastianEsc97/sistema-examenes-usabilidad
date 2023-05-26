@@ -25,7 +25,7 @@ export class ExpertoEvaluacionComponent implements OnInit {
     }
   }
   principioEvaluacion: any;
-  evaluacionId =0;
+  evaluacionId = 0;
 
   evaluaciones: any = []
   constructor(private evaluarService: EvaluarService, private loginService: LoginService, private route: ActivatedRoute) { }
@@ -66,7 +66,7 @@ export class ExpertoEvaluacionComponent implements OnInit {
     })
   }
 
-  actualizarEvaluacion(evaluacionId: any){
+  actualizarEvaluacion(evaluacionId: any) {
     this.evaluarService.obtenerEvaluacion(evaluacionId).subscribe(
       (data: any) => {
         this.evaluacion.evaluacionId = evaluacionId;
@@ -91,6 +91,4 @@ export class ExpertoEvaluacionComponent implements OnInit {
 
 
   }
-
-
 }

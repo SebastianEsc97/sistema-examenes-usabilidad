@@ -1,0 +1,8 @@
+.evaluaciones-card {
+    max-width: 400px;
+}
+
+.flex-card {
+    display: flex;
+    padding: 30px;
+}

@@ -29,6 +29,7 @@ import { AddPrincipiosComponent } from './pages/admin/add-principios/add-princip
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from "ngx-ui-loader";
 import { ActualizarPrincipioComponent } from './pages/admin/actualizar-principio/actualizar-principio.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ExpertoSidebarComponent } from './pages/experto/experto-sidebar/experto-sidebar.component';
 import { ExpertoWelcomeComponent } from './pages/experto/experto-welcome/experto-welcome.component';
 import { ExpertoEvaluacionComponent } from './pages/experto/experto-evaluacion/experto-evaluacion.component';
@@ -81,6 +82,7 @@ import { ActualizarUsuarioComponent } from './pages/admin/actualizar-usuario/act
     NgxUiLoaderModule,
     MatMenuModule,
     MatSliderModule,
+    MatProgressBarModule,
     NgxUiLoaderHttpModule.forRoot({
       showForeground: true
     })
