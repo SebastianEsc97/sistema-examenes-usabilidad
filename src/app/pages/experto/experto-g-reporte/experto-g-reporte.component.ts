@@ -123,11 +123,11 @@ export class ExpertoGReporteComponent implements OnInit {
           },
           {
             ol: [
-              { text: 'Experiencia del usuario:', bold: true },
+              { text: 'Experiencia del usuario:', bold: true } +
               ' La usabilidad web influye directamente en la experiencia del usuario. Si un sitio web es difícil de navegar, confuso o presenta obstáculos para completar tareas, los usuarios se sentirán frustrados y es probable que abandonen el sitio. Por otro lado, si un sitio web es fácil de usar, los usuarios se sentirán más satisfechos y es más probable que vuelvan y recomienden el sitio a otros.',
-              { text: 'Cumplimiento de objetivos:', bold: true },
+              { text: 'Cumplimiento de objetivos:', bold: true } +
               ' Los sitios web generalmente tienen objetivos específicos, como vender productos, brindar información o permitir la interacción con servicios. Evaluar la usabilidad web ayuda a garantizar que los usuarios puedan alcanzar estos objetivos de manera eficiente. Una buena usabilidad ayuda a reducir obstáculos y facilita a los usuarios encontrar lo que están buscando, realizar compras o completar formularios, lo cual contribuye al éxito del sitio web.',
-              { text: 'Retención de usuarios:', bold: true },
+              { text: 'Retención de usuarios:', bold: true } +
               ' Los usuarios tienen muchas opciones en línea, y si un sitio web no satisface sus necesidades o les resulta complicado, es probable que abandonen y busquen alternativas. Evaluar y mejorar la usabilidad web ayuda a retener a los usuarios al brindarles una experiencia agradable y efectiva, lo que puede generar fidelidad a largo plazo.',
               { text: 'Mejora del posicionamiento en los motores de búsqueda:', bold: true },
               ' Los motores de búsqueda, como Google, consideran la usabilidad web como un factor importante para determinar el posicionamiento de un sitio web en los resultados de búsqueda. Si un sitio web tiene una buena usabilidad, es más probable que los usuarios pasen más tiempo en él, lo compartan en redes sociales y vuelvan a visitarlo. Estos factores pueden influir positivamente en el posicionamiento orgánico del sitio.'
