@@ -62,6 +62,7 @@ export class ActualizarEvaluacionComponent {
     this.evaluarService.obtenerPrincipioEvaluacionxEvaluacion(this.evaluacionId).subscribe(
       (data: any) => {
         this.principioEvaluaciones = data;
+        console.log(this.principios)
         console.log(this.principioEvaluaciones);
         for (const pe of this.principioEvaluaciones) {
           pe.respuesta = pe.respuesta || ''; // Asignar valor predeterminado si es nulo o indefinido
@@ -69,7 +70,7 @@ export class ActualizarEvaluacionComponent {
         }
       }, (error) => {
         console.log(error)
-        Swal.fire('Error!!', 'Error al cargar las categorias', 'error')
+        Swal.fire('Error!!', 'Error al cargar los principios', 'error')
       }
     )
     this.principioService.listarPrincipios().subscribe(
@@ -77,9 +78,11 @@ export class ActualizarEvaluacionComponent {
         this.principios = data;
       }, (error) => {
         console.log(error)
-        Swal.fire('Error!!', 'Error al cargar las categorias', 'error')
+        Swal.fire('Error!!', 'Error al cargar los principios', 'error')
       }
     )
+
+    console.log(this.principios)
   }
 
   actualizarEvaluacion() {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { window } from 'rxjs';
 import { PrincipioService } from 'src/app/services/principio.service';
 import Swal from 'sweetalert2';
 
@@ -57,6 +58,7 @@ export class ViewPrincipiosComponent implements OnInit {
             // location.reload();
             // this.principios = this.principios.filter((principio: any) => principio.principioId != principioId);
             Swal.fire('Principio Eliminado', 'El principio ha sido eliminado con exito', 'success');
+            location.reload()
           }, (error) => {
             Swal.fire('Error', 'Error al eleminar el principio', 'error');
           }

@@ -24,13 +24,13 @@
 .Inits {
     background: linear-gradient(#653463, #331A31);
     color: white;
-    margin-left: 50%;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
 }
-
 
 .center{
     text-align: center;
 }
-iframe{
-    margin: 0 auto;
-}
+

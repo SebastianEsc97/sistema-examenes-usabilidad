@@ -1,4 +1,4 @@
-<mat-card>
+<!-- <mat-card>
   <h1 class="text-center my-3">Detalles del perfil</h1>
   <mat-divider></mat-divider>
   <mat-card-content>
@@ -43,4 +43,49 @@
       </div>
     </div>
   </mat-card-content>
+</mat-card> -->
+<mat-card>
+  <h1 class="text-center my-3">Detalles del perfil</h1>
+  <mat-divider></mat-divider>
+  <div class="main">
+    <div class="card">
+      <div class="card-body">
+        <table>
+          <tbody>
+            <tr>
+              <td><b>Usuario</b></td>
+              <td>:</td>
+              <td>{{ user.username }}</td>
+            </tr>
+            <tr>
+              <td><b>Nombres</b></td>
+              <td>:</td>
+              <td>{{ user.nombre }}</td>
+            </tr>
+            <tr>
+              <td><b>Apellidos</b></td>
+              <td>:</td>
+              <td>{{ user.apellido }}</td>
+            </tr>
+            <tr>
+              <td><b>Correo</b></td>
+              <td>:</td>
+              <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+              <td><b>Telefono</b></td>
+              <td>:</td>
+              <td>{{ user.telefono }}</td>
+            </tr>
+            <tr>
+              <td><b>Rol</b></td>
+              <td>:</td>
+              <td>{{ user.authorities[0].authority }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
 </mat-card>

@@ -13,10 +13,10 @@
                                 placeholder="Digite el título del principio" [(ngModel)]="principio.titulo"
                                 [formControl]="titulo">
                         </mat-form-field>
-                        <div class="alert alert-success" *ngIf="titulo.dirty && titulo.valid">
+                        <div class="alert alert-success col-md-3" *ngIf="titulo.dirty && titulo.valid">
                             Correcto
                         </div>
-                        <div class="alert alert-danger" *ngIf="titulo.invalid && titulo.touched">
+                        <div class="alert alert-danger col-md-3" *ngIf="titulo.invalid && titulo.touched">
                             Este campo es obligatorio
                         </div>
                         <mat-form-field class="w100" appearance="outline">
@@ -25,10 +25,10 @@
                                 rows="15" [(ngModel)]="principio.descripcion" [formControl]="descripcion">
                             </textarea>
                         </mat-form-field>
-                        <div class="alert alert-success" *ngIf="descripcion.dirty && descripcion.valid">
+                        <div class="alert alert-success col-md-3" *ngIf="descripcion.dirty && descripcion.valid">
                             Correcto
                         </div>
-                        <div class="alert alert-danger" *ngIf="descripcion.invalid && descripcion.touched">
+                        <div class="alert alert-danger col-md-3" *ngIf="descripcion.invalid && descripcion.touched">
                             Este campo es obligatorio
                         </div>
                         <div class="container text-center mt15">

@@ -5,7 +5,7 @@
     border-radius: 50%;
 } */
 
-.table {
+/* .table {
   width: 100%;
 }
 
@@ -19,4 +19,36 @@
   padding: 15px 10px;
   border: 1px solid rgb(0, 0, 0);
   background-color: rgb(207, 207, 207);
+} */
+
+
+.main {
+  margin-top: 2%;
+  margin-left: 23%;
+  font-size: 28px;
+  padding: 0 10px;
+  width: 58%;
+}
+
+.main h2 {
+  color: #333;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.main .card {
+  background-color: #eeeeee;
+  border-radius: 18px;
+  box-shadow: 1px 1px 8px 0 grey;
+  height: auto;
+  margin-bottom: 20px;
+  padding: 20px 0 20px 50px;
+}
+
+.main .card table {
+  border: none;
+  font-size: 16px;
+  height: 270px;
+  width: 80%;
 }

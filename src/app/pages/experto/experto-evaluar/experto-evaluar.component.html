@@ -13,10 +13,10 @@
                                 placeholder="Digite el título de la evaluación" [(ngModel)]="evaluacion.titulo"
                                 [formControl]="titulo">
                         </mat-form-field>
-                        <div class="alert alert-success" *ngIf="titulo.dirty && titulo.valid">
+                        <div class="alert alert-success col-md-3" *ngIf="titulo.dirty && titulo.valid">
                             Correcto
                         </div>
-                        <div class="alert alert-danger" *ngIf="titulo.invalid && titulo.touched">
+                        <div class="alert alert-danger col-md-3" *ngIf="titulo.invalid && titulo.touched">
                             Este campo es obligatorio
                         </div>
                         <mat-form-field class="w100" appearance="outline">
@@ -26,10 +26,10 @@
                                 [(ngModel)]="evaluacion.descripcion" [formControl]="descripcion">
                             </textarea>
                         </mat-form-field>
-                        <div class="alert alert-success" *ngIf="descripcion.dirty && descripcion.valid">
+                        <div class="alert alert-success col-md-3" *ngIf="descripcion.dirty && descripcion.valid">
                             Correcto
                         </div>
-                        <div class="alert alert-danger" *ngIf="descripcion.invalid && descripcion.touched">
+                        <div class="alert alert-danger col-md-3" *ngIf="descripcion.invalid && descripcion.touched">
                             Este campo es obligatorio
                         </div>
                         <mat-form-field class="w100" appearance="outline">
@@ -38,10 +38,10 @@
                                 placeholder="Digite la URL del sitio que desea evaluar" [(ngModel)]="evaluacion.url"
                                 [formControl]="url">
                         </mat-form-field>
-                        <div class="alert alert-success" *ngIf="url.dirty && url.valid">
+                        <div class="alert alert-success col-md-3" *ngIf="url.dirty && url.valid">
                             Correcto
                         </div>
-                        <div class="alert alert-danger" *ngIf="url.invalid && url.touched">
+                        <div class="alert alert-danger col-md-3" *ngIf="url.invalid && url.touched">
                             Este campo es obligatorio
                         </div>
                         <h1 class="text-center my-3">Principios</h1>
@@ -72,10 +72,10 @@
                                 rows="4" [(ngModel)]="evaluacion.comentario" [formControl]="comentario">
                             </textarea>
                         </mat-form-field>
-                        <div class="alert alert-success" *ngIf="comentario.dirty && comentario.valid">
+                        <div class="alert alert-success col-md-3" *ngIf="comentario.dirty && comentario.valid">
                             Correcto
                         </div>
-                        <div class="alert alert-danger" *ngIf="comentario.invalid && comentario.touched">
+                        <div class="alert alert-danger col-md-3" *ngIf="comentario.invalid && comentario.touched">
                             Este campo es obligatorio
                         </div>
                         <div class="container text-center mt15">
