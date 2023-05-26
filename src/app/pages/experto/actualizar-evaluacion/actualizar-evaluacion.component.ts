@@ -20,6 +20,9 @@ export class ActualizarEvaluacionComponent {
   comentario = new FormControl('', Validators.required);
   respuestas: any = [];
   comentarios: any = [];
+
+  principiosAux: any = [];
+
   evaluacion = {
     evaluacionId: 0,
     titulo: '',
@@ -58,21 +61,6 @@ export class ActualizarEvaluacionComponent {
         console.log(error)
       }
     )
-
-    this.evaluarService.obtenerPrincipioEvaluacionxEvaluacion(this.evaluacionId).subscribe(
-      (data: any) => {
-        this.principioEvaluaciones = data;
-        console.log(this.principios)
-        console.log(this.principioEvaluaciones);
-        for (const pe of this.principioEvaluaciones) {
-          pe.respuesta = pe.respuesta || ''; // Asignar valor predeterminado si es nulo o indefinido
-          pe.comentario = pe.comentario || ''; // Asignar valor predeterminado si es nulo o indefinido
-        }
-      }, (error) => {
-        console.log(error)
-        Swal.fire('Error!!', 'Error al cargar los principios', 'error')
-      }
-    )
     this.principioService.listarPrincipios().subscribe(
       (data: any) => {
         this.principios = data;
@@ -82,7 +70,30 @@ export class ActualizarEvaluacionComponent {
       }
     )
 
-    console.log(this.principios)
+    this.evaluarService.obtenerPrincipioEvaluacionxEvaluacion(this.evaluacionId).subscribe(
+      (data: any) => {
+        this.principioEvaluaciones = data;
+        // console.log(this.principios);
+        // console.log(this.principioEvaluaciones);
+        for (let i = 0; i < this.principios.length; i++) {
+          for (const pe of this.principioEvaluaciones) {
+            pe.respuesta = pe.respuesta || ''; // Asignar valor predeterminado si es nulo o indefinido
+            pe.comentario = pe.comentario || ''; // Asignar valor predeterminado si es nulo o indefinido
+            // console.log(this.principios[i].principioId);
+            // console.log(pe.principio.principioId);
+            if (this.principios[i].principioId === pe.principio.principioId) {
+              this.principiosAux.push(this.principios[i]);
+            }
+          }
+        }
+        // console.log(this.principiosAux);
+        // console.log(this.principioEvaluaciones);
+      }, (error) => {
+        console.log(error)
+        Swal.fire('Error!!', 'Error al cargar las categorias', 'error')
+      }
+    )
+
   }
 
   actualizarEvaluacion() {
