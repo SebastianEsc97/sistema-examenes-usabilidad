@@ -90,7 +90,7 @@ export class ActualizarEvaluacionComponent {
         // console.log(this.principioEvaluaciones);
       }, (error) => {
         console.log(error)
-        Swal.fire('Error!!', 'Error al cargar las categorias', 'error')
+        Swal.fire('Error!!', 'Error al cargar los principios', 'error')
       }
     )
 

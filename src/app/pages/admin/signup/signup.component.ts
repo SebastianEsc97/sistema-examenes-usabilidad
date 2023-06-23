@@ -11,7 +11,7 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class SignupComponent implements OnInit {
 
-  correo = new FormControl('', [Validators.required, Validators.pattern('^(.+)@(\\S+)$')]);
+  correo = new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$')]);
   nombre = new FormControl('', Validators.required);
   apellido = new FormControl('', Validators.required);
   telefono = new FormControl('', Validators.required);
