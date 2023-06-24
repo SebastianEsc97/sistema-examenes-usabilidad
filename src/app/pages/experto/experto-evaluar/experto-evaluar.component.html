@@ -44,6 +44,9 @@
                         <div class="alert alert-danger col-md-3" *ngIf="url.invalid && url.touched">
                             Este campo es obligatorio
                         </div>
+                        <div class="alert alert-danger col-md-3" *ngIf="url.invalid && url.dirty">
+                            El formato de la URL es incorrecto. Ejemplo: https://www.url.com
+                        </div>
                         <h1 class="text-center my-3">Principios</h1>
                         <div *ngFor="let p of principiosActivos; let i = index">
                             <mat-card-title>
