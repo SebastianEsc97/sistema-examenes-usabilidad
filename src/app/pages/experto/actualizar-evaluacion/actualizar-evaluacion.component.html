@@ -1,5 +1,6 @@
 <mat-card>
   <h1 class="text-center my-3">Actualizar Evaluación</h1>
+  <h5 class="text-center">Recuerde que cada principio debe ser calificado en una puntuación del 0 a 10</h5>
   <mat-divider></mat-divider>
   <mat-card-content>
     <h1 class="mt20"></h1>
@@ -46,16 +47,15 @@
               El formato de la URL es incorrecto. Ejemplo: http(s)://url.com
             </span>
             <h1 class="text-center my-3">Principios</h1>
-
             <div *ngFor="let pe of principioEvaluaciones; let i = index">
-
               <mat-accordion class="example-headers-align" multi>
                 <mat-expansion-panel hideToggle>
                   <mat-expansion-panel-header>
                     <mat-panel-title>
                       <b>{{ pe.principio.titulo }}</b>
                     </mat-panel-title>
-                    <mat-slide-toggle color="primary" name="estados{{i}}" [checked]="isEstadoChecked(pe)" [(ngModel)]="pe.estado">
+                    <mat-slide-toggle color="primary" name="estados{{i}}" [checked]="isEstadoChecked(pe)"
+                      [(ngModel)]="pe.estado">
                       <b>Añadir</b></mat-slide-toggle>
                   </mat-expansion-panel-header>
                   <mat-card-subtitle>
@@ -63,28 +63,26 @@
                   </mat-card-subtitle>
                   <br>
                   <br>
-
-                    <!-- <div *ngIf="pe.principio.principioId === p.principioId"> -->
-                      <mat-form-field class="w100" appearance="outline">
-                        <mat-label>Calificación</mat-label>
-                        <input required autofocus type="number" name="respuesta{{i}}" matInput
-                          placeholder="Digite su puntaje" [(ngModel)]="pe.respuesta" min="0" max="10">
-                      </mat-form-field>
-                      <mat-form-field class="w100" appearance="outline">
-                        <mat-label>Comentarios</mat-label>
-                        <textarea required name="comentario{{i}}" matInput placeholder="Digite sus comentarios" rows="3"
-                          [(ngModel)]="pe.comentario">
+                  <!-- <div *ngIf="pe.principio.principioId === p.principioId"> -->
+                  <mat-form-field class="w100" appearance="outline">
+                    <mat-label>Calificación</mat-label>
+                    <input required autofocus type="number" name="respuesta{{i}}" matInput
+                      placeholder="Digite su puntaje" [(ngModel)]="pe.respuesta" min="0" max="10"
+                      [formControl]="calificacionPrincipios">
+                  </mat-form-field>
+                  <mat-form-field class="w100" appearance="outline">
+                    <mat-label>Comentarios</mat-label>
+                    <textarea required name="comentario{{i}}" matInput placeholder="Digite sus comentarios" rows="3"
+                      [(ngModel)]="pe.comentario" [formControl]="comentariosPrincipios">
                             </textarea>
-                      </mat-form-field>
-                    <!-- </div> -->
-
+                  </mat-form-field>
+                  <!-- </div> -->
                 </mat-expansion-panel>
               </mat-accordion>
               <br>
             </div>
-
             <br>
-            <mat-form-field class="w100" appearance="outline" style="height: 68px;">
+            <mat-form-field class="w100" appearance="outline" style="height: 140px;">
               <mat-label>Comentarios adicionales</mat-label>
               <textarea name="comentario" matInput placeholder="Digite comentarios adicionales" rows="4"
                 [(ngModel)]="evaluacion.comentario" [formControl]="comentario">
@@ -98,7 +96,7 @@
             </span>
             <div class="container text-center mt15">
               <button mat-raised-button color="primary"
-                [disabled]="titulo.invalid || descripcion.invalid || url.invalid || comentario.invalid">Actualizar</button>
+                [disabled]="titulo.invalid || descripcion.invalid || url.invalid || comentario.invalid || calificacionPrincipios.invalid || comentariosPrincipios.invalid">Actualizar</button>
             </div>
           </form>
         </div>
