@@ -7,46 +7,46 @@
             <div class="row">
                 <div class="col-md-8 offset-md-2">
                     <form (ngSubmit)="formSubmit()">
-                        <mat-form-field class="w100" appearance="outline">
+                        <mat-form-field class="w100" appearance="outline" style="height: 68px;">
                             <mat-label>Titulo</mat-label>
                             <input required autofocus type="text" name="titulo" matInput
                                 placeholder="Digite el título de la evaluación" [(ngModel)]="evaluacion.titulo"
                                 [formControl]="titulo">
                         </mat-form-field>
-                        <div class="alert alert-success col-md-3" *ngIf="titulo.dirty && titulo.valid">
+                        <span class="badge text-bg-success" *ngIf="titulo.dirty && titulo.valid">
                             Correcto
-                        </div>
-                        <div class="alert alert-danger col-md-3" *ngIf="titulo.invalid && titulo.touched">
+                        </span>
+                        <span class="badge text-bg-danger" *ngIf="titulo.invalid && titulo.touched">
                             Este campo es obligatorio
-                        </div>
-                        <mat-form-field class="w100" appearance="outline">
+                        </span>
+                        <mat-form-field class="w100" appearance="outline" style="height: 140px;">
                             <mat-label>Descripción</mat-label>
                             <textarea required name="descripcion" matInput
                                 placeholder="Digite la descripción de la evaluación" rows="4"
                                 [(ngModel)]="evaluacion.descripcion" [formControl]="descripcion">
                             </textarea>
                         </mat-form-field>
-                        <div class="alert alert-success col-md-3" *ngIf="descripcion.dirty && descripcion.valid">
+                        <span class="badge text-bg-success" *ngIf="descripcion.dirty && descripcion.valid">
                             Correcto
-                        </div>
-                        <div class="alert alert-danger col-md-3" *ngIf="descripcion.invalid && descripcion.touched">
+                        </span>
+                        <span class="badge text-bg-danger" *ngIf="descripcion.invalid && descripcion.touched">
                             Este campo es obligatorio
-                        </div>
-                        <mat-form-field class="w100" appearance="outline">
+                        </span>
+                        <mat-form-field class="w100" appearance="outline" style="height: 68px;">
                             <mat-label>URL</mat-label>
                             <input required autofocus type="text" name="url" matInput
                                 placeholder="Digite la URL del sitio que desea evaluar" [(ngModel)]="evaluacion.url"
                                 [formControl]="url">
                         </mat-form-field>
-                        <div class="alert alert-success col-md-3" *ngIf="url.dirty && url.valid">
+                        <span class="badge text-bg-success" *ngIf="url.dirty && url.valid">
                             Correcto
-                        </div>
-                        <div class="alert alert-danger col-md-3" *ngIf="url.invalid && url.touched">
+                        </span>
+                        <span class="badge text-bg-danger" *ngIf="url.invalid && url.touched && !url.dirty">
                             Este campo es obligatorio
-                        </div>
-                        <div class="alert alert-danger col-md-3" *ngIf="url.invalid && url.dirty">
-                            El formato de la URL es incorrecto. Ejemplo: https://www.url.com
-                        </div>
+                        </span>
+                        <span class="badge text-bg-danger" *ngIf="url.invalid && url.dirty && url.touched">
+                            El formato de la URL es incorrecto. Ejemplo: http(s)://url.com
+                        </span>
                         <h1 class="text-center my-3">Principios</h1>
                         <div *ngFor="let p of principiosActivos; let i = index">
                             <mat-card-title>
@@ -69,18 +69,18 @@
                             </mat-form-field>
                         </div>
                         <br>
-                        <mat-form-field class="w100" appearance="outline">
+                        <mat-form-field class="w100" appearance="outline" style="height: 68px;">
                             <mat-label>Comentarios adicionales</mat-label>
                             <textarea name="comentario" matInput placeholder="Digite sus comentarios adicionales"
                                 rows="4" [(ngModel)]="evaluacion.comentario" [formControl]="comentario">
                             </textarea>
                         </mat-form-field>
-                        <div class="alert alert-success col-md-3" *ngIf="comentario.dirty && comentario.valid">
+                        <span class="badge text-bg-success" *ngIf="comentario.dirty && comentario.valid">
                             Correcto
-                        </div>
-                        <div class="alert alert-danger col-md-3" *ngIf="comentario.invalid && comentario.touched">
+                        </span>
+                        <span class="badge text-bg-danger" *ngIf="comentario.invalid && comentario.touched">
                             Este campo es obligatorio
-                        </div>
+                        </span>
                         <div class="container text-center mt15">
                             <button mat-raised-button color="primary"
                                 [disabled]="titulo.invalid || descripcion.invalid || url.invalid || comentario.invalid">Guardar</button>

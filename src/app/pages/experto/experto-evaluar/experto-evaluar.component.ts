@@ -14,7 +14,7 @@ export class ExpertoEvaluarComponent implements OnInit {
 
   titulo = new FormControl('', Validators.required);
   descripcion = new FormControl('', Validators.required);
-  url = new FormControl('', [Validators.required, Validators.pattern('/^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$')]);
+  url = new FormControl('', [Validators.required, Validators.pattern('^(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})([/\\w .-]*)*/?$')]);
   respuestass = new FormControl('', Validators.required);
   comentarioss = new FormControl('', Validators.required);
   comentario = new FormControl('', Validators.required);

@@ -1,3 +1,13 @@
 .w100 {
   width: 100%;
 }
+
+mat-form-field{
+  padding-top: 8px;
+  margin: 0px !important;
+}
+
+span{
+  margin: 0px !important;
+  padding-top: 2px;
+}

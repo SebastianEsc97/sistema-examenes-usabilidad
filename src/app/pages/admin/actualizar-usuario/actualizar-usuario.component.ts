@@ -2,6 +2,7 @@ import { UserService } from 'src/app/services/user.service';
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-actualizar-usuario',
@@ -10,10 +11,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ActualizarUsuarioComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private userService: UserService, private router: Router) { }
+  correo = new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$')]);
+  nombre = new FormControl('', Validators.required);
+  apellido = new FormControl('', Validators.required);
+  telefono = new FormControl('', Validators.required);
+  descripcion = new FormControl('', Validators.required);
 
   usuarioId = 0;
-  usuario= {
+  usuario = {
     id: 0,
     username: '',
     password: '',
@@ -23,6 +28,8 @@ export class ActualizarUsuarioComponent implements OnInit {
     descripcion: '',
     telefono: ''
   }
+
+  constructor(private route: ActivatedRoute, private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
     this.usuarioId = this.route.snapshot.params['usuarioId'];

@@ -4,30 +4,36 @@
   </div>
 </mat-card>
 <mat-card>
-  <div class="flex-card">
-    <mat-card *ngFor="let e of evaluaciones" style="padding-left: 10px;">
-      <mat-card class="evaluaciones-card col-md-3">
-        <mat-card-header>
-          <mat-card-title>
-            {{ e.titulo }}
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <p>{{ e.descripcion }}</p>
-        </mat-card-content>
-        <mat-card-actions>
-          <button [routerLink]="'/expert-dash/actualizar-evaluacion/'+e.evaluacionId" mat-flat-button color="primary"
-            class="ml20 color-actualizar">Actualizar Evaluación</button>
-          <!-- <button mat-flat-button color="warn" class="ml10" (click)="eliminarEvaluacion(e.evaluacionId)">Eliminar
+
+  <mat-card *ngFor="let e of evaluaciones" style="padding-left: 10px;">
+    
+      <div class="grid" style="row-gap: 0;">
+        <div class="g-col-3">
+          <mat-card class="evaluaciones-card">
+            <mat-card-header>
+              <mat-card-title>
+                {{ e.titulo }}
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <p>{{ e.descripcion }}</p>
+            </mat-card-content>
+            <mat-card-actions>
+              <button [routerLink]="'/expert-dash/actualizar-evaluacion/'+e.evaluacionId" mat-flat-button
+                color="primary" class="ml20 color-actualizar">Actualizar Evaluación</button>
+              <!-- <button mat-flat-button color="warn" class="ml10" (click)="eliminarEvaluacion(e.evaluacionId)">Eliminar
           Evaluación</button> -->
-          <button mat-flat-button color="warn" class="ml10 color-terminar"
-            (click)="actualizarEvaluacion(e.evaluacionId)">Terminar
-            Evaluación</button>
-        </mat-card-actions>
-        <mat-card-footer>
-          <mat-progress-bar mode="determinate" value="100"></mat-progress-bar>
-        </mat-card-footer>
-      </mat-card>
-    </mat-card>
-  </div>
+              <button mat-flat-button color="warn" class="ml10 color-terminar"
+                (click)="actualizarEvaluacion(e.evaluacionId)">Terminar
+                Evaluación</button>
+            </mat-card-actions>
+            <mat-card-footer>
+              <mat-progress-bar mode="determinate" value="100"></mat-progress-bar>
+            </mat-card-footer>
+          </mat-card>
+        </div>
+      </div>
+    
+  </mat-card>
+
 </mat-card>

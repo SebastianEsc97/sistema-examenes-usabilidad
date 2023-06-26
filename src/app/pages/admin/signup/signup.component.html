@@ -7,86 +7,86 @@
                 <div class="row" style="margin-top : 20px;">
                     <div class="col-md-6 offset-md-3">
                         <form (ngSubmit)="formSubmit()">
-                            <mat-form-field class="full-width" appearance="outline">
+                            <mat-form-field class="full-width" appearance="outline" style="height: 65px;">
                                 <mat-label>Email</mat-label>
                                 <input required [(ngModel)]="user.email" name="email" type="email" matInput
                                     placeholder="Digite el email del experto" [formControl]="correo">
                             </mat-form-field>
-                            <div class="alert alert-success col-md-3" *ngIf="correo.dirty && correo.valid">
+                            <span class="badge text-bg-success" *ngIf="correo.dirty && correo.valid">
                                 Correcto
-                            </div>
-                            <div class="alert alert-danger col-md-5" *ngIf="correo.invalid && correo.touched">
+                            </span>
+                            <span class="badge text-bg-danger" *ngIf="correo.invalid && correo.touched">
                                 Este campo es obligatorio
-                            </div>
-                            <mat-form-field class="full-width" appearance="outline">
+                            </span>
+                            <mat-form-field class="full-width" appearance="outline" style="height: 65px;">
                                 <mat-label>Nombre</mat-label>
                                 <input required [(ngModel)]="user.nombre" name="nombre" matInput
                                     placeholder="Digite el nombre del experto" [formControl]="nombre">
                             </mat-form-field>
-                            <div class="alert alert-success col-md-3" *ngIf="nombre.dirty && nombre.valid">
+                            <span class="badge text-bg-success" *ngIf="nombre.dirty && nombre.valid">
                                 Correcto
-                            </div>
-                            <div class="alert alert-danger col-md-5" *ngIf="nombre.invalid && nombre.touched">
+                            </span>
+                            <span class="badge text-bg-danger" *ngIf="nombre.invalid && nombre.touched">
                                 Este campo es obligatorio
-                            </div>
-                            <mat-form-field class="full-width" appearance="outline">
+                            </span>
+                            <mat-form-field class="full-width" appearance="outline" style="height: 65px;">
                                 <mat-label>Apellido</mat-label>
                                 <input required [(ngModel)]="user.apellido" name="apellido" matInput
                                     placeholder="Digite el apellido del experto" [formControl]="apellido">
                             </mat-form-field>
-                            <div class="alert alert-success col-md-3" *ngIf="apellido.dirty && apellido.valid">
+                            <span class="badge text-bg-success" *ngIf="apellido.dirty && apellido.valid">
                                 Correcto
-                            </div>
-                            <div class="alert alert-danger col-md-5" *ngIf="apellido.invalid && apellido.touched">
+                            </span>
+                            <span class="badge text-bg-danger" *ngIf="apellido.invalid && apellido.touched">
                                 Este campo es obligatorio
-                            </div>
-                            <mat-form-field class="full-width" appearance="outline">
+                            </span>
+                            <mat-form-field class="full-width" appearance="outline" style="height: 65px;">
                                 <mat-label>Telefono</mat-label>
                                 <input required [(ngModel)]="user.telefono" name="telefono" matInput type="number"
                                     placeholder="Digite el telefono del experto" [formControl]="telefono">
                             </mat-form-field>
-                            <div class="alert alert-success col-md-3" *ngIf="telefono.dirty && telefono.valid">
+                            <span class="badge text-bg-success" *ngIf="telefono.dirty && telefono.valid">
                                 Correcto
-                            </div>
-                            <div class="alert alert-danger col-md-5" *ngIf="telefono.invalid && telefono.touched">
+                            </span>
+                            <span class="badge text-bg-danger" *ngIf="telefono.invalid && telefono.touched">
                                 Este campo es obligatorio
-                            </div>
-                            <mat-form-field class="full-width" appearance="outline">
+                            </span>
+                            <mat-form-field class="full-width" appearance="outline" style="height: 65px;">
                                 <mat-label>Nombre de usuario</mat-label>
                                 <input required [(ngModel)]="user.username" name="username" matInput
                                     placeholder="Digite el usuario del experto" [formControl]="usuario">
                                 <mat-hint></mat-hint>
                             </mat-form-field>
-                            <div class="alert alert-success col-md-3" *ngIf="usuario.dirty && usuario.valid">
+                            <span class="badge text-bg-success" *ngIf="usuario.dirty && usuario.valid">
                                 Correcto
-                            </div>
-                            <div class="alert alert-danger col-md-5" *ngIf="usuario.invalid && usuario.touched">
+                            </span>
+                            <span class="badge text-bg-danger" *ngIf="usuario.invalid && usuario.touched">
                                 Este campo es obligatorio
-                            </div>
-                            <mat-form-field class="full-width" appearance="outline">
+                            </span>                        
+                            <mat-form-field class="full-width" appearance="outline" style="height: 65px;">
+                                <mat-label>Contraseña</mat-label>
+                                <input required [(ngModel)]="user.password" name="password" type="password" matInput
+                                    placeholder="Digite la contraseña del experto" [formControl]="contrasenia">
+                            </mat-form-field>
+                            <span class="badge text-bg-success" *ngIf="contrasenia.dirty && contrasenia.valid">
+                                Correcto
+                            </span>
+                            <span class="badge text-bg-danger" *ngIf="contrasenia.invalid && contrasenia.touched">
+                                Este campo es obligatorio
+                            </span>
+                            <mat-form-field class="full-width" appearance="outline" style="height: 160px;">
                                 <mat-label>Descripción</mat-label>
                                 <textarea required name="descripcion" matInput
                                     placeholder="Digite una breve descripción del experto" rows="5"
                                     [(ngModel)]="user.descripcion" [formControl]="descripcion">
                               </textarea>
                             </mat-form-field>
-                            <div class="alert alert-success col-md-3" *ngIf="descripcion.dirty && descripcion.valid">
+                            <span class="badge text-bg-success" *ngIf="descripcion.dirty && descripcion.valid">
                                 Correcto
-                            </div>
-                            <div class="alert alert-danger col-md-5" *ngIf="descripcion.invalid && descripcion.touched">
+                            </span>
+                            <span class="badge text-bg-danger" *ngIf="descripcion.invalid && descripcion.touched">
                                 Este campo es obligatorio
-                            </div>
-                            <mat-form-field class="full-width" appearance="outline">
-                                <mat-label>Contraseña</mat-label>
-                                <input required [(ngModel)]="user.password" name="password" type="password" matInput
-                                    placeholder="Digite la contraseña del experto" [formControl]="contrasenia">
-                            </mat-form-field>
-                            <div class="alert alert-success col-md-3" *ngIf="contrasenia.dirty && contrasenia.valid">
-                                Correcto
-                            </div>
-                            <div class="alert alert-danger col-md-5" *ngIf="contrasenia.invalid && contrasenia.touched">
-                                Este campo es obligatorio
-                            </div>
+                            </span>
                             <div class="container text-center">
                                 <button mat-raised-button color="primary"
                                     [disabled]="correo.invalid || nombre.invalid || apellido.invalid || telefono.invalid || usuario.invalid || contrasenia.invalid || descripcion.invalid">Registrar</button>

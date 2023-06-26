@@ -14,7 +14,7 @@ export class ActualizarEvaluacionComponent {
 
   titulo = new FormControl('', Validators.required);
   descripcion = new FormControl('', Validators.required);
-  url = new FormControl('', Validators.required);
+  url = new FormControl('', [Validators.required, Validators.pattern('^(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})([/\\w .-]*)*/?$')]);
   respuestass = new FormControl('', Validators.required);
   comentarioss = new FormControl('', Validators.required);
   comentario = new FormControl('', Validators.required);
