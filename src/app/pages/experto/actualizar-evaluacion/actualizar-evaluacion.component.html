@@ -46,31 +46,43 @@
               El formato de la URL es incorrecto. Ejemplo: http(s)://url.com
             </span>
             <h1 class="text-center my-3">Principios</h1>
-            <div *ngFor="let p of principiosAux">
-              <mat-card-title>
-                {{ p.titulo }}
-              </mat-card-title>
-              <mat-card-subtitle>
-                {{ p.descripcion }}
-              </mat-card-subtitle>
-              <br>
-              <br>
-              <div *ngFor="let pe of principioEvaluaciones; let i = index">
-                <div *ngIf="pe.principio.principioId === p.principioId">
-                  <mat-form-field class="w100" appearance="outline">
-                    <mat-label>Calificación</mat-label>
-                    <input required autofocus type="number" name="respuesta{{i}}" matInput
-                      placeholder="Digite su puntaje" [(ngModel)]="pe.respuesta" min="0" max="10">
-                  </mat-form-field>
-                  <mat-form-field class="w100" appearance="outline">
-                    <mat-label>Comentarios</mat-label>
-                    <textarea required name="comentario{{i}}" matInput placeholder="Digite sus comentarios" rows="3"
-                      [(ngModel)]="pe.comentario">
+
+            <div *ngFor="let pe of principioEvaluaciones; let i = index">
+
+              <mat-accordion class="example-headers-align" multi>
+                <mat-expansion-panel hideToggle>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <b>{{ pe.principio.titulo }}</b>
+                    </mat-panel-title>
+                    <mat-slide-toggle color="primary" name="estados{{i}}" [checked]="isEstadoChecked(pe)" [(ngModel)]="pe.estado">
+                      <b>Añadir</b></mat-slide-toggle>
+                  </mat-expansion-panel-header>
+                  <mat-card-subtitle>
+                    {{ pe.principio.descripcion }}
+                  </mat-card-subtitle>
+                  <br>
+                  <br>
+
+                    <!-- <div *ngIf="pe.principio.principioId === p.principioId"> -->
+                      <mat-form-field class="w100" appearance="outline">
+                        <mat-label>Calificación</mat-label>
+                        <input required autofocus type="number" name="respuesta{{i}}" matInput
+                          placeholder="Digite su puntaje" [(ngModel)]="pe.respuesta" min="0" max="10">
+                      </mat-form-field>
+                      <mat-form-field class="w100" appearance="outline">
+                        <mat-label>Comentarios</mat-label>
+                        <textarea required name="comentario{{i}}" matInput placeholder="Digite sus comentarios" rows="3"
+                          [(ngModel)]="pe.comentario">
                             </textarea>
-                  </mat-form-field>
-                </div>
-              </div>
+                      </mat-form-field>
+                    <!-- </div> -->
+
+                </mat-expansion-panel>
+              </mat-accordion>
+              <br>
             </div>
+
             <br>
             <mat-form-field class="w100" appearance="outline" style="height: 68px;">
               <mat-label>Comentarios adicionales</mat-label>

@@ -20,8 +20,10 @@ export class ActualizarEvaluacionComponent {
   comentario = new FormControl('', Validators.required);
   respuestas: any = [];
   comentarios: any = [];
-
+  estados: any = [];
+  activos: boolean[] = [];
   principiosAux: any = [];
+  estado: boolean = false;
 
   evaluacion = {
     evaluacionId: 0,
@@ -39,7 +41,8 @@ export class ActualizarEvaluacionComponent {
     respuesta: '',
     comentario: '',
     evaluacion: 0,
-    principio: 0
+    principio: 0,
+    estado: false
   }
   principios: any = [];
   principioEvaluaciones: any = [];
@@ -87,7 +90,7 @@ export class ActualizarEvaluacionComponent {
           }
         }
         // console.log(this.principiosAux);
-        // console.log(this.principioEvaluaciones);
+        console.log(this.principioEvaluaciones);
       }, (error) => {
         console.log(error)
         Swal.fire('Error!!', 'Error al cargar los principios', 'error')
@@ -98,6 +101,7 @@ export class ActualizarEvaluacionComponent {
 
   actualizarEvaluacion() {
     console.log(this.evaluacion);
+    console.log(this.estados);
     this.evaluarService.actualizarEvaluacion(this.evaluacion).subscribe(
       (data) => {
         for (const pe of this.principioEvaluaciones) {
@@ -107,6 +111,7 @@ export class ActualizarEvaluacionComponent {
           this.principioEvaluacion.respuesta = pe.respuesta;
           this.principioEvaluacion.evaluacion = pe.evaluacion.evaluacionId;
           this.principioEvaluacion.principio = pe.principio.principioId;
+          this.principioEvaluacion.estado = pe.estado;
           this.evaluarService.actualizarPrincipioEvaluacion(this.principioEvaluacion)
             .subscribe(
               (data) => {
@@ -134,5 +139,28 @@ export class ActualizarEvaluacionComponent {
 
   guardarComentario(indice: number, valor: string) {
     this.comentarios[indice] = valor;
+  }
+
+  guardarActivo(indice: number, event: boolean) {
+    if(event != true){
+      event = false;
+      console.log(event);
+      this.activos[indice] = event;
+    }else{
+    this.activos[indice] = event;
+    }
+  }
+
+  isEstadoChecked(pe: any): boolean {
+    for (let i = 0; i < this.principioEvaluaciones.length; i++) {
+      if(pe.principio.principioId === this.principioEvaluaciones[i].principio.principioId) {
+        if(this.principioEvaluaciones[i].estado){
+          this.estado = true;
+        }else{
+          this.estado = false;
+        }
+      }
+    }
+    return this.estado;
   }
 }
