@@ -4,6 +4,7 @@ import { LoginService } from 'src/app/services/login.service';
 import { PrincipioService } from 'src/app/services/principio.service';
 import Swal from 'sweetalert2';
 import { FormControl, Validators } from '@angular/forms';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-experto-evaluar',
@@ -14,7 +15,7 @@ export class ExpertoEvaluarComponent implements OnInit {
 
   titulo = new FormControl('', Validators.required);
   descripcion = new FormControl('', Validators.required);
-  url = new FormControl('', [Validators.required, Validators.pattern('/^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$')]);
+  url = new FormControl('', [Validators.required, Validators.pattern('')]);
   respuestass = new FormControl('', Validators.required);
   comentarioss = new FormControl('', Validators.required);
   comentario = new FormControl('', Validators.required);
@@ -24,6 +25,8 @@ export class ExpertoEvaluarComponent implements OnInit {
   comentarios: any = [];
   principiosActivos: any = [];
   aux= 0;
+  activos: boolean[] = [];
+
   evaluacion = {
     id: '',
     titulo: '',
@@ -43,7 +46,8 @@ export class ExpertoEvaluarComponent implements OnInit {
       evaluacionId: ''
     },
     respuesta: 0,
-    comentario: ""
+    comentario: "",
+    estado:false
   }
 
   constructor(private principioService: PrincipioService, private evaluarService: EvaluarService, private loginService: LoginService) { }
@@ -63,6 +67,7 @@ export class ExpertoEvaluarComponent implements OnInit {
     )
     this.respuestas = new Array(this.principios.length).fill('');
     this.comentarios = new Array(this.comentarios.length).fill('');
+    this.activos = this.principiosActivos.map(() => false);
   }
   formSubmit() {
     // if (this.principio.titulo.trim() == '' || this.principio.titulo == null) {
@@ -71,15 +76,24 @@ export class ExpertoEvaluarComponent implements OnInit {
     //   })
     //   return;
     // }
+    console.log(this.activos)
     this.evaluarService.agregarEvaluacion(this.evaluacion).subscribe(
       (dato: any) => {
         this.principioEvaluacion.evaluacion.evaluacionId = dato.evaluacionId;
         console.log(this.principioEvaluacion.evaluacion.evaluacionId);
         this.principiosActivos.forEach((principio: any) => {
+          console.log(this.activos[this.aux]);
+          if(!this.activos[this.aux]){
+            this.principioEvaluacion.principio.principioId = principio.principioId;
+            this.principioEvaluacion.respuesta = 0;
+            this.principioEvaluacion.comentario = '';
+            this.principioEvaluacion.estado = false;
+          }else{
           this.principioEvaluacion.principio.principioId = principio.principioId;
           this.principioEvaluacion.respuesta = this.respuestas[this.aux];
           this.principioEvaluacion.comentario = this.comentarios[this.aux];
-          this.aux = this.aux +1;
+          this.principioEvaluacion.estado = this.activos[this.aux];
+          }
           this.evaluarService.agregarPrincipioEvaluacion(this.principioEvaluacion).subscribe(
             (dato: any) => {
               console.log(dato);
@@ -87,6 +101,7 @@ export class ExpertoEvaluarComponent implements OnInit {
               console.log(error);
             }
           )
+        this.aux = this.aux +1;
         });
         Swal.fire('Evaluación Guardada', 'La evaluación se ha guardado con exito', 'success').then(function () { window.location.href = "/expert-dash/evaluacion" });
       }, (error) => {
@@ -103,6 +118,17 @@ export class ExpertoEvaluarComponent implements OnInit {
   guardarComentario(indice: number, valor: string) {
     this.comentarios[indice] = valor;
   }
+  guardarActivo(indice: number, event: boolean) {
+    if(event != true){
+      event = false;
+      console.log(event);
+      this.activos[indice] = event;
+    }else{
+    this.activos[indice] = event;
+    }
+  }
+
+
 }
 
 

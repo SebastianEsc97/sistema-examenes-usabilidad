@@ -24,6 +24,7 @@ export class ExpertoGReporteComponent implements OnInit {
   principios: any = [];
   evaluacionId = 0;
   respuestas: any = [];
+  respuestas2: any = [];
   valoresFinales: any = [];
   valorFinal = 0;
   promedio = 0;
@@ -62,11 +63,12 @@ export class ExpertoGReporteComponent implements OnInit {
         }
         for (let i = 0; i < this.principios.length; i++) {
           for (let j = 0; j < this.principioEvaluaciones.length; j++) {
-            console.log(this.principios[i].principioId);
-            console.log(this.principioEvaluaciones[j].principio.principioId);
             if (this.principios[i].principioId === this.principioEvaluaciones[j].principio.principioId) {
-              this.respuestas.push(this.principios[i]);
-              this.valoresFinales.push(this.principioEvaluaciones[j].respuesta);
+              if(this.principioEvaluaciones[j].estado){
+                this.respuestas.push(this.principios[i]);
+                this.valoresFinales.push(this.principioEvaluaciones[j].respuesta);
+                this.respuestas2.push(this.principioEvaluaciones[j]);
+              }
             }
           }
         }
@@ -89,6 +91,7 @@ export class ExpertoGReporteComponent implements OnInit {
       this.evaluacion = data;
       console.log(this.promedio);
       console.log(this.evaluacion);
+      console.log(this.respuestas2);
       console.log(this.evaluacion.usuario.nombre);
 
       const pdfDefinition: any = {
@@ -98,15 +101,17 @@ export class ExpertoGReporteComponent implements OnInit {
               {
                 text: this.evaluacion.titulo,
                 style: 'header',
+                width: '50%',
                 alignment: 'bottom',
                 verticalAlignment: 'bottom',
                 fontSize: 15,
                 bold: true
               },
               {
-                text: this.promedio + '%',
+                text: this.promedio.toFixed(1) + '%',
                 style: 'header',
-                alignment: 'justify',
+                width: '50%',
+                alignment: 'left',
                 fontSize: 50,
                 color: this.promedio < 50 ? 'red' : 'blue'
               }
@@ -165,7 +170,7 @@ export class ExpertoGReporteComponent implements OnInit {
                 const tableRows = [['Principio', 'Descripción', 'Resultado', 'Comentario']];
 
                 for (let i = 0; i < this.respuestas.length; i++) {
-                  const aux = [this.respuestas[i].titulo, this.respuestas[i].descripcion, this.principioEvaluaciones[i].respuesta, this.principioEvaluaciones[i].comentario];
+                  const aux = [this.respuestas[i].titulo, this.respuestas[i].descripcion, this.respuestas2[i].respuesta, this.respuestas2[i].comentario];
                   tableRows.push(aux);
                 }
 
@@ -188,6 +193,7 @@ export class ExpertoGReporteComponent implements OnInit {
       this.valoresFinales = [];
       this.valorFinal = 0;
       this.promedio = 0;
+      this.respuestas2 = [];
       const pdf = pdfMake.createPdf(pdfDefinition);
       pdf.open();
     })
