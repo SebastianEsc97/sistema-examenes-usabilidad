@@ -38,6 +38,7 @@
                 placeholder="Digite la URL del sitio que desea evaluar" [(ngModel)]="evaluacion.url"
                 [formControl]="url">
             </mat-form-field>
+            <mat-hint>Se sugiere copiar la URL de la página desde la barra de direcciones del navegador</mat-hint>
             <span class="badge text-bg-success" *ngIf="url.dirty && url.valid">
               Correcto
             </span>
@@ -55,9 +56,9 @@
                     <mat-panel-title>
                       <b>{{ p.titulo }}</b>
                     </mat-panel-title>
-                    <mat-slide-toggle color="primary" [(ngModel)]="activos[i]"
+                    <mat-slide-toggle color="primary" #slide [(ngModel)]="activos[i]"
                       (change)="guardarActivo(i, $event.checked)">
-                      <b>Añadir</b></mat-slide-toggle>
+                      <b><span>{{slide.checked?'Añadido':'Añadir'}}</span></b></mat-slide-toggle>
                   </mat-expansion-panel-header>
                   <mat-card-subtitle>
                     {{ p.descripcion }}

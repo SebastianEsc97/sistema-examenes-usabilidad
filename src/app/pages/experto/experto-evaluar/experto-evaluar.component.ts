@@ -26,6 +26,7 @@ export class ExpertoEvaluarComponent implements OnInit {
   principiosActivos: any = [];
   aux= 0;
   activos: boolean[] = [];
+  fechaActual = new Date();
 
   evaluacion = {
     id: '',
@@ -36,7 +37,9 @@ export class ExpertoEvaluarComponent implements OnInit {
     comentario: '',
     usuario: {
       id: ''
-    }
+    },
+    fecha: this.fechaActual.toISOString(),
+    ultimaFecha: this.fechaActual.toISOString()
   }
   principioEvaluacion = {
     principio: {

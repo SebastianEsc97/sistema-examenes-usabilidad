@@ -8,6 +8,7 @@ import * as pdfMake from "pdfmake/build/pdfmake";
 import * as pdfFonts from "pdfmake/build/vfs_fonts";
 import { PrincipioService } from 'src/app/services/principio.service';
 (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
+import { FormControl } from '@angular/forms';
 
 
 
@@ -18,7 +19,10 @@ import { PrincipioService } from 'src/app/services/principio.service';
 })
 export class ExpertoGReporteComponent implements OnInit {
   user: any = null;
-  evaluaciones: any = []
+  control = new FormControl();
+  filtro : any;
+  evaluaciones: any = [];
+  evaluacionesNombre: any = [];
   evaluacion: any = null;
   principioEvaluaciones: any = [];
   principios: any = [];
@@ -28,13 +32,18 @@ export class ExpertoGReporteComponent implements OnInit {
   valoresFinales: any = [];
   valorFinal = 0;
   promedio = 0;
+
+  //datos del reporte 2
+  promedios: any = [];
+  principioEvaluaciones2: any = [];
+
   constructor(private evaluarService: EvaluarService, private loginService: LoginService, private principioService: PrincipioService) { }
   ngOnInit(): void {
     this.user = this.loginService.getUserId();
     this.evaluarService.obtenerEvaluacionPorUsuario(this.user).subscribe(
       (data: any) => {
         this.evaluaciones = data.filter((evaluacion: { activo: boolean }) => evaluacion.activo === false);
-
+        this.evaluacionesNombre= this.evaluacion;
         console.log(data);
       }, (error) => {
         Swal.fire('Error!!', 'Error al cargar las evaluaciones', 'error')
@@ -50,6 +59,17 @@ export class ExpertoGReporteComponent implements OnInit {
     )
 
   }
+
+  buscar() {
+    // Filtrar la listaOriginal según el término de búsqueda
+    this.evaluacionesNombre = this.evaluaciones.filter((item: any) => {
+      // Aquí asumimos que 'item' es un objeto y que tiene una propiedad 'nombre' que deseamos filtrar
+      console.log(this.evaluacionesNombre);
+      return item.titulo.toLowerCase().includes(this.filtro.toLowerCase());
+    });
+  }
+
+
 
   generarPDF(evaluacionId: string) {
     this.evaluarService.obtenerPrincipioEvaluacionxEvaluacion(evaluacionId).subscribe(
@@ -85,7 +105,9 @@ export class ExpertoGReporteComponent implements OnInit {
     )
 
 
+
   }
+
   pdf(evaluacionId: string) {
     this.evaluarService.obtenerEvaluacion(evaluacionId).subscribe((data: any) => {
       this.evaluacion = data;
@@ -117,6 +139,9 @@ export class ExpertoGReporteComponent implements OnInit {
               }
             ]
 
+          }, '\n',
+          {
+            text:'Fecha de creación: ' + this.evaluacion.fecha, style: 'header', fontSize: 15, bold: true
           }, '\n',
           {
             text: '', canvas: [{ type: 'line', x1: 0, y1: 10, x2: 595.28, y2: 10, lineWidth: 3 }]
@@ -197,6 +222,18 @@ export class ExpertoGReporteComponent implements OnInit {
       const pdf = pdfMake.createPdf(pdfDefinition);
       pdf.open();
     })
+  }
+
+  reporteGeneral(){
+    for (let i = 0; i < this.evaluacionesNombre.length; i++) {
+      this.evaluarService.obtenerPrincipioEvaluacionxEvaluacion(this.evaluacionesNombre[i].evaluacionId).subscribe((data: any) => {
+        console.log(data);
+        if(data.evaluacion.estado){
+          this.principioEvaluaciones2.push(data);
+        }
+      })
+    }
+    console.log(this.principioEvaluaciones2);
   }
 }
 

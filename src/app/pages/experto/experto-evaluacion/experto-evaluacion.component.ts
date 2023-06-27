@@ -22,7 +22,9 @@ export class ExpertoEvaluacionComponent implements OnInit {
     comentario: '',
     usuario: {
       id: ''
-    }
+    },
+    fecha: Date,
+    ultimaFecha: Date
   }
   principioEvaluacion: any;
   evaluacionId = 0;
@@ -85,6 +87,8 @@ export class ExpertoEvaluacionComponent implements OnInit {
           this.evaluacion.url = data.url;
           this.evaluacion.comentario = data.comentario;
           this.evaluacion.usuario.id = data.usuario.id;
+          this.evaluacion.fecha = data.fecha;
+          this.evaluacion.ultimaFecha = data.ultimaFecha;
           console.log(this.evaluacion);
           this.evaluarService.actualizarEvaluacion(this.evaluacion).subscribe(
             (data) => {

@@ -1,14 +1,23 @@
 <mat-card>
-  <h1 class="text-center my-3">Generar reporte</h1>
+  <b><h1 style="margin-left: 40px;" class="text-left my-3">Generar reporte</h1></b>
 </mat-card>
-<mat-card *ngFor="let p of evaluaciones">
+<mat-card>
+<div class="row">
+  <div class="form-group">
+    <input type="text" name="filtrar" class="form-control" placeholder="buscar por página..."  [(ngModel)]="filtro" (keyup)="buscar()">
+  </div>
+</div>
+</mat-card>
+
+<mat-card *ngFor="let p of (filtro ? evaluacionesNombre: evaluaciones)">
+
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
     <mat-card-title>
       {{ p.titulo }}
     </mat-card-title>
     <mat-card-subtitle>
-      {{ p.descripcion }}
+      {{ p.url }}
     </mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
@@ -18,3 +27,8 @@
     </mat-card-actions>
   </mat-card-content>
 </mat-card>
+
+<br>
+<br>
+  <button id="btn-descargar-pdf" (click)="reporteGeneral()" mat-flat-button color="primary"
+    class="ml20">Reporte General</button>

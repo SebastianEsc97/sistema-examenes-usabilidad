@@ -18,13 +18,14 @@ export class ActualizarEvaluacionComponent {
   calificacionPrincipios = new FormControl('', Validators.required);
   comentariosPrincipios = new FormControl('', Validators.required);
   comentario = new FormControl('', Validators.required);
-  
+
   respuestas: any = [];
   comentarios: any = [];
   estados: any = [];
   activos: boolean[] = [];
   principiosAux: any = [];
   estado: boolean = false;
+  fechaActual = new Date();
 
   evaluacion = {
     evaluacionId: 0,
@@ -35,7 +36,8 @@ export class ActualizarEvaluacionComponent {
     comentario: '',
     usuario: {
       id: ''
-    }
+    },
+    ultimaFecha: this.fechaActual.toISOString()
   }
   principioEvaluacion = {
     principiosEvaluacionesId: 0,
