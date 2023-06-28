@@ -1,6 +1,5 @@
 <mat-card>
   <h1 class="text-center my-3">Agregar Evaluación</h1>
-  <h5 class="text-center">Recuerde que cada principio debe ser calificado en una puntuación del 0 a 10</h5>
   <mat-divider></mat-divider>
   <mat-card-content>
     <h1 class="mt20"></h1>
@@ -8,9 +7,8 @@
       <div class="row">
         <div class="col-md-8 offset-md-2">
           <form (ngSubmit)="formSubmit()">
-
             <mat-form-field class="w100" appearance="outline" style="height: 68px;">
-              <mat-label>Titulo</mat-label>
+              <mat-label>Nombre de la página</mat-label>
               <input required autofocus type="text" name="titulo" matInput
                 placeholder="Digite el título de la evaluación" [(ngModel)]="evaluacion.titulo" [formControl]="titulo">
             </mat-form-field>
@@ -39,16 +37,21 @@
                 [formControl]="url">
             </mat-form-field>
             <mat-hint>Se sugiere copiar la URL de la página desde la barra de direcciones del navegador</mat-hint>
-            <span class="badge text-bg-success" *ngIf="url.dirty && url.valid">
+            <br>
+            <span class="badge text-bg-success" *ngIf="url.dirty && url.valid ">
               Correcto
             </span>
-            <span class="badge text-bg-danger" *ngIf="url.invalid && url.touched && !url.dirty">
-              Este campo es obligatorio
-            </span>
-            <span class="badge text-bg-danger" *ngIf="url.invalid && url.dirty">
-              El formato de la URL es incorrecto. Ejemplo: https://www.url.com
-            </span>
+            <div *ngIf="url.invalid && (url.touched || url.dirty)">
+              <span class="badge text-bg-danger" *ngIf="url.errors?.['required']">
+                Este campo es obligatorio
+              </span>
+              <span class="badge text-bg-danger" *ngIf="url.errors?.['pattern']">
+                El formato de la URL es incorrecto. Ejemplo: http(s)://www.url.com
+              </span>
+            </div>
             <h1 class="text-center my-3">Principios</h1>
+            <h5 class="text-center text-danger">Recuerde que cada principio debe ser calificado con una puntuación entre
+              0 y 10*</h5>
             <div *ngFor="let p of principiosActivos; let i = index">
               <mat-accordion class="example-headers-align" multi>
                 <mat-expansion-panel hideToggle>

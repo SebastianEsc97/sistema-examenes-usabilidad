@@ -1,34 +1,48 @@
 <mat-card>
-  <b><h1 style="margin-left: 40px;" class="text-left my-3">Generar reporte</h1></b>
+  <b>
+    <h1 class="text-center my-3">Generar reporte</h1>
+  </b>
+  <h5 class="text-center">Para hacer un reporte general debe seleccionar las evaluaciones que quiera que aparezcan</h5>
 </mat-card>
 <mat-card>
-<div class="row">
-  <div class="form-group">
+  <!-- <div class="form-group">
     <input type="text" name="filtrar" class="form-control" placeholder="buscar por página..."  [(ngModel)]="filtro" (keyup)="buscar()">
-  </div>
-</div>
+  </div> -->
+  <mat-grid-list cols="2" rowHeight="80px">
+    <mat-grid-tile>
+      <mat-form-field appearance="fill">
+        <mat-label>Buscar el nombre de la página</mat-label>
+        <input matInput placeholder="" name="filtrar" [(ngModel)]="filtro" (keyup)="buscar()">
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <button id="btn-descargar-pdf" (click)="reporteGeneral()" mat-flat-button color="primary" class="ml20">Reporte
+        General</button>
+    </mat-grid-tile>
+  </mat-grid-list>
 </mat-card>
-
 <mat-card *ngFor="let p of (filtro ? evaluacionesNombre: evaluaciones)">
-
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
+  <mat-card-header style="margin-left: 25px;">
     <mat-card-title>
       {{ p.titulo }}
     </mat-card-title>
     <mat-card-subtitle>
       {{ p.url }}
+      <p *ngIf="p.fecha != null" style="font-size: 11px; margin: 0; padding: 0;">
+        Fecha de creación: {{ p.fecha }}
+      </p>
+      <p *ngIf="p.ultimaFecha != null" style="font-size: 11px; margin: 0; padding: 0;">
+        Ultima actualización: {{ p.ultimaFecha }}
+      </p>
     </mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
     <mat-card-actions>
       <button id="btn-descargar-pdf" (click)="generarPDF(p.evaluacionId)" mat-flat-button color="primary"
         class="ml20">Generar reporte</button>
+      <mat-slide-toggle color="primary" #slide style="margin-left: 60%;">
+        <b><span>{{slide.checked?'Añadido':'Añadir'}}</span></b></mat-slide-toggle>
     </mat-card-actions>
   </mat-card-content>
 </mat-card>
-
-<br>
-<br>
-  <button id="btn-descargar-pdf" (click)="reporteGeneral()" mat-flat-button color="primary"
-    class="ml20">Reporte General</button>

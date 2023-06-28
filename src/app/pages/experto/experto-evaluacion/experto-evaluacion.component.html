@@ -4,6 +4,44 @@
   </div>
 </mat-card>
 <mat-card>
+  <mat-grid-list cols="3" rowHeight="200px">
+    <mat-grid-tile *ngFor="let e of evaluaciones">
+      <mat-card>
+        <mat-card class="evaluaciones-card">
+          <mat-card-header>
+            <mat-card-title>
+              {{ e.titulo }}
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>{{ e.descripcion }}</p>
+          </mat-card-content>
+          <mat-card-subtitle style="margin-left: 15px;">
+            <p *ngIf="e.fecha != null" style="font-size: 11px; margin: 0; padding: 0;">
+              Fecha de creación: {{ e.fecha }}
+            </p>
+            <p *ngIf="e.ultimaFecha != null" style="font-size: 11px; margin: 0; padding: 0;">
+              Ultima actualización: {{ e.ultimaFecha }}
+            </p>
+          </mat-card-subtitle>
+          <mat-card-actions>
+            <button [routerLink]="'/expert-dash/actualizar-evaluacion/'+e.evaluacionId" mat-flat-button color="primary"
+              class="color-actualizar">Actualizar Evaluación</button>
+            <!-- <button mat-flat-button color="warn" class="ml10" (click)="eliminarEvaluacion(e.evaluacionId)">Eliminar
+            Evaluación</button> -->
+            <button mat-flat-button color="warn" class="ml10 color-terminar"
+              (click)="actualizarEvaluacion(e.evaluacionId)">Terminar
+              Evaluación</button>
+          </mat-card-actions>
+          <mat-card-footer>
+            <mat-progress-bar mode="determinate" value="100"></mat-progress-bar>
+          </mat-card-footer>
+        </mat-card>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</mat-card>
+<!-- <mat-card>
   <div class="row">
     <div class="flex-card">
       <mat-card *ngFor="let e of evaluaciones" style="padding-left: 10px;">
@@ -21,7 +59,7 @@
               class="ml20 color-actualizar">Actualizar Evaluación</button>
             <!-- <button mat-flat-button color="warn" class="ml10" (click)="eliminarEvaluacion(e.evaluacionId)">Eliminar
             Evaluación</button> -->
-            <button mat-flat-button color="warn" class="ml10 color-terminar"
+<!-- <button mat-flat-button color="warn" class="ml10 color-terminar"
               (click)="actualizarEvaluacion(e.evaluacionId)">Terminar
               Evaluación</button>
           </mat-card-actions>
@@ -34,4 +72,4 @@
 
   </div>
 
-</mat-card>
+</mat-card> -->

@@ -38,8 +38,9 @@ import { ActualizarEvaluacionComponent } from './pages/experto/actualizar-evalua
 import { ExpertoGReporteComponent } from './pages/experto/experto-g-reporte/experto-g-reporte.component';
 import { ViewUsuariosComponent } from './pages/admin/view-usuarios/view-usuarios.component';
 import { ActualizarUsuarioComponent } from './pages/admin/actualizar-usuario/actualizar-usuario.component';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {MatExpansionModule} from '@angular/material/expansion';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 
 
@@ -88,6 +89,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatProgressBarModule,
     MatSlideToggleModule,
     MatExpansionModule,
+    MatGridListModule,
     NgxUiLoaderHttpModule.forRoot({
       showForeground: true
     })

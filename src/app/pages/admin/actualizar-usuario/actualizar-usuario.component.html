@@ -13,12 +13,17 @@
                                 placeholder="Digite el email del usuario" [(ngModel)]="usuario.email"
                                 [formControl]="correo">
                         </mat-form-field>
-                        <span class="badge text-bg-success" *ngIf="correo.dirty && correo.valid">
+                        <span class="badge text-bg-success" *ngIf="correo.dirty && correo.valid ">
                             Correcto
                         </span>
-                        <span class="badge text-bg-danger" *ngIf="correo.invalid && correo.touched">
-                            Este campo es obligatorio
-                        </span>
+                        <div *ngIf="correo.invalid && (correo.touched || correo.dirty)">
+                            <span class="badge text-bg-danger" *ngIf="correo.errors?.['required']">
+                                Este campo es obligatorio
+                            </span>
+                            <span class="badge text-bg-danger" *ngIf="correo.errors?.['pattern']">
+                                El correo debe tener el siguiente formato: ejemplo@correo.com
+                            </span>
+                        </div>
                         <mat-form-field class="w100" appearance="outline" style="height: 65px;">
                             <mat-label>Nombre</mat-label>
                             <input required name="nombre" matInput placeholder="Digite el nombre del usuario"
@@ -27,9 +32,14 @@
                         <span class="badge text-bg-success" *ngIf="nombre.dirty && nombre.valid">
                             Correcto
                         </span>
-                        <span class="badge text-bg-danger" *ngIf="nombre.invalid && nombre.touched">
-                            Este campo es obligatorio
-                        </span>
+                        <div *ngIf="nombre.invalid && (nombre.touched || nombre.dirty)">
+                            <span class="badge text-bg-danger" *ngIf="nombre.errors?.['required']">
+                                Este campo es obligatorio
+                            </span>
+                            <span class="badge text-bg-danger" *ngIf="nombre.errors?.['pattern']">
+                                El nombre solo puede contener letras
+                            </span>
+                        </div>
                         <mat-form-field class="w100" appearance="outline" style="height: 65px;">
                             <mat-label>Apellido</mat-label>
                             <input required name="apellido" matInput placeholder="Digite los apellidos del usuario"
@@ -38,20 +48,30 @@
                         <span class="badge text-bg-success" *ngIf="apellido.dirty && apellido.valid">
                             Correcto
                         </span>
-                        <span class="badge text-bg-danger" *ngIf="apellido.invalid && apellido.touched">
-                            Este campo es obligatorio
-                        </span>
+                        <div *ngIf="apellido.invalid && (apellido.touched || apellido.dirty)">
+                            <span class="badge text-bg-danger" *ngIf="apellido.errors?.['required']">
+                                Este campo es obligatorio
+                            </span>
+                            <span class="badge text-bg-danger" *ngIf="apellido.errors?.['pattern']">
+                                El apellido solo puede contener letras
+                            </span>
+                        </div>
                         <mat-form-field class="w100" appearance="outline" style="height: 65px;">
                             <mat-label>Telefono</mat-label>
                             <input required name="telefono" matInput placeholder="Digite el telefono"
                                 [(ngModel)]="usuario.telefono" [formControl]="telefono">
                         </mat-form-field>
-                        <span class="badge text-bg-success" *ngIf="telefono.dirty && telefono.valid">
+                        <span class="badge text-bg-success" *ngIf="telefono.dirty && telefono.valid ">
                             Correcto
                         </span>
-                        <span class="badge text-bg-danger" *ngIf="telefono.invalid && telefono.touched">
-                            Este campo es obligatorio
-                        </span>
+                        <div *ngIf="telefono.invalid && (telefono.touched || telefono.dirty)">
+                            <span class="badge text-bg-danger" *ngIf="telefono.errors?.['required']">
+                                Este campo es obligatorio
+                            </span>
+                            <span class="badge text-bg-danger" *ngIf="telefono.errors?.['pattern']">
+                                El telefono solo puede contener números
+                            </span>
+                        </div>
                         <mat-form-field class="w100" appearance="outline" style="height: 160px;">
                             <mat-label>Descripción</mat-label>
                             <textarea required name="descripcion" matInput
