@@ -60,7 +60,7 @@
                       <b>{{ p.titulo }}</b>
                     </mat-panel-title>
                     <mat-slide-toggle color="primary" #slide [(ngModel)]="activos[i]"
-                      (change)="guardarActivo(i, $event.checked)">
+                      (change)="guardarActivo(i, $event.checked)" name="activos{{i}}">
                       <b><span>{{slide.checked?'Añadido':'Añadir'}}</span></b></mat-slide-toggle>
                   </mat-expansion-panel-header>
                   <mat-card-subtitle>
@@ -69,13 +69,14 @@
                   <br>
                   <mat-form-field class="w100" appearance="outline">
                     <mat-label>Calificación</mat-label>
-                    <input required autofocus type="number" name="respuesta" matInput placeholder="Digite su puntaje"
-                      [(ngModel)]="respuestas[i]" (blur)="guardarRespuesta(i, respuestas[i])" min="0" max="10"
+                    <input required autofocus type="number" name="respuestas{{i}}" matInput
+                      placeholder="Digite su puntaje" [(ngModel)]="respuestas[i]"
+                      (blur)="guardarRespuesta(i, respuestas[i])" min="0" max="10"
                       [formControl]="calificacionPrincipios">
                   </mat-form-field>
                   <mat-form-field class="w100" appearance="outline">
                     <mat-label>Comentarios</mat-label>
-                    <textarea required name="comentario" matInput placeholder="Digite sus comentarios" rows="3"
+                    <textarea required name="comentarios{{i}}" matInput placeholder="Digite sus comentarios" rows="3"
                       [(ngModel)]="comentarios[i]" (blur)="guardarComentario(i, comentarios[i])"
                       [formControl]="comentariosPrincipios">
                                     </textarea>
