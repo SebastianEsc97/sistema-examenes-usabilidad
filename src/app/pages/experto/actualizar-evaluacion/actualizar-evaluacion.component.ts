@@ -37,6 +37,7 @@ export class ActualizarEvaluacionComponent {
     usuario: {
       id: ''
     },
+    fecha: '',
     ultimaFecha: this.fechaActual.toISOString()
   }
   principioEvaluacion = {
@@ -63,6 +64,7 @@ export class ActualizarEvaluacionComponent {
         this.evaluacion.url = data.url;
         this.evaluacion.comentario = data.comentario;
         this.evaluacion.usuario.id = data.usuario.id;
+        this.evaluacion.fecha = data.fecha;
       }, (error) => {
         console.log(error)
       }
@@ -104,11 +106,12 @@ export class ActualizarEvaluacionComponent {
 
   actualizarEvaluacion() {
     console.log(this.evaluacion);
-    console.log(this.estados);
+    //console.log(this.estados);
     this.evaluarService.actualizarEvaluacion(this.evaluacion).subscribe(
       (data) => {
         for (const pe of this.principioEvaluaciones) {
-          console.log(pe);
+          //console.log(pe);
+          
           this.principioEvaluacion.principiosEvaluacionesId = pe.principiosEvaluacionesId;
           this.principioEvaluacion.comentario = pe.comentario;
           this.principioEvaluacion.respuesta = pe.respuesta;

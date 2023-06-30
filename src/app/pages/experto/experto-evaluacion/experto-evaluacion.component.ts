@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 
 import Swal from 'sweetalert2';
 import { ActivatedRoute } from '@angular/router';
+import { format } from 'date-fns'
 
 @Component({
   selector: 'app-experto-evaluacion',
@@ -12,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ExpertoEvaluacionComponent implements OnInit {
   user: any = null;
-
+  
   evaluacion = {
     evaluacionId: 0,
     titulo: '',
@@ -36,7 +37,7 @@ export class ExpertoEvaluacionComponent implements OnInit {
     this.evaluarService.obtenerEvaluacionPorUsuario(this.user).subscribe(
       (data: any) => {
         this.evaluaciones = data.filter((evaluacion: { activo: boolean }) => evaluacion.activo === true);
-
+        
         console.log(data);
       }, (error) => {
         Swal.fire('Error!!', 'Error al cargar las evaluaciones', 'error')
@@ -79,29 +80,31 @@ export class ExpertoEvaluacionComponent implements OnInit {
       confirmButtonText: 'Terminar',
       cancelButtonText: 'Cancelar'
     }).then((result) => {
-      this.evaluarService.obtenerEvaluacion(evaluacionId).subscribe(
-        (data: any) => {
-          this.evaluacion.evaluacionId = evaluacionId;
-          this.evaluacion.titulo = data.titulo;
-          this.evaluacion.descripcion = data.descripcion;
-          this.evaluacion.url = data.url;
-          this.evaluacion.comentario = data.comentario;
-          this.evaluacion.usuario.id = data.usuario.id;
-          this.evaluacion.fecha = data.fecha;
-          this.evaluacion.ultimaFecha = data.ultimaFecha;
-          console.log(this.evaluacion);
-          this.evaluarService.actualizarEvaluacion(this.evaluacion).subscribe(
-            (data) => {
-              location.reload();
-            },
-            (error) => {
+      if (result.isConfirmed) {
+        this.evaluarService.obtenerEvaluacion(evaluacionId).subscribe(
+          (data: any) => {
+            this.evaluacion.evaluacionId = evaluacionId;
+            this.evaluacion.titulo = data.titulo;
+            this.evaluacion.descripcion = data.descripcion;
+            this.evaluacion.url = data.url;
+            this.evaluacion.comentario = data.comentario;
+            this.evaluacion.usuario.id = data.usuario.id;
+            this.evaluacion.fecha = data.fecha;
+            this.evaluacion.ultimaFecha = data.ultimaFecha;
+            console.log(this.evaluacion);
+            this.evaluarService.actualizarEvaluacion(this.evaluacion).subscribe(
+              (data) => {
+                location.reload();
+              },
+              (error) => {
 
-            }
-          )
-        }, (error) => {
-          console.log(error)
-        }
-      )
+              }
+            )
+          }, (error) => {
+            console.log(error)
+          }
+        )
+      }
     })
 
   }

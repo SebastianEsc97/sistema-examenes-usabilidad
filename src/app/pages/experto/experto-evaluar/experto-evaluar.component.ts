@@ -24,7 +24,7 @@ export class ExpertoEvaluarComponent implements OnInit {
   respuestas: any = [];
   comentarios: any = [];
   principiosActivos: any = [];
-  aux= 0;
+  aux = 0;
   activos: boolean[] = [];
   fechaActual = new Date();
 
@@ -39,7 +39,6 @@ export class ExpertoEvaluarComponent implements OnInit {
       id: ''
     },
     fecha: this.fechaActual.toISOString(),
-    ultimaFecha: this.fechaActual.toISOString()
   }
   principioEvaluacion = {
     principio: {
@@ -50,7 +49,7 @@ export class ExpertoEvaluarComponent implements OnInit {
     },
     respuesta: 0,
     comentario: "",
-    estado:false
+    estado: false
   }
 
   constructor(private principioService: PrincipioService, private evaluarService: EvaluarService, private loginService: LoginService) { }
@@ -61,10 +60,10 @@ export class ExpertoEvaluarComponent implements OnInit {
         this.principios = data;
         this.principioEvaluacion.principio.principioId = data.id;
         this.principiosActivos = data.filter((evaluacion: { activo: boolean }) => evaluacion.activo === true);
-        console.log(this.principios);
-        console.log(this.principiosActivos);
+        // console.log(this.principios);
+        // console.log(this.principiosActivos);
       }, (error) => {
-        console.log(error)
+        // console.log(error)
         Swal.fire('Error!!', 'Error al cargar las categorias', 'error')
       }
     )
@@ -79,23 +78,24 @@ export class ExpertoEvaluarComponent implements OnInit {
     //   })
     //   return;
     // }
-    console.log(this.activos)
+    // console.log(this.activos)
     this.evaluarService.agregarEvaluacion(this.evaluacion).subscribe(
       (dato: any) => {
+        console.log(this.evaluacion)
         this.principioEvaluacion.evaluacion.evaluacionId = dato.evaluacionId;
-        console.log(this.principioEvaluacion.evaluacion.evaluacionId);
+        // console.log(this.principioEvaluacion.evaluacion.evaluacionId);
         this.principiosActivos.forEach((principio: any) => {
-          console.log(this.activos[this.aux]);
-          if(!this.activos[this.aux]){
+          // console.log(this.activos[this.aux]);
+          if (!this.activos[this.aux]) {
             this.principioEvaluacion.principio.principioId = principio.principioId;
             this.principioEvaluacion.respuesta = 0;
             this.principioEvaluacion.comentario = '';
             this.principioEvaluacion.estado = false;
-          }else{
-          this.principioEvaluacion.principio.principioId = principio.principioId;
-          this.principioEvaluacion.respuesta = this.respuestas[this.aux];
-          this.principioEvaluacion.comentario = this.comentarios[this.aux];
-          this.principioEvaluacion.estado = this.activos[this.aux];
+          } else {
+            this.principioEvaluacion.principio.principioId = principio.principioId;
+            this.principioEvaluacion.respuesta = this.respuestas[this.aux];
+            this.principioEvaluacion.comentario = this.comentarios[this.aux];
+            this.principioEvaluacion.estado = this.activos[this.aux];
           }
           this.evaluarService.agregarPrincipioEvaluacion(this.principioEvaluacion).subscribe(
             (dato: any) => {
@@ -104,11 +104,12 @@ export class ExpertoEvaluarComponent implements OnInit {
               console.log(error);
             }
           )
-        this.aux = this.aux +1;
+          this.aux = this.aux + 1;
         });
+        console.log(this.evaluacion)
         Swal.fire('Evaluación Guardada', 'La evaluación se ha guardado con exito', 'success').then(function () { window.location.href = "/expert-dash/evaluacion" });
       }, (error) => {
-        console.log(error);
+        //console.log(error);
         Swal.fire('Error!!', 'Error al guardar la evaluación', 'error')
       }
     )
@@ -122,18 +123,12 @@ export class ExpertoEvaluarComponent implements OnInit {
     this.comentarios[indice] = valor;
   }
   guardarActivo(indice: number, event: boolean) {
-    if(event != true){
+    if (event != true) {
       event = false;
-      console.log(event);
+      //console.log(event);
       this.activos[indice] = event;
-    }else{
-    this.activos[indice] = event;
+    } else {
+      this.activos[indice] = event;
     }
   }
-
-
 }
-
-
-
-
