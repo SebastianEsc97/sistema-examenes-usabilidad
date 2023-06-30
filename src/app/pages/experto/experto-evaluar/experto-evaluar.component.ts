@@ -26,7 +26,7 @@ export class ExpertoEvaluarComponent implements OnInit {
   principiosActivos: any = [];
   aux= 0;
   activos: boolean[] = [];
-  fechaActual = new Date();
+  fechaActual = new Date("2015-12-04T00:00:00");
 
   evaluacion = {
     id: '',
@@ -82,6 +82,8 @@ export class ExpertoEvaluarComponent implements OnInit {
     console.log(this.activos)
     this.evaluarService.agregarEvaluacion(this.evaluacion).subscribe(
       (dato: any) => {
+        console.log(dato);
+        console.log(this.evaluacion);
         this.principioEvaluacion.evaluacion.evaluacionId = dato.evaluacionId;
         console.log(this.principioEvaluacion.evaluacion.evaluacionId);
         this.principiosActivos.forEach((principio: any) => {

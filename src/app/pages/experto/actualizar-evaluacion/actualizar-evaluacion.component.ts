@@ -12,7 +12,7 @@ import { PrincipioService } from 'src/app/services/principio.service';
 })
 export class ActualizarEvaluacionComponent {
 
-  titulo = new FormControl('', Validators.required);
+  tituloControl = new FormControl('', Validators.required);
   descripcion = new FormControl('', Validators.required);
   url = new FormControl('', [Validators.required, Validators.pattern('^(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})([/\\w .-]*)*/?$')]);
   calificacionPrincipios = new FormControl('', Validators.required);
@@ -37,6 +37,7 @@ export class ActualizarEvaluacionComponent {
     usuario: {
       id: ''
     },
+    fecha: new Date("yyyy-MM-dd HH:mm:ss"),
     ultimaFecha: this.fechaActual.toISOString()
   }
   principioEvaluacion = {
@@ -50,6 +51,7 @@ export class ActualizarEvaluacionComponent {
   principios: any = [];
   principioEvaluaciones: any = [];
   evaluacionId = 0;
+  fechaaux= Date;
 
   constructor(private route: ActivatedRoute, private evaluarService: EvaluarService, private router: Router, private principioService: PrincipioService) { }
 
@@ -63,6 +65,8 @@ export class ActualizarEvaluacionComponent {
         this.evaluacion.url = data.url;
         this.evaluacion.comentario = data.comentario;
         this.evaluacion.usuario.id = data.usuario.id;
+        this.evaluacion.fecha = data.fecha;
+        console.log(data);
       }, (error) => {
         console.log(error)
       }
@@ -79,12 +83,11 @@ export class ActualizarEvaluacionComponent {
     this.evaluarService.obtenerPrincipioEvaluacionxEvaluacion(this.evaluacionId).subscribe(
       (data: any) => {
         this.principioEvaluaciones = data;
-        // console.log(this.principios);
-        // console.log(this.principioEvaluaciones);
+        console.log(data);
+        console.log(this.principios);
+        console.log(this.principioEvaluaciones);
         for (let i = 0; i < this.principios.length; i++) {
           for (const pe of this.principioEvaluaciones) {
-            pe.respuesta = pe.respuesta || ''; // Asignar valor predeterminado si es nulo o indefinido
-            pe.comentario = pe.comentario || ''; // Asignar valor predeterminado si es nulo o indefinido
             // console.log(this.principios[i].principioId);
             // console.log(pe.principio.principioId);
             if (this.principios[i].principioId === pe.principio.principioId) {
@@ -107,6 +110,7 @@ export class ActualizarEvaluacionComponent {
     console.log(this.estados);
     this.evaluarService.actualizarEvaluacion(this.evaluacion).subscribe(
       (data) => {
+        console.log(data);
         for (const pe of this.principioEvaluaciones) {
           console.log(pe);
           this.principioEvaluacion.principiosEvaluacionesId = pe.principiosEvaluacionesId;
@@ -138,10 +142,12 @@ export class ActualizarEvaluacionComponent {
 
   guardarRespuesta(indice: number, valor: string) {
     this.respuestas[indice] = valor;
+    console.log(this.respuestas)
   }
 
   guardarComentario(indice: number, valor: string) {
     this.comentarios[indice] = valor;
+    console.log(this.comentarios)
   }
 
   guardarActivo(indice: number, event: boolean) {
