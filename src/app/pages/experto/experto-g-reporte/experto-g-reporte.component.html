@@ -22,7 +22,7 @@
     </mat-grid-tile>
   </mat-grid-list>
 </mat-card>
-<mat-card *ngFor="let p of (filtro ? evaluacionesNombre: evaluaciones)">
+<mat-card *ngFor="let p of (filtro ? evaluacionesNombre: evaluaciones); let i = index" >
   <mat-card-header style="margin-left: 25px;">
     <mat-card-title>
       {{ p.titulo }}
@@ -41,7 +41,8 @@
     <mat-card-actions>
       <button id="btn-descargar-pdf" (click)="generarPDF(p.evaluacionId)" mat-flat-button color="primary"
         class="ml20">Generar reporte</button>
-      <mat-slide-toggle color="primary" #slide style="margin-left: 60%;">
+      <mat-slide-toggle color="primary" #slide [(ngModel)]="activos[i]"
+      (change)="guardarActivo(i, $event.checked)" name="activos{{i}}" style="margin-left: 60%;">
         <b><span>{{slide.checked?'Añadido':'Añadir'}}</span></b></mat-slide-toggle>
     </mat-card-actions>
   </mat-card-content>

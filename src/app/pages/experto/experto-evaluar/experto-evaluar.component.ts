@@ -26,7 +26,7 @@ export class ExpertoEvaluarComponent implements OnInit {
   principiosActivos: any = [];
   aux = 0;
   activos: boolean[] = [];
-  fechaActual = new Date("2015-12-04T00:00:00");
+  fechaActual = new Date();
 
   evaluacion = {
     id: '',

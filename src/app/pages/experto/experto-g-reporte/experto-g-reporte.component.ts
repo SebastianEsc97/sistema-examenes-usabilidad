@@ -12,6 +12,7 @@ import { FormControl } from '@angular/forms';
 
 
 
+
 @Component({
   selector: 'app-experto-g-reporte',
   templateUrl: './experto-g-reporte.component.html',
@@ -20,7 +21,7 @@ import { FormControl } from '@angular/forms';
 export class ExpertoGReporteComponent implements OnInit {
   user: any = null;
   control = new FormControl();
-  filtro : any;
+  filtro: any;
   evaluaciones: any = [];
   evaluacionesNombre: any = [];
   evaluacion: any = null;
@@ -32,10 +33,25 @@ export class ExpertoGReporteComponent implements OnInit {
   valoresFinales: any = [];
   valorFinal = 0;
   promedio = 0;
+  activos: boolean[] = [];
 
   //datos del reporte 2
   promedios: any = [];
   principioEvaluaciones2: any = [];
+  evaluaciones2: any = [];
+  valoresGrafico: any = [];
+  grafico = {
+    fecha: new Date(),
+    porcentaje: 0
+  }
+  valoresFinales2: any = [];
+  valorFinal2 = 0;
+  promedio2 = 0;
+  promediosEvaluaciones: any = [];
+  principios2: any = [];
+  principiosFinales2: any = [];
+
+
 
   constructor(private evaluarService: EvaluarService, private loginService: LoginService, private principioService: PrincipioService) { }
   ngOnInit(): void {
@@ -43,7 +59,7 @@ export class ExpertoGReporteComponent implements OnInit {
     this.evaluarService.obtenerEvaluacionPorUsuario(this.user).subscribe(
       (data: any) => {
         this.evaluaciones = data.filter((evaluacion: { activo: boolean }) => evaluacion.activo === false);
-        this.evaluacionesNombre= this.evaluacion;
+        this.evaluacionesNombre = this.evaluacion;
         console.log(data);
       }, (error) => {
         Swal.fire('Error!!', 'Error al cargar las evaluaciones', 'error')
@@ -61,12 +77,22 @@ export class ExpertoGReporteComponent implements OnInit {
   }
 
   buscar() {
+    this.activos = [];
     // Filtrar la listaOriginal según el término de búsqueda
     this.evaluacionesNombre = this.evaluaciones.filter((item: any) => {
       // Aquí asumimos que 'item' es un objeto y que tiene una propiedad 'nombre' que deseamos filtrar
-      console.log(this.evaluacionesNombre);
       return item.titulo.toLowerCase().includes(this.filtro.toLowerCase());
     });
+  }
+
+  guardarActivo(indice: number, event: boolean) {
+    if (event != true) {
+      event = false;
+      //console.log(event);
+      this.activos[indice] = event;
+    } else {
+      this.activos[indice] = event;
+    }
   }
 
 
@@ -84,7 +110,7 @@ export class ExpertoGReporteComponent implements OnInit {
         for (let i = 0; i < this.principios.length; i++) {
           for (let j = 0; j < this.principioEvaluaciones.length; j++) {
             if (this.principios[i].principioId === this.principioEvaluaciones[j].principio.principioId) {
-              if(this.principioEvaluaciones[j].estado){
+              if (this.principioEvaluaciones[j].estado) {
                 this.respuestas.push(this.principios[i]);
                 this.valoresFinales.push(this.principioEvaluaciones[j].respuesta);
                 this.respuestas2.push(this.principioEvaluaciones[j]);
@@ -103,10 +129,9 @@ export class ExpertoGReporteComponent implements OnInit {
         Swal.fire('Error!!', 'Error al cargar las categorias', 'error')
       }
     )
-
-
-
   }
+
+
 
   pdf(evaluacionId: string) {
     this.evaluarService.obtenerEvaluacion(evaluacionId).subscribe((data: any) => {
@@ -141,7 +166,7 @@ export class ExpertoGReporteComponent implements OnInit {
 
           }, '\n',
           {
-            text:'Fecha de creación: ' + this.evaluacion.fecha, style: 'header', fontSize: 15, bold: true
+            text: 'Fecha de creación: ' + this.evaluacion.fecha, style: 'header', fontSize: 15, bold: true
           }, '\n',
           {
             text: '', canvas: [{ type: 'line', x1: 0, y1: 10, x2: 595.28, y2: 10, lineWidth: 3 }]
@@ -162,7 +187,7 @@ export class ExpertoGReporteComponent implements OnInit {
             alignment: 'justify'
           },
           {
-            text: '\nEvaluación realizada por: ' + this.evaluacion.usuario.nombre +' '+ this.evaluacion.usuario.apellido, style: 'header', fontSize: 15, bold: true
+            text: '\nEvaluación realizada por: ' + this.evaluacion.usuario.nombre + ' ' + this.evaluacion.usuario.apellido, style: 'header', fontSize: 15, bold: true
           },
           {
             text: '\n' + this.evaluacion.usuario.descripcion, style: 'subheader'
@@ -182,7 +207,7 @@ export class ExpertoGReporteComponent implements OnInit {
             text: '\nDescripción de la página brindada por el experto evaluador:', fontSize: 15, bold: true
           },
           {
-            text: '\n'+this.evaluacion.descripcion, style: 'subheader'
+            text: '\n' + this.evaluacion.descripcion, style: 'subheader'
           },
           {
             text: '\nResultados proporcionados por el experto evaluador:', style: 'header', fontSize: 15, bold: true
@@ -204,10 +229,10 @@ export class ExpertoGReporteComponent implements OnInit {
             }
           },
           {
-            text:'\nComentarios adicionales', style: 'header', fontSize: 15, bold: true
+            text: '\nComentarios adicionales', style: 'header', fontSize: 15, bold: true
           },
           {
-            text:'\n' + this.evaluacion.comentario, style: 'subheader'
+            text: '\n' + this.evaluacion.comentario, style: 'subheader'
           }
 
 
@@ -224,24 +249,214 @@ export class ExpertoGReporteComponent implements OnInit {
     })
   }
 
-  reporteGeneral(){
-    for (let i = 0; i < this.evaluacionesNombre.length; i++) {
-      this.evaluarService.obtenerPrincipioEvaluacionxEvaluacion(this.evaluacionesNombre[i].evaluacionId).subscribe((data: any) => {
-        console.log(data);
-        if(data.evaluacion.estado){
-          this.principioEvaluaciones2.push(data);
+  reporteGeneral() {
+    console.log(this.evaluacionesNombre)
+    if (this.evaluacionesNombre === null) {
+      this.evaluacionesNombre = this.evaluaciones
+      console.log(this.evaluacionesNombre)
+    }
+    console.log(this.evaluacionesNombre);
+    const promises = [];
+    if (this.activos.length > 0) {
+      for (let i = 0; i < this.evaluacionesNombre.length; i++) {
+        const promise = this.evaluarService.obtenerPrincipioEvaluacionxEvaluacion(this.evaluacionesNombre[i].evaluacionId).toPromise();
+        promises.push(promise);
+        promise.then((data: any) => {
+          console.log(data);
+          for (let j = 0; j < data.length; j++) {
+            if (this.activos[i]) {
+              this.principioEvaluaciones2.push(data[j]);
+            }
+          }
+        }).catch((error) => {
+          console.log(error);
+          Swal.fire('Error!!', 'Error al cargar las categorias', 'error');
+        });
+        if (this.activos[i]) {
+          this.evaluaciones2.push(this.evaluacionesNombre[i]);
         }
-      })
+      }
+
+      Promise.all(promises).then(() => {
+        this.generarPdf2();
+      });
+    } else {
+      Swal.fire('Error!!', 'Debe seleccionar al menos una evaluación', 'error');
+    }
+
+  }
+
+
+
+  generarPdf2() {
+    for (let i = 0; i < this.evaluaciones2.length; i++) {
+      for (let j = 0; j < this.principioEvaluaciones2.length; j++) {
+        if (this.evaluaciones2[i].evaluacionId === this.principioEvaluaciones2[j].evaluacion.evaluacionId) {
+          if (this.principioEvaluaciones2[j].respuesta > 0) {
+            this.valoresFinales2.push(this.principioEvaluaciones2[j].respuesta)
+          }
+        }
+      }
+      for (let i = 0; i < this.principioEvaluaciones2.length; i++) {
+        let existe = false; // Bandera para verificar si el elemento ya está en la lista
+        for (let j = 0; j < this.principios2.length; j++) {
+          if (this.principios2[j] === this.principioEvaluaciones2[i].principio.principioId) {
+            existe = true; // El elemento ya está presente en la lista
+            break;
+          }
+        }
+        if (!existe) {
+          this.principios2.push(this.principioEvaluaciones2[i].principio.principioId);
+        }
+      }
+
+      console.log(this.principiosFinales2);
+      console.log(this.principios);
+      console.log(this.principios2);
+      console.log(this.valoresFinales2);
+      this.valorFinal2 = this.valoresFinales2.reduce((total: any, numero: any) => total + numero, 0);
+      this.promedio2 = (this.valorFinal2 / this.valoresFinales2.length) * 10;
+      this.promediosEvaluaciones.push(this.promedio2);
+      this.valoresFinales2 = [];
     }
     console.log(this.principioEvaluaciones2);
+    console.log(this.evaluaciones2);
+    console.log(this.promediosEvaluaciones);
+
+
+    const pdfDefinition: any = {
+      content: [
+        {
+          text: 'Reporte general',
+          style: 'header',
+          width: '70%',
+          alignment: 'center',
+          verticalAlignment: 'center',
+          fontSize: 30,
+          bold: true
+        },
+        {
+          text: '\n\nExperto evaluador: ' + this.evaluaciones2[0].usuario.nombre + ' ' + this.evaluaciones2[0].usuario.apellido,
+          fontSize: 17,
+          alignment: 'justify'
+        },
+        '\n',
+        {
+          text: '"' + this.evaluaciones2[0].usuario.descripcion + '"\n',
+          fontSize: 15,
+          alignment: 'justify'
+        },'\n',
+        {
+          text: '\n',
+          style: 'table',
+          table: {
+            widths: ['*', '*', '*', '*'],
+            body: (() => {
+              const tableRows = [['Evaluación No.', 'Fecha de Creación evaluación', 'Promedio']];
+
+              for (let i = 0; i < this.evaluaciones2.length; i++) {
+                const aux = [i + 1, this.evaluaciones2[i].fecha, this.promediosEvaluaciones[i] + '%'];
+                tableRows.push(aux);
+              }
+
+              return tableRows;
+            })()
+          }
+        },
+        '\n',
+        {
+          text: 'Datos Adicionales de las evaluaciones:',
+          fontSize: 20
+        },
+      ]
+    };
+
+    for (let i = 0; i < this.evaluaciones2.length; i++) {
+      pdfDefinition.content.push(
+        {
+          text: [
+            { text: i + 1 + '. ' + this.evaluaciones2[i].titulo, bold: true, fontSize: 17 },
+            '\n',
+            { text: 'Fecha creación: ', bold: true },
+            this.evaluaciones2[i].fecha,
+            '\n',
+            { text: 'Descripción: ', bold: true },
+            this.evaluaciones2[i].descripcion,
+            '\n',
+            { text: 'Comentarios de la evaluación: ', bold: true },
+            this.evaluaciones2[i].comentario,
+            '\n\n'
+          ]
+        }
+      );
+    }
+
+    pdfDefinition.content.push(
+      {
+        text: 'Principios usados dentro de las evaluaciones: ',
+        fontSize: 20,
+        bold: true
+      }
+    );
+
+    for (let i = 0; i < this.principios.length; i++) {
+      for (let j = 0; j < this.principios2.length; j++) {
+        if (this.principios2[j] === this.principios[i].principioId) {
+          pdfDefinition.content.push(
+            '\n',
+            {
+              text: [
+                { text: i + 1 + '. ' + this.principios[i].titulo, bold: true, fontSize: 17 },
+                '\n',
+                this.principios[i].descripcion,
+                '\n'
+              ]
+            },'\n',
+            {
+              text: 'Tabla de valores: ',
+              fontSize: 20,
+              bold: true
+            },'\n');
+          for (let k = 0; k < this.evaluaciones2.length; k++) {
+            for (let l = 0; l < this.principioEvaluaciones2.length; l++) {
+              if (this.evaluaciones2[k].evaluacionId === this.principioEvaluaciones2[l].evaluacion.evaluacionId) {
+                if (this.principioEvaluaciones2[l].principio.principioId === this.principios[i].principioId) {
+                  if (this.principioEvaluaciones2[l].respuesta > 0) {
+                    pdfDefinition.content.push(
+
+                      {
+                        style: 'table',
+                        table: {
+                          widths: ['*', '*', '*', '*'],
+                          body: (() => {
+                            const tableRows = [['Evaluación No.', 'Valor Respuesta', 'Comentarios']];
+                            const aux = [k + 1, this.principioEvaluaciones2[l].respuesta, this.principioEvaluaciones2[l].comentario];
+                            tableRows.push(aux);
+                            return tableRows;
+                          })()
+                        }
+                      });
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+
+
+
+    const pdf = pdfMake.createPdf(pdfDefinition);
+    pdf.open();
+
+    this.activos = [];
+    this.principioEvaluaciones2 = [];
+    this.evaluaciones2 = [];
+    this.promediosEvaluaciones = [];
+    console.log(this.principioEvaluaciones2);
+    console.log(this.evaluaciones2);
+    console.log(this.promediosEvaluaciones);
   }
 }
-
-
-
-
-
-
-
-
-
