@@ -1,0 +1,18 @@
+#myChart {
+  max-width: 500px;
+  max-height: 500px;
+  width: auto;
+  height: auto;
+}
+
+#myChart2 {
+  max-width: 700px;
+  max-height: 500px;
+  width: auto;
+  height: auto;
+}
+
+.chart-container {
+  display: flex;
+  justify-content: space-between;
+}

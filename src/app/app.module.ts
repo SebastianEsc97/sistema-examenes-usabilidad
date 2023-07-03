@@ -41,6 +41,7 @@ import { ActualizarUsuarioComponent } from './pages/admin/actualizar-usuario/act
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { ReporteEvaluacionesComponent } from './pages/admin/reporte-evaluaciones/reporte-evaluaciones.component';
 
 
 
@@ -66,7 +67,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     ActualizarEvaluacionComponent,
     ExpertoGReporteComponent,
     ViewUsuariosComponent,
-    ActualizarUsuarioComponent
+    ActualizarUsuarioComponent,
+    ReporteEvaluacionesComponent
   ],
   imports: [
     BrowserModule,
